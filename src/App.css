@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 nav {
   background-color: #333;
   padding: 1rem;
