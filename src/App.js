@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import Polls from "./pages/Polls";
 import News from "./pages/News";
 import QuestionSubmissions from "./pages/QuestionSubmissions";
-import Team from "./pages/Team";
+import Team from "./pages/Team.tsx";
 
 export default function App() {
   return (
