@@ -1,3 +1,3 @@
 export default function Team() {
-    return <h2>Team</h2>;
+    return <h2>Team Page</h2>;
 }
