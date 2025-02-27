@@ -6,27 +6,39 @@ import News from "./pages/News";
 import QuestionSubmissions from "./pages/QuestionSubmissions";
 import Team from "./pages/Team";
 
+const logo = ["/bop-logo.png"];
+
 export default function App() {
   return (
     <Router>
       <div>
         <nav>
           <ul className="navbar">
+            {/* logo on left side of navbar */}
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">
+                <img src={logo} alt="Logo" className="logo" />
+              </Link>
             </li>
-            <li>
-              <Link to="/polls">Polls</Link>
-            </li>
-            <li>
-              <Link to="/news">News</Link>
-            </li>
-            <li>
-              <Link to="/question-submissions">Question Submissions</Link>
-            </li>
-            <li>
-              <Link to="/team">Team</Link>
-            </li>
+
+            {/* navbar links */}
+            <div className="navbar-links">
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/polls">Polls</Link>
+              </li>
+              <li>
+                <Link to="/news">News</Link>
+              </li>
+              <li>
+                <Link to="/question-submissions">Question Submissions</Link>
+              </li>
+              <li>
+                <Link to="/team">Team</Link>
+              </li>
+            </div>
           </ul>
         </nav>
 
