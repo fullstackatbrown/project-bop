@@ -1,0 +1,100 @@
+.team-container {
+    text-align: center;
+}
+
+.image-banner {
+    display: flex;
+    width: 100vw;
+    height: 100vh; /* To prevent discrepancies for split vs. full screen */
+    background-image: url('https://st.depositphotos.com/23042880/58942/i/1600/depositphotos_589420336-stock-photo-multiracial-group-student-people-listening.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.blue-filter, .red-filter {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 40px; /* Increased padding for better spacing */
+    box-sizing: border-box;
+}
+
+.blue-filter {
+    left: 0;
+    background-color: rgba(0, 0, 255, 0.5);
+    justify-content: flex-start;
+}
+
+.red-filter {
+    right: 0;
+    background-color: rgba(255, 0, 0, 0.5);
+    justify-content: center;
+    text-align: center;
+}
+
+.banner-text {
+    position: relative;
+    color: white;
+    z-index: 1;
+    max-width: 30vw; /* Ensures text does not stretch too much */
+}
+
+.content-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.left-content, .right-content {
+    width: 45%;
+    text-align: left;
+    color: white;
+    font-size: 1.2rem;
+    padding: 10px;
+}
+
+.center {
+    align-items: center;
+    text-align: center;
+    padding: 2rem 2rem;
+    margin: 1rem;
+}
+
+.title {
+    font-size: 300%;
+    font-weight: 500;
+    word-spacing: 0.2rem;
+    letter-spacing: 0.15rem;
+    color: #323232;
+}
+
+.text {
+    color: white;
+    font-weight: bolder;
+}
+
+/* New styles for section titles */
+.section-title {
+    text-align: left;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 15px 30px;
+    color: white;
+}
+
+.subheading-banner {
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    width: 100%;
+}
+
+.team-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding-top: 10px;
+}
