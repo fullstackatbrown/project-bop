@@ -15,13 +15,13 @@ function QuestionSubmissionPage() {
   };
 
   return (
-    <div className="flex justify-center mt-48 space-x-8">
+    <div className="flex justify-center items-start mt-48 space-x-16">
       {/* Left Div */}
-      <div className="w-1/4 p-4">
+      <div className="w-1/4 p-4 self-start bg-cyan-200">
         <p className="text-4xl font-bold leading-relaxed">What questions do you want answered?</p>
       </div>
       {/* Right Div */}
-      <div className="w-1/3 p-4">
+      <div className="w-1/3 p-4 bg-cyan-200">
         <p>Enter your question idea here:</p>
         <input
           type="text"
@@ -32,9 +32,7 @@ function QuestionSubmissionPage() {
           onChange={(e) => setInputValue(e.target.value)}
           className={`w-full p-2 mt-4 border-b-2 ${hasError ? 'border-red-500' : 'border-black'} outline-none`}
         />
-        <button
-          className="w-1/3 mt-4 p-2 bg-black text-white rounded"
-        >
+        <button className="w-1/3 mt-4 p-2 bg-black text-white rounded">
           Submit
         </button>
       </div>
