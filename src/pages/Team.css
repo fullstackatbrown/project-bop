@@ -25,13 +25,13 @@
 
 .blue-filter {
     left: 0;
-    background-color: rgba(0, 0, 255, 0.5);
+    background-color: #304acfB0; /* Like 70% opacity */
     justify-content: flex-start;
 }
 
 .red-filter {
     right: 0;
-    background-color: rgba(255, 0, 0, 0.5);
+    background-color: #ad2a2aB0;
     justify-content: center;
     text-align: center;
 }

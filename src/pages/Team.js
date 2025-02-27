@@ -1,5 +1,6 @@
 import "./Team.css";
 import MemberCard from "../MemberCard";
+import AlumniRow from "../AlumniRow";
 
 export default function Team() {
     return (
@@ -23,6 +24,16 @@ function Banner() {
                     voices, encourage meaningful discourse on campus, and cultivate a better understanding of the Brown student body.
                 </div>
             </div>
+        </div>
+    );
+}
+
+function AlumniSection({ alumni }) {
+    return (
+        <div className="alumni-section">
+            {alumni.map((person, index) => (
+                <AlumniRow key={index} index={index} {...person} />
+            ))}
         </div>
     );
 }
@@ -56,25 +67,33 @@ function TeamSections() {
 
             <Section 
                 title="Leadership Alumni" 
-                style={{ backgroundColor: "#FF9800" }} 
-                members={[
-                    { name: "Some Name", position: "Former President" },
-                    { name: "Some Name", position: "Former Research Head" }
-                ]}
+                style={{ backgroundColor: "#304acf" }}
             />
+
+            <AlumniSection alumni={[
+                    { name: "Corey Wood ('24)", position: "Co-President", term: "Fall 2023 - Spring 2024" },
+                    { name: "Annie Schwerdtfeger ('24)", position: "Co-President", term: "Spring 2022 - Spring 2023" },
+                    { name: "Noah Rosenfeld ('24)", position: "Chief of Staff", term: "Fall 2021 - Fall 2022" },
+                    { name: "Benji Glanz ('23)", position: "Co-President", term: "Fall 2021 - Spring 2023" },
+                    { name: "Justen Joffe ('23)", position: "Founder", term: "Spring 2021 - Fall 2021" },
+                    { name: "Gabe Merkel ('23)", position: "Founter & Co-President", term: "Spring 2021 - Spring 2023" },
+                    { name: "Molley Siegel ('23)", position: "Founder & Co-President", term: "Spring 2021 - Spring 2023" }
+            ]} />
+
+            <p>©2024 Brown Opinion Project</p>
+
         </>
     );
 }
 
-function Section({ title, style, members }) {
+function Section({ title, style, members = [] }) {
     return (
         <div>
-            <div style={{ ...style, width: "100%" }}>
+            <div style={{ ...style, width: "100%", paddingLeft: "5vw" }}>
                 <h2 className="section-title subheading-banner">{title}</h2>
             </div>
-            <TeamGrid members={members} />
+            {members.length > 0 && <TeamGrid members={members} />}
         </div>
-        
     );
 }
 
