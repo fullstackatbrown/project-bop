@@ -1,0 +1,56 @@
+.alumni-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 0px auto;
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.alumni-row:hover {
+    background-color: #6c81ba;
+}
+
+.light-blue {
+    background-color: #98ade9; /* Dark Blue */
+}
+
+.light-gray {
+    background-color: #d4deec; /* Light Blue */
+    color: black;
+}
+
+.alumni-column {
+    flex: 1; /* Each section takes equal space */
+    display: flex;
+    justify-content: center; /* Centers text horizontally */
+    align-items: center; /* Centers text vertically */
+}
+
+.alumni-name {
+    text-align: center;
+    flex: 1;
+    font-weight: 600;
+    font-size: small;
+    color: black;
+}
+
+.alumni-position {
+    text-align: center;
+    flex: 1;
+    font-weight: 600;
+    font-size: small;
+    color: black;
+}
+
+.alumni-term {
+    text-align: center;
+    flex: 1;
+    font-style: italic;
+    font-weight: 600;
+    font-size: small;
+    color: black;
+}
