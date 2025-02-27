@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { db } from './Firebase';
+import { updateDoc, doc, getDoc } from "firebase/firestore";
 
 function QuestionSubmissionPage() {
   const [inputValue, setInputValue] = useState('');
@@ -11,6 +13,27 @@ function QuestionSubmissionPage() {
   const handleBlur = () => {
     if (inputValue.trim() === '') {
       setHasError(true); // Set error state if the input is empty when unfocused
+    }
+  };
+
+  const handleSubmission = async () => {
+    try {
+      const docRef = doc(db, "bop-questions", "questions");
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists() && inputValue) {
+        const data = docSnap.data();
+        const fieldCount = Object.keys(data).length;
+        const id = "question-" + fieldCount;
+
+        const newField = {
+          [id]: inputValue
+        };
+    
+        await updateDoc(docRef, newField);
+      }
+    } catch (error) {
+      console.error("Error updating doc: ", error);
     }
   };
 
@@ -34,6 +57,7 @@ function QuestionSubmissionPage() {
         />
         <button
           className="w-1/3 mt-4 p-2 bg-black text-white rounded"
+          onClick={handleSubmission}
         >
           Submit
         </button>
