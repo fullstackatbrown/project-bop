@@ -238,7 +238,7 @@ export default function Home() {
         {/* Button */}
         <div className="w-30 mt-6">
           <button className="w-full border-2 border-white text-white text-2xl font-semibold px-8 py-3 transition duration-300 hover:bg-white hover:text-black">
-            See the newest poll results
+            View past polls
           </button>
         </div>
       </section>
