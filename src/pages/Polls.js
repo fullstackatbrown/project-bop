@@ -40,7 +40,6 @@ export default function Polls() {
               <div className="flex justify-between items-center">
                 <h3 className="text-xl font-semibold">{poll.title}</h3>
               </div>
-              <p className="mt-2 text-gray-100">Click to view poll results</p>
             </Link>
           );
         })}
