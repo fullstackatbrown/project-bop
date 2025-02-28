@@ -7,20 +7,12 @@
     text-align: center;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     margin: 20px;
-    transition: transform 0.3s ease-in-out;
-}
-
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .member-card:hover {
-    animation: bounce 0.5s ease-in-out;
+    transform: scale(1.1); /* Increases the size slightly */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
 }
 
 .member-image {
