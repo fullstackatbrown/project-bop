@@ -37,27 +37,6 @@ function QuestionSubmissionPage() {
     }
   };
 
-  const handleSubmission = async () => {
-    try {
-      const docRef = doc(db, "bop-questions", "questions");
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists() && inputValue) {
-        const data = docSnap.data();
-        const fieldCount = Object.keys(data).length;
-        const id = "question-" + fieldCount;
-
-        const newField = {
-          [id]: inputValue
-        };
-    
-        await updateDoc(docRef, newField);
-      }
-    } catch (error) {
-      console.error("Error updating doc: ", error);
-    }
-  };
-
   return (
     <div className="flex justify-center mt-24 space-x-8">
       {/* Left Div */}
