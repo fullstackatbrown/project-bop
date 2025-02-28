@@ -1,5 +1,6 @@
 .team-container {
     text-align: center;
+    overflow-x: hidden;
 }
 
 .image-banner {
