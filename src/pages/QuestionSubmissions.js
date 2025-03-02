@@ -48,7 +48,7 @@ function QuestionSubmissionPage() {
         {/* </div> */}
       </div>
       {/* Right Div */}
-      <div className="w-1/3 p-4">
+      <div className="w-1/3 p-4 flex flex-col justify-end">
         <p>Enter your question idea here:</p>
         <input
           type="text"
