@@ -91,20 +91,18 @@ export default function Home() {
     const fetchMembers = async () => {
       try {
         const cosmic = createBucketClient({
-          bucketSlug: "bop-backend-production",
-          readKey: "8N6HiTQekcWvzJbMA4qSeTbIcb11wLI04UpzC68HzLyd2uuiXz",
-        });
-        const response = await cosmic.objects
-          .findOne({
-            type: "news-pages",
-            slug: "test-page",
-          })
-          .props("metadata")
-          .depth(1);
+          bucketSlug: 'bop-backend-production',
+          readKey: '8N6HiTQekcWvzJbMA4qSeTbIcb11wLI04UpzC68HzLyd2uuiXz'
+        })
+        const response = await cosmic.objects.find({"type": "news-pages"})
+        .limit(10)
+        .props("slug,title,metadata,type")
+        .depth(1)
 
         let newsList = [];
-        newsList.push(response);
-
+        for (const member of response.objects) {
+          newsList.push(member);
+        }
         setNews(newsList);
 
         setLoading(false);
