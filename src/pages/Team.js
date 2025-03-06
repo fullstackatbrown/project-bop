@@ -17,7 +17,24 @@ function Banner() {
   return (
     <div className="image-banner">
       <div className="blue-filter">
-        <p className="banner-text left-text">Placeholder text.</p>
+        {/* <p className="banner-text left-text">Placeholder text.</p> */}
+        <div className="text-white flex flex-col p-8 md:p-16">
+          <h1 className="text-left text-4xl md:text-6xl font-bold">We are BOP.</h1>
+          <h1 className="text-4xl md:text-6xl font-bold justify-center text-center">&mdash;</h1>
+          <p className="banner-line-height text-left mt-4 text-xxl md:text-3xl font-bold">
+            We make it easy to gauge what Brunonians really think.
+          </p>
+          <p className="text-left mt-6 text-sm md:text-lg font-bold">
+            If you have any interest in joining the team or have any questions,
+            feel free to reach out to{" "}
+            <a
+              href="mailto:brownopinionproject@brown.edu"
+              className="underline hover:text-blue-400"
+            >
+              brownopinionproject@brown.edu
+            </a>
+          </p>
+      </div>
       </div>
       <div className="red-filter">
         <div className="text" style={{ fontSize: "2vw", lineHeight: "2" }}>
@@ -188,3 +205,4 @@ function TeamGrid({ members }) {
     </div>
   );
 }
+
