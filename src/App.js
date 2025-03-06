@@ -2,7 +2,8 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link,
+    useLocation
 } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
@@ -10,12 +11,15 @@ import Polls from "./pages/Polls";
 import News from "./pages/News";
 import QuestionSubmissions from "./pages/QuestionSubmissions";
 import Team from "./pages/Team";
-import Visualization from "./pages/Visualization"
+import Visualization from "./pages/Visualization";
 
-export default function App() {
+function Layout({ children }) {
+    const location = useLocation();
+    const hideNavbarPaths = ["/visualization"];
+    
     return (
-        <Router>
-            <div>
+        <>
+            {!hideNavbarPaths.includes(location.pathname) && (
                 <nav>
                     <ul className="navbar">
                         <li>
@@ -35,7 +39,16 @@ export default function App() {
                         </li>
                     </ul>
                 </nav>
+            )}
+            {children}
+        </>
+    );
+}
 
+export default function App() {
+    return (
+        <Router>
+            <Layout>
                 <Switch>
                     <Route path="/polls">
                         <Polls />
@@ -56,7 +69,7 @@ export default function App() {
                         <Home />
                     </Route>
                 </Switch>
-            </div>
+            </Layout>
         </Router>
     );
 }
