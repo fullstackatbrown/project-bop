@@ -6,7 +6,7 @@
 .image-banner {
     display: flex;
     width: 100vw;
-    height: 100vh; /* To prevent discrepancies for split vs. full screen */
+    height: 79vh; /* To prevent discrepancies for split vs. full screen */
     background-image: url('https://st.depositphotos.com/23042880/58942/i/1600/depositphotos_589420336-stock-photo-multiracial-group-student-people-listening.jpg');
     background-size: cover;
     background-position: center;
@@ -26,13 +26,13 @@
 
 .blue-filter {
     left: 0;
-    background-color: #304acfB0; /* Like 70% opacity */
+    background-color: #133578b5; /* Like 70% opacity */
     justify-content: flex-start;
 }
 
 .red-filter {
     right: 0;
-    background-color: #ad2a2aB0;
+    background-color: #e21c21a6;
     justify-content: center;
     text-align: center;
 }
@@ -99,3 +99,8 @@
     flex-wrap: wrap;
     padding-top: 10px;
 }
+
+.banner-line-height {
+    line-height: 1.6 !important;
+}
+  
