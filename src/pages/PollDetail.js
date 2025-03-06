@@ -1,10 +1,9 @@
 import React from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { pollData } from './Polls';
 
 export default function PollDetail() {
     const { pollId } = useParams();
-    const history = useHistory();
 
     const poll = pollData.find(p => {
         const key = p.title.toLowerCase().replace(/\s+/g, '-') + "-poll";
@@ -15,21 +14,33 @@ export default function PollDetail() {
         return (
             <div className="container mx-auto py-10 px-4 text-center">
                 <h2 className="text-3xl font-bold mb-4">Poll not found</h2>
-                <button
-                    onClick={() => history.push('/polls')}
+                <a
+                    href="/polls"
                     className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
                 >
                     Back to Polls
-                </button>
+                </a>
             </div>
         );
     }
 
     return (
-        <div className="container mx-auto py-10 px-4">
-            <div className="flex justify-center items-center mb-6">
-                <h2 className="text-4xl font-bold">{poll.title}</h2>
+        <div className="container mx-auto py-10 px-4 text-center">
+            {/* Header */}
+            <h2 className="text-5xl font-bold mb-6 text-red-500">{poll.title} Poll</h2>
+
+            {/* Download Button */}
+            <div className="mb-6 max-w-4xl mx-auto">
+                <a
+                    href={poll.pdfUrl}
+                    download
+                    className="block w-full bg-gray-800 text-white uppercase font-bold py-4 rounded-lg hover:bg-gray-700 transition text-xl text-center"
+                >
+                    Download
+                </a>
             </div>
+
+            {/* PDF */}
             <div className="flex justify-center w-full">
                 <div className="w-full max-w-4xl h-screen">
                     <iframe
