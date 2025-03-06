@@ -1,0 +1,112 @@
+/* Articles Page Styles */
+
+  .articles-container {
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .article-card {
+    position: relative;
+    height: 16rem;
+    background-color: #2d3748;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+  
+  .article-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(26, 32, 44, 0.5);
+  }
+  
+  .article-author {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    color: white;
+    font-size: 0.875rem;
+  }
+  
+  .article-author {
+    font-size: 0.75rem;
+  }
+  
+  .article-share-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    color: white;
+    padding: 0.5rem;
+    background-color: #4a5568;
+    border-radius: 9999px;
+  }
+  
+  .article-share-btn:hover {
+    background-color: #2d3748;
+  }
+  
+  .article-title {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(to top, black, transparent);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1.2;
+    word-break: break-word;
+    letter-spacing: -0.02em;
+  }
+  
+  .article-link {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .article-link:hover {
+    color: #63b3ed;
+  }
+  
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+
+  .pagination-info {
+    padding: 0.5rem 1rem;
+  }
+  
+  
+  .pagination-btn {
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    background-color: #4a5568;
+    color: white;
+    border-radius: 0.25rem;
+  }
+  
+  .pagination-btn:disabled {
+    opacity: 0.5;
+  }
+  
+  .loading {
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  .tracking-tight {
+    letter-spacing: -0.05em;
+  }
