@@ -10,6 +10,7 @@ import Polls from "./pages/Polls";
 import News from "./pages/News";
 import QuestionSubmissions from "./pages/QuestionSubmissions";
 import Team from "./pages/Team";
+import Visualization from "./pages/Visualization"
 
 export default function App() {
     return (
@@ -47,6 +48,9 @@ export default function App() {
                     </Route>
                     <Route path="/team">
                         <Team />
+                    </Route>
+                    <Route path="/visualization">
+                        <Visualization />
                     </Route>
                     <Route path="/">
                         <Home />
