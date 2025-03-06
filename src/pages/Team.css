@@ -99,3 +99,8 @@
     flex-wrap: wrap;
     padding-top: 10px;
 }
+
+.banner-line-height {
+    line-height: 1.6 !important;
+}
+  
