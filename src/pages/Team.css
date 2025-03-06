@@ -6,7 +6,7 @@
 .image-banner {
     display: flex;
     width: 100vw;
-    height: 100vh; /* To prevent discrepancies for split vs. full screen */
+    height: 79vh; /* To prevent discrepancies for split vs. full screen */
     background-image: url('https://st.depositphotos.com/23042880/58942/i/1600/depositphotos_589420336-stock-photo-multiracial-group-student-people-listening.jpg');
     background-size: cover;
     background-position: center;
