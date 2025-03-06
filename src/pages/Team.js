@@ -111,7 +111,7 @@ function TeamSections() {
   return (
     <>
       <div className="center font-extrabold font-avenir">
-        <span className="title">Meet the Team</span>
+        <span className="title font-avenir">Meet the Team</span>
       </div>
 
       <Section
