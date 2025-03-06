@@ -83,7 +83,7 @@ function TeamSections() {
         let staffList = [];
 
         for (const member of response.objects) {
-          if (member.metadata.section == "executive") {
+          if (member.metadata.section === "executive") {
             execsList.push(member.metadata);
           } else {
             staffList.push(member.metadata);
