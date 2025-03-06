@@ -115,7 +115,7 @@ function TeamSections() {
       </div>
 
       <Section
-        title="Executive Members"
+        title="Executive Board"
         style={{ backgroundColor: "#32488f" }}
         members={executives}
       />
