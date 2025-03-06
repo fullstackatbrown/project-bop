@@ -19,6 +19,55 @@ const Articles = () => {
                 { id: 4, title: "D", author: "A A", date: "March 6, 2025", summary: "__" },
                 { id: 5, title: "E", author: "A A", date: "March 6, 2025", summary: "__" },
                 { id: 6, title: "F", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 7, title: "AAAAAAAAAAAAAAAAAAAAAa", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 1, title: "AAAAAAAAAAAAAAAAAAAAAa", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 2, title: "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 3, title: "C", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 4, title: "D", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 5, title: "E", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 6, title: "F", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 7, title: "AAAAAAAAAAAAAAAAAAAAAa", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 1, title: "AAAAAAAAAAAAAAAAAAAAAa", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 2, title: "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 3, title: "C", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 4, title: "D", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 5, title: "E", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 6, title: "F", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 7, title: "AAAAAAAAAAAAAAAAAAAAAa", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 1, title: "AAAAAAAAAAAAAAAAAAAAAa", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 2, title: "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 3, title: "C", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 4, title: "D", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 5, title: "E", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 6, title: "F", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 7, title: "AAAAAAAAAAAAAAAAAAAAAa", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 1, title: "AAAAAAAAAAAAAAAAAAAAAa", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 2, title: "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 3, title: "C", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 4, title: "D", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 5, title: "E", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 6, title: "F", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 7, title: "AAAAAAAAAAAAAAAAAAAAAa", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 1, title: "AAAAAAAAAAAAAAAAAAAAAa", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 2, title: "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 3, title: "C", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 4, title: "D", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 5, title: "E", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 6, title: "F", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 7, title: "AAAAAAAAAAAAAAAAAAAAAa", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 1, title: "AAAAAAAAAAAAAAAAAAAAAa", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 2, title: "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 3, title: "C", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 4, title: "D", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 5, title: "E", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 6, title: "F", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 7, title: "AAAAAAAAAAAAAAAAAAAAAa", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 1, title: "AAAAAAAAAAAAAAAAAAAAAa", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 2, title: "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 3, title: "C", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 4, title: "D", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 5, title: "E", author: "A A", date: "March 6, 2025", summary: "__" },
+                { id: 6, title: "F", author: "A A", date: "March 6, 2025", summary: "__" },
                 { id: 7, title: "AAAAAAAAAAAAAAAAAAAAAa", author: "A A", date: "March 6, 2025", summary: "__" }
             ]);
             setLoading(false);
@@ -48,6 +97,12 @@ const Articles = () => {
     const currentArticles = articles.slice(indexOfFirstArticle, indexOfLastArticle);
     const totalPages = Math.ceil(articles.length / articlesPerPage);
 
+    const handlePageChange = (page) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page);
+        }
+    };
+
     if (loading) {
         return <div className="loading">Loading articles...</div>;
     }
@@ -56,7 +111,11 @@ const Articles = () => {
         <div className="articles-container">
             <div className="articles-grid">
                 {currentArticles.map(article => (
-                <div key={article.id} className="article-card">
+                <div key={article.id} className="article-card" style={{
+                    backgroundImage: `url(${article.image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                }}>
                     <div className="article-overlay"></div>
                     <div className="article-author tracking-tight">
                         <h2>
@@ -77,14 +136,20 @@ const Articles = () => {
             </div>
             {/* Pagination Controls */}
             <div className="pagination-container">
-                <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1} className="pagination-btn">
-                    &lt;
-                </button>
-                <span className="pagination-info">Page {currentPage} of {totalPages}</span>
-                <button onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPages} className="pagination-btn">
-                    &gt;
-                </button>
-            </div>
+                <button onClick={() => handlePageChange(1)} disabled={currentPage === 1} className={`pagination-btn ${currentPage === 1 ? 'disabled' : ''}`}>«</button>
+                <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} className={`pagination-btn ${currentPage === 1 ? 'disabled' : ''}`}>‹</button>
+                {[...Array(totalPages).keys()].slice(Math.max(0, Math.min(currentPage - 3, totalPages - 5)), Math.max(5, Math.min(totalPages, currentPage + 2))).map(page => (
+                    <button 
+                        key={page + 1} 
+                        onClick={() => handlePageChange(page + 1)}
+                        className={`pagination-btn ${currentPage === page + 1 ? 'active' : ''}`}
+                    >
+                        {page + 1}
+                    </button>
+                ))}
+                <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} className={`pagination-btn ${currentPage === totalPages ? 'disabled' : ''}`}>›</button>
+                <button onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages} className={`pagination-btn ${currentPage === totalPages ? 'disabled' : ''}`}>»</button>
+           </div>
         </div>
     );
 };
