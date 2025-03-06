@@ -122,7 +122,7 @@ function TeamSections() {
 
       <Section
         title="Staff Members"
-        style={{ backgroundColor: "#9e2b25" }}
+        style={{ backgroundColor: "#9e2b25", marginTop: 40 }}
         members={staff}
       />
 
