@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
 import Polls from "./pages/Polls";
+import PollDetail from "./pages/PollDetail"; // Import the new component
 import News from "./pages/News";
 import QuestionSubmissions from "./pages/QuestionSubmissions";
 import Team from "./pages/Team";
@@ -43,6 +44,9 @@ export default function App() {
         </nav>
 
         <Switch>
+          <Route path="/polls/:pollId">
+            <PollDetail />
+          </Route>
           <Route path="/polls">
             <Polls />
           </Route>
