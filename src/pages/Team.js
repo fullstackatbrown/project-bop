@@ -19,12 +19,12 @@ function Banner() {
       <div className="blue-filter">
         {/* <p className="banner-text left-text">Placeholder text.</p> */}
         <div className="text-white flex flex-col p-8 md:p-16">
-          <h1 className="text-left text-4xl md:text-6xl font-bold">We are BOP.</h1>
-          <h1 className="text-4xl md:text-6xl font-bold justify-center text-center">&mdash;</h1>
-          <p className="banner-line-height text-left mt-4 text-xxl md:text-3xl font-bold">
+          <h1 className="text-left text-4xl md:text-6xl font-avenir font-medium">We are BOP.</h1>
+          <h1 className="text-4xl md:text-6xl justify-center text-center font-avenir font-medium">&mdash;</h1>
+          <p className="banner-line-height text-left mt-4 text-xxl md:text-3xl font-avenir">
             We make it easy to gauge what Brunonians really think.
           </p>
-          <p className="text-left mt-6 text-sm md:text-lg font-bold">
+          <p className="text-left mt-6 text-sm md:text-lg font-avenir">
             If you have any interest in joining the team or have any questions,
             feel free to reach out to{" "}
             <a
@@ -37,7 +37,7 @@ function Banner() {
       </div>
       </div>
       <div className="red-filter">
-        <div className="text" style={{ fontSize: "2vw", lineHeight: "2" }}>
+        <div className="text font-avenir" style={{ fontSize: "1.7vw", lineHeight: "2" }}>
           The Brown Opinion Project is a student-run organization and
           publication that measures public opinion within the Brown University
           undergraduate community. We publish findings on our website and social
@@ -110,13 +110,13 @@ function TeamSections() {
 
   return (
     <>
-      <div className="center">
+      <div className="center font-extrabold font-avenir">
         <span className="title">Meet the Team</span>
       </div>
 
       <Section
         title="Executive Members"
-        style={{ backgroundColor: "#304acf" }}
+        style={{ backgroundColor: "#32488f" }}
         members={executives}
       />
 
