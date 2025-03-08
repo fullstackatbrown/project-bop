@@ -63,39 +63,55 @@ const Articles = () => {
   return (
     <div className="articles-container">
       <div className="articles-grid">
-        {currentArticles.map((article) => {
-            let articlePhoto = article.image ? article.image.url : "";
-            return (
-          <div
-            key={article.id}
-            className="article-card"
-            style={{
-              backgroundImage: `url(${articlePhoto})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
-            <div className="article-overlay"></div>
-            <div className="article-author tracking-tight">
-              <h2>
-                <Link to={``} className="article-link">
-                  {article.author}
-                </Link>
-              </h2>
-              <p>{article.date}</p>
+        {currentArticles.map((article, idx) => {
+          let articlePhoto = article.image ? article.image.url : "";
+          return (
+            <div
+              key={idx}
+              className="article-card"
+              style={{
+                backgroundImage: `url(${articlePhoto})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              <div className="article-overlay"></div>
+              <div className="article-author tracking-tight">
+                <h2>
+                  <Link to={``} className="article-link">
+                    {article.author}
+                  </Link>
+                </h2>
+                <p>{article.date}</p>
+              </div>
+              <button className="article-share-btn">
+                <HiShare size={20} />
+              </button>
+              <div className="article-title">
+                <h2>
+                  <Link
+                    to={{
+                      pathname: `/articles/${encodeURIComponent(
+                        article.article_title
+                      )}`,
+                      state: {
+                        author: article.author,
+                        image: article.image.url,
+                        quote: article.quote,
+                        caption: article.caption,
+                        date: article.date,
+                        title: article.article_title,
+                        body: article.body,
+                      },
+                    }}
+                    className="article-link"
+                  >
+                    {article.article_title}
+                  </Link>
+                </h2>
+              </div>
             </div>
-            <button className="article-share-btn">
-              <HiShare size={20} />
-            </button>
-            <div className="article-title">
-              <h2>
-                <Link to={`/articles/${article.id}`} className="article-link">
-                  {article.article_title}
-                </Link>
-              </h2>
-            </div>
-          </div>
-            );
+          );
         })}
       </div>
       {/* Pagination Controls */}
