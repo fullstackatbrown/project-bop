@@ -19,7 +19,7 @@ const Articles = () => {
         });
         const response = await cosmic.objects
           .find({ type: "news-pages" })
-          .limit(10)
+          .limit(100)
           .props("metadata")
           .depth(1);
 
@@ -82,7 +82,7 @@ const Articles = () => {
                     {article.author}
                   </Link>
                 </h2>
-                <p>{article.date}</p>
+                <p className="card-date">{article.date}</p>
               </div>
               <button className="article-share-btn">
                 <HiShare size={20} />
@@ -91,9 +91,7 @@ const Articles = () => {
                 <h2>
                   <Link
                     to={{
-                      pathname: `/articles/${encodeURIComponent(
-                        article.article_title
-                      )}`,
+                      pathname: `/articles/${encodeURIComponent(article.article_title.replace(/%/g, ""))}`,
                       state: {
                         author: article.author,
                         image: article.image.url,
@@ -102,6 +100,7 @@ const Articles = () => {
                         date: article.date,
                         title: article.article_title,
                         body: article.body,
+                        lastFour: articles.slice(0, 4),
                       },
                     }}
                     className="article-link"
