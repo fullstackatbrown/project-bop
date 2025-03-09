@@ -6,6 +6,7 @@ import PollDetail from "./pages/PollDetail"; // Import the new component
 import News from "./pages/News";
 import QuestionSubmissions from "./pages/QuestionSubmissions";
 import Team from "./pages/Team";
+import Article from "./pages/Article";
 
 const logo = ["/bop-logo.png"];
 
@@ -58,6 +59,9 @@ export default function App() {
           </Route>
           <Route path="/team">
             <Team />
+          </Route>
+          <Route path="/articles/:articleTitle">
+            <Article />
           </Route>
           <Route path="/">
             <Home />
