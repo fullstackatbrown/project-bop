@@ -1,49 +1,100 @@
 import { useLocation } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./Article.css";
 import { Link } from "react-router-dom";
 import { createBucketClient } from "@cosmicjs/sdk";
 
 function ShareBar() {
   const currentURL = window.location.href;
+  const [showPopup, setShowPopup] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const textRef = useRef(null);
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+    setCopied(false);
+  };
+
+  const toggleCopied = () => {
+    setCopied(!copied);
+  };
+
+  useEffect(() => {
+    if (textRef.current) {
+      const range = document.createRange();
+      range.selectNodeContents(textRef.current);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+  }, [showPopup]);
 
   return (
-    <div className="icons">
-      <a
-        href={"https://www.facebook.com/sharer/sharer.php?u=" + currentURL}
-        target="_blank"
-        class="facebook-share-button"
-      >
-        <img
-          src="/facebook.png"
-          alt="Share on Facebook"
-          className="facebook-icon"
-        />
-      </a>
+    <div className="outer">
+      <div className="icons">
+        <a
+          href={"https://www.facebook.com/sharer/sharer.php?u=" + currentURL}
+          target="_blank"
+          className="facebook-share-button"
+        >
+          <img
+            src="/facebook.png"
+            alt="Share on Facebook"
+            className="facebook-icon"
+          />
+        </a>
 
-      <a
-        href={"https://twitter.com/intent/tweet?url=" + currentURL}
-        target="_blank"
-        class="twitter-share-button"
-      >
-        <img src="/xlogo.svg" alt="Share on X" class="twitter-icon" />
-      </a>
-      <a
-        href={
-          "https://www.linkedin.com/sharing/share-offsite/?url=" + currentURL
-        }
-        target="_blank"
-        class="linkedin-share-button"
-      >
-        <img
-          src="/linkedin.png"
-          alt="Share on LinkedIn"
-          className="linkedin-icon"
-        />
-      </a>
-      <a>
-        <img src="/shareicon.png" />
-      </a>
+        <a
+          href={"https://twitter.com/intent/tweet?url=" + currentURL}
+          target="_blank"
+          className="x-share-button"
+        >
+          <img src="/xlogo.svg" alt="Share on X" class="x-icon" />
+        </a>
+        <a
+          href={
+            "https://www.linkedin.com/sharing/share-offsite/?url=" + currentURL
+          }
+          target="_blank"
+          className="linkedin-share-button"
+        >
+          <img
+            src="/linkedin.png"
+            alt="Share on LinkedIn"
+            className="linkedin-icon"
+          />
+        </a>
+        <a>
+          <img src="/shareicon.png" onClick={togglePopup} />
+        </a>
+      </div>
+
+      {showPopup && (
+        <div className="popup">
+          <div className="popup-content">
+            <span className="close" onClick={togglePopup}>
+              &times;
+            </span>
+            <p>Share this page:</p>
+            <p ref={textRef} className="popup-link"> {currentURL} </p>
+            <div className="popup-buttons">
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText(currentURL);
+                  toggleCopied();
+                }}
+              >
+                Copy Link
+              </button>
+              <button onClick={togglePopup}> Cancel </button>
+            </div>
+          </div>
+
+          {copied && (
+            <p className="copied"> Copied! </p>
+          )}
+        </div>
+      )}
     </div>
   );
 }
