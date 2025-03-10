@@ -164,7 +164,80 @@ export default function Home() {
       </section>
 
       {/* 'News!' Section */}
-      <section>{/* Add more content here as needed */}</section>
+      <section className="relative w-full flex flex-col items-center bg-slate-200 py-10 mt-[7rem] h-[42rem]">
+        <h2 className="text-3xl font-bold text-slate-950 mr-[50rem] mb-[1.2rem]">
+           News 
+        </h2>
+        {/* Main article container */}
+        <div className="relative w-[54.8rem] h-[32.5rem] flex flex-row items-center">
+          {/* Headline article container */}
+          <div className="relative w-[33rem] h-[32.5rem] flex flex-col items-center bg-white">
+            {/* Article image */}
+            <div className="relative w-[33rem] h-[18rem] bg-slate-800"></div>
+
+            {/* Text div */}
+            <div className="relative w-[30rem] h-[18rem] mr-[0.8rem] ml-[0.8rem] flex flex-col">
+              <p className="text-xs pt-[2rem] pb-[2rem]">Date</p>
+                <h3 className="text-2xl font-bold mb-2"> Lorem ipsum dolor sit amet, consectetur adipiscing elit ... </h3>
+                <p className="text-sm">Author Name "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod." Ut enim ad minim veniam, quis nostrud exercitation ...</p>
+              </div>
+
+          </div>
+          {/* Secondary articles container */}
+          <div className="relative w-[21rem] h-[32.5rem] flex flex-col ml-[0.8rem]">
+            
+            {/* Individual articles*/}
+            <div className="relative w-[21rem] h-[7.525rem] flex flex-row items-center bg-white mb-[0.8rem]">
+              {/* Text div */}
+              <div className="relative w-[13.5rem] h-[6rem] mr-[0.8rem] ml-[0.8rem] flex flex-col justify-center">
+                <h3 className="font-bold mb-2"> Lorem ipsum dolor sit amet, consectetur adipis ... </h3>
+                <p className="text-xs">Author Name</p>
+                <p className="text-xs">Date</p>
+              </div>
+    
+              {/* Article image */}
+              <div className="relative w-[5.3rem] h-[5.3rem] bg-slate-800"></div>
+            </div>
+
+            <div className="relative w-[21rem] h-[7.525rem] flex flex-row items-center bg-white mb-[0.8rem]">
+              {/* Text div */}
+              <div className="relative w-[13.5rem] h-[6rem] mr-[0.8rem] ml-[0.8rem] flex flex-col justify-center">
+                <h3 className="font-bold mb-2"> Lorem ipsum dolor sit amet, consectetur adipis ... </h3>
+                <p className="text-xs">Author Name</p>
+                <p className="text-xs">Date</p>
+              </div>
+    
+              {/* Article image */}
+              <div className="relative w-[5.3rem] h-[5.3rem] bg-slate-800"></div>
+            </div>
+
+            <div className="relative w-[21rem] h-[7.525rem] flex flex-row items-center bg-white mb-[0.8rem]">
+              {/* Text div */}
+              <div className="relative w-[13.5rem] h-[6rem] mr-[0.8rem] ml-[0.8rem] flex flex-col justify-center">
+                <h3 className="font-bold mb-2"> Lorem ipsum dolor sit amet, consectetur adipis ... </h3>
+                <p className="text-xs">Author Name</p>
+                <p className="text-xs">Date</p>
+              </div>
+    
+              {/* Article image */}
+              <div className="relative w-[5.3rem] h-[5.3rem] bg-slate-800"></div>
+            </div>
+
+            <div className="relative w-[21rem] h-[7.525rem] flex flex-row items-center bg-white">
+              {/* Text div */}
+              <div className="relative w-[13.5rem] h-[6rem] mr-[0.8rem] ml-[0.8rem] flex flex-col justify-center">
+                <h3 className="font-bold mb-2"> Lorem ipsum dolor sit amet, consectetur adipis ... </h3>
+                <p className="text-xs">Author Name</p>
+                <p className="text-xs">Date</p>
+              </div>
+    
+              {/* Article image */}
+              <div className="relative w-[5.3rem] h-[5.3rem] bg-slate-800"></div>
+            </div>
+
+          </div>
+        </div>
+      </section>
 
       {/* 'Check out our previous polls!' Section */}
       <section className="relative w-full flex flex-col items-center bg-blue-900 py-12">
