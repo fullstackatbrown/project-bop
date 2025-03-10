@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { createBucketClient } from "@cosmicjs/sdk";
 
 const topics = [
   "dating culture",
@@ -82,6 +83,43 @@ export default function Home() {
       (currentPreviousPollsImageIndex + 3) % previousPollsImages.length
     ], // Right cut-off
   ];
+
+  const [news, setNews] = useState();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMembers = async () => {
+      try {
+        const cosmic = createBucketClient({
+          bucketSlug: 'bop-backend-production',
+          readKey: '8N6HiTQekcWvzJbMA4qSeTbIcb11wLI04UpzC68HzLyd2uuiXz'
+        })
+        const response = await cosmic.objects.find({"type": "news-pages"})
+        .limit(10)
+        .props("slug,title,metadata,type")
+        .depth(1)
+
+        let newsList = [];
+        for (const member of response.objects) {
+          newsList.push(member);
+        }
+        setNews(newsList);
+
+        setLoading(false);
+      } catch (err) {
+        console.log("Failed to fetch");
+        setLoading(false);
+      }
+    };
+
+    fetchMembers();
+  }, []);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  console.log(news);
 
   return (
     <div>
