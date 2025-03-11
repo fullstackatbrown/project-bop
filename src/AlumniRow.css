@@ -10,6 +10,11 @@
     text-align: center;
 }
 
+.highlighted {
+    background-color: #32488fe0 !important; /* Highlighted color w opacity*/
+    color: white;
+}
+
 .alumni-row:hover {
     background-color: #6c81ba;
 }
