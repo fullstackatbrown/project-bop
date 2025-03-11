@@ -51,11 +51,19 @@ function Banner() {
 }
 
 function AlumniSection({ alumni }) {
+  const [selectedIndex, setSelectedIndex] = useState(null);
+
   return (
     <div className="alumni-section">
-      {alumni.map((person, index) => {
-        return (<AlumniRow key={index} index={index} {...person} />);
-      })}
+      {alumni.map((person, index) => (
+        <AlumniRow
+          key={index}
+          index={index}
+          {...person}
+          selectedIndex={selectedIndex}
+          setSelectedIndex={setSelectedIndex}
+        />
+      ))}
     </div>
   );
 }
