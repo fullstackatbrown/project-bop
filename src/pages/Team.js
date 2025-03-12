@@ -19,9 +19,9 @@ function Banner() {
       <div className="blue-filter">
         {/* <p className="banner-text left-text">Placeholder text.</p> */}
         <div className="text-white flex flex-col p-8 md:p-16">
-          <h1 className="text-left text-4xl md:text-6xl font-avenir font-medium">We are BOP.</h1>
+          <h1 className="text-left text-4xl md:text-6xl font-avenir font-bold">We are BOP.</h1>
           <h1 className="text-4xl md:text-6xl justify-center text-center font-avenir font-medium">&mdash;</h1>
-          <p className="banner-line-height text-left mt-4 text-xxl md:text-3xl font-avenir">
+          <p className="banner-line-height text-left mt-4 text-xxl md:text-3xl font-avenir font-bold">
             We make it easy to gauge what Brunonians really think.
           </p>
           <p className="text-left mt-6 text-sm md:text-lg font-avenir">
