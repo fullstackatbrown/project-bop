@@ -126,25 +126,25 @@ function TeamSections() {
 
   return (
     <>
-      <div className="center font-extrabold font-avenir">
-        <span className="title font-avenir">Meet the Team</span>
+      <div className="title center font-avenir font-bold text-3xl md:text-5xl lg:text-6xl">
+        Meet the Team
       </div>
 
       <Section
         title="Executive Board"
-        style={{ backgroundColor: "#32488f" }}
+        style={{ backgroundColor: "#32488f", width: "1175px", margin: "0 auto" }}
         members={executives}
       />
 
       <Section
         title="Staff Members"
-        style={{ backgroundColor: "#9e2b25", marginTop: 60 }}
+        style={{ backgroundColor: "#9e2b25", marginTop: 60, width: "100%" }}
         members={staff}
       />
 
       <Section
         title="Leadership Alumni"
-        style={{ backgroundColor: "#32488f", marginBottom: 40, marginTop: 30 }}
+        style={{ backgroundColor: "#32488f", marginBottom: 40, marginTop: 30, width: "100%" }}
       />
 
       <AlumniSection
@@ -195,8 +195,8 @@ function TeamSections() {
 function Section({ title, style, members = [] }) {
   return (
     <div>
-      <div style={{ ...style, width: "100%", paddingLeft: "5vw" }}>
-        <h2 className="section-title subheading-banner">{title}</h2>
+      <div style={{ ...style, paddingLeft: "5vw" }}>
+        <h2 className="section-title subheading-banner h-[75px] md:h-[100px]">{title}</h2>
       </div>
       {members.length > 0 && <TeamGrid members={members} />}
     </div>
