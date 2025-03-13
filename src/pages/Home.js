@@ -91,13 +91,14 @@ export default function Home() {
     const fetchMembers = async () => {
       try {
         const cosmic = createBucketClient({
-          bucketSlug: 'bop-backend-production',
-          readKey: '8N6HiTQekcWvzJbMA4qSeTbIcb11wLI04UpzC68HzLyd2uuiXz'
-        })
-        const response = await cosmic.objects.find({"type": "news-pages"})
-        .limit(10)
-        .props("slug,title,metadata,type")
-        .depth(1)
+          bucketSlug: "bop-backend-production",
+          readKey: "8N6HiTQekcWvzJbMA4qSeTbIcb11wLI04UpzC68HzLyd2uuiXz",
+        });
+        const response = await cosmic.objects
+          .find({ type: "news-pages" })
+          .limit(10)
+          .props("slug,title,metadata,type")
+          .depth(1);
 
         let newsList = [];
         for (const member of response.objects) {
@@ -204,75 +205,128 @@ export default function Home() {
       {/* 'News!' Section */}
       <section className="relative w-full flex flex-col items-center bg-slate-200 py-10 mt-[7rem] h-[42rem]">
         <h2 className="text-3xl font-bold text-slate-950 mr-[50rem] mb-[1.2rem]">
-           News 
+          News
         </h2>
         {/* Main article container */}
         <div className="relative w-[54.8rem] h-[32.5rem] flex flex-row items-center">
           {/* Headline article container */}
           <div className="relative w-[33rem] h-[32.5rem] flex flex-col items-center bg-white">
             {/* Article image */}
-            <div className="relative w-[33rem] h-[18rem] bg-slate-800"></div>
+            <div className="relative w-[33rem] h-[18rem] bg-slate-800 overflow-hidden">
+              <img
+                src={news[0].metadata.image.imgix_url}
+                alt={news[0].metadata.caption}
+                className="w-full h-full object-cover"
+              />
+            </div>
 
             {/* Text div */}
             <div className="relative w-[30rem] h-[18rem] mr-[0.8rem] ml-[0.8rem] flex flex-col">
-              <p className="text-xs pt-[2rem] pb-[2rem]">Date</p>
-                <h3 className="text-2xl font-bold mb-2"> Lorem ipsum dolor sit amet, consectetur adipiscing elit ... </h3>
-                <p className="text-sm">Author Name "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod." Ut enim ad minim veniam, quis nostrud exercitation ...</p>
-              </div>
-
+              <p className="text-xs pt-[2rem] pb-[2rem]">
+                {news[0].metadata.date}
+                {/* TODO: make sure that this is the most recent article added
+                      NOTE: should the user be able to give the article a tag to say that it is the main article? */}
+              </p>
+              <h3 className="text-2xl font-bold mb-2 overflow-hidden text-ellipsis line-clamp-2">
+                {" "}
+                {news[0].metadata.article_title}{" "}
+                {/* TODO: cutoff after character count 
+                      NOTE: if there is a cutoff, add a '...'*/}
+              </h3>
+              <p className="text-sm overflow-hidden text-ellipsis line-clamp-2">
+                By {news[0].metadata.author} "{news[0].metadata.quote}"{" "}
+                {news[0].metadata.body} ...
+                {/* TODO: cutoff after character count 
+                      NOTE: if there is a cutoff, add a '...'*/}
+              </p>
+            </div>
           </div>
           {/* Secondary articles container */}
           <div className="relative w-[21rem] h-[32.5rem] flex flex-col ml-[0.8rem]">
-            
             {/* Individual articles*/}
             <div className="relative w-[21rem] h-[7.525rem] flex flex-row items-center bg-white mb-[0.8rem]">
               {/* Text div */}
               <div className="relative w-[13.5rem] h-[6rem] mr-[0.8rem] ml-[0.8rem] flex flex-col justify-center">
-                <h3 className="font-bold mb-2"> Lorem ipsum dolor sit amet, consectetur adipis ... </h3>
-                <p className="text-xs">Author Name</p>
-                <p className="text-xs">Date</p>
+                <h3 className="font-bold mb-2 overflow-hidden text-ellipsis line-clamp-2">
+                  {" "}
+                  {news[1].metadata.article_title} ...{" "}
+                </h3>
+                <p className="text-xs">{news[1].metadata.author}</p>
+                <p className="text-xs">{news[1].metadata.date}</p>
               </div>
-    
+
               {/* Article image */}
-              <div className="relative w-[5.3rem] h-[5.3rem] bg-slate-800"></div>
+              <div className="relative w-[5.3rem] h-[5.3rem] bg-slate-800 overflow-hidden">
+                <img
+                  src={news[1].metadata.image.imgix_url}
+                  alt={news[1].metadata.caption}
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
 
             <div className="relative w-[21rem] h-[7.525rem] flex flex-row items-center bg-white mb-[0.8rem]">
               {/* Text div */}
               <div className="relative w-[13.5rem] h-[6rem] mr-[0.8rem] ml-[0.8rem] flex flex-col justify-center">
-                <h3 className="font-bold mb-2"> Lorem ipsum dolor sit amet, consectetur adipis ... </h3>
-                <p className="text-xs">Author Name</p>
-                <p className="text-xs">Date</p>
+                <h3 className="font-bold mb-2 overflow-hidden text-ellipsis line-clamp-2">
+                  {" "}
+                  {news[2].metadata.article_title} ...{" "}
+                </h3>
+                <p className="text-xs">{news[2].metadata.author}</p>
+                <p className="text-xs">{news[2].metadata.date}</p>
               </div>
-    
+
               {/* Article image */}
-              <div className="relative w-[5.3rem] h-[5.3rem] bg-slate-800"></div>
+              <div className="relative w-[5.3rem] h-[5.3rem] bg-slate-800 overflow-hidden">
+                <img
+                  src={news[2].metadata.image.imgix_url}
+                  alt={news[2].metadata.caption}
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
 
             <div className="relative w-[21rem] h-[7.525rem] flex flex-row items-center bg-white mb-[0.8rem]">
               {/* Text div */}
               <div className="relative w-[13.5rem] h-[6rem] mr-[0.8rem] ml-[0.8rem] flex flex-col justify-center">
-                <h3 className="font-bold mb-2"> Lorem ipsum dolor sit amet, consectetur adipis ... </h3>
-                <p className="text-xs">Author Name</p>
-                <p className="text-xs">Date</p>
+                <h3 className="font-bold mb-2 overflow-hidden text-ellipsis line-clamp-2">
+                  {" "}
+                  {news[3].metadata.article_title} ...{" "}
+                </h3>
+                <p className="text-xs">{news[3].metadata.author}</p>
+                <p className="text-xs">{news[3].metadata.date}</p>
               </div>
-    
+
               {/* Article image */}
-              <div className="relative w-[5.3rem] h-[5.3rem] bg-slate-800"></div>
+              <div className="relative w-[5.3rem] h-[5.3rem] bg-slate-800 overflow-hidden">
+                <img
+                  src={news[3].metadata.image.imgix_url}
+                  alt={news[3].metadata.caption}
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
 
             <div className="relative w-[21rem] h-[7.525rem] flex flex-row items-center bg-white">
               {/* Text div */}
               <div className="relative w-[13.5rem] h-[6rem] mr-[0.8rem] ml-[0.8rem] flex flex-col justify-center">
-                <h3 className="font-bold mb-2"> Lorem ipsum dolor sit amet, consectetur adipis ... </h3>
-                <p className="text-xs">Author Name</p>
-                <p className="text-xs">Date</p>
+                <h3 className="font-bold mb-2 overflow-hidden text-ellipsis line-clamp-2">
+                  {" "}
+                  {news[4].metadata.article_title} ...{" "}
+                </h3>
+                <p className="text-xs">{news[4].metadata.author}</p>
+                <p className="text-xs">{news[4].metadata.date}</p>
               </div>
-    
-              {/* Article image */}
-              <div className="relative w-[5.3rem] h-[5.3rem] bg-slate-800"></div>
-            </div>
 
+              {/* Article image */}
+              <div className="relative w-[5.3rem] h-[5.3rem] bg-slate-800 overflow-hidden">
+                <img
+                  src={news[4].metadata.image.imgix_url}
+                  alt={news[4].metadata.caption}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
