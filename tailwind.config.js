@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         avenir: [
+          "Avenir",
           "avenir-lt-w01_85-heavy1475544",
           "avenir-lt-w05_85-heavy",
           "sans-serif",
