@@ -1,5 +1,10 @@
 // Visualization.js
 import React, { useState } from 'react';
+import mockData from '../mockPollDataNumerical.json';
+import { Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const Visualization = () => {
   const [pollNumber, setPollNumber] = useState('1');
@@ -27,6 +32,32 @@ const Visualization = () => {
     maxHeight: '200px', // Limits dropdown height to ensure scrolling
     overflowY: 'auto', // Enables scrolling when there are too many options
   };
+
+  const raceData = mockData.raceStatistics;
+  const labels = Object.keys(raceData);
+  const dataValues = Object.values(raceData);
+
+  const chartData = {
+    labels: labels,
+    datasets: [
+      {
+        label: 'Race Distribution',
+        data: dataValues,
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const customQuestions = [
+    "race",
+    "What is your opinion on climate change?",
+    "Do you support free healthcare?",
+    "Should taxes be increased for the rich?",
+    "Your favorite color?",
+    "Do you prefer coffee or tea?",
+  ];
 
   return (
     <div style={containerStyle}>
@@ -79,10 +110,10 @@ const Visualization = () => {
               <strong>Select question</strong>
               <br />
               <select value={toplineQuestion} onChange={handleToplineQuestionChange} style={selectStyle}>
-                {Array.from({ length: 20 }, (_, index) => (
-                  <option key={index + 1} value={index + 1}>
-                    {index + 1}
-                  </option>
+              {customQuestions.map((question, index) => (
+                <option key={index} value={question}>
+                  {question}
+                </option>
                 ))}
               </select>
             </div>
@@ -128,7 +159,7 @@ const Visualization = () => {
               justifyContent: 'center',
             }}
           >
-            Plot Area (Placeholder)
+            <Bar data={chartData} options={{ responsive: true, maintainAspectRatio: false }} />
           </div>
         </div>
       </div>
