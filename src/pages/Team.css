@@ -67,10 +67,10 @@
 }
 
 .title {
-    font-size: 350%;
+    /* font-size: 350%;
     font-weight: 700;
     word-spacing: 0.2rem;
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.1rem; */
     color: #323232;
 }
 
@@ -84,13 +84,18 @@
     text-align: left;
     font-size: 30px;
     font-weight: bold;
-    padding: 15px 30px;
+    /* padding: 15px 30px; */
     color: white;
 }
 
 .subheading-banner {
-    padding-top: 5vh;
-    padding-bottom: 5vh;
+    /* padding-top: 5vh;
+    padding-bottom: 5vh; */
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    text-align: left;
+    margin-left: 20px;
     width: 100%;
 }
 
