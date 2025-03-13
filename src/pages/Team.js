@@ -15,16 +15,22 @@ export default function Team() {
 
 function Banner() {
   return (
-    <div className="image-banner">
-      <div className="blue-filter">
-        {/* <p className="banner-text left-text">Placeholder text.</p> */}
-        <div className="text-white flex flex-col p-8 md:p-16">
-          <h1 className="text-left text-4xl md:text-6xl font-avenir font-bold">We are BOP.</h1>
+    <div className="relative w-full flex flex-col md:flex-row">
+      {/* Background image container */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center z-0" 
+        style={{ backgroundImage: "url('https://st.depositphotos.com/23042880/58942/i/1600/depositphotos_589420336-stock-photo-multiracial-group-student-people-listening.jpg')" }}
+      />
+      
+      {/* Blue section */}
+      <div className="relative min-h-[300px] md:min-h-[420px] lg:min-h-[600px] w-full md:w-1/2 flex items-center justify-start px-12 md:px-16 lg:px-20 lg:px-24 py-12 bg-[#133578b5] z-10">
+        <div className="text-white flex flex-col max-w-md">
+          <h1 className="text-left text-5xl md:text-6xl font-avenir font-bold">We are BOP.</h1>
           <h1 className="text-4xl md:text-6xl justify-center text-center font-avenir font-medium">&mdash;</h1>
-          <p className="banner-line-height text-left mt-4 text-xxl md:text-3xl font-avenir font-bold">
+          <p className="text-left mt-4 text-3xl lg:text-4xl font-avenir font-bold leading-[50px] lg:leading-[55px]">
             We make it easy to gauge what Brunonians really think.
           </p>
-          <p className="text-left mt-6 text-sm md:text-lg font-avenir">
+          <p className="text-left font-bold mt-6 text-sm md:text-lg font-avenir">
             If you have any interest in joining the team or have any questions,
             feel free to reach out to{" "}
             <a
@@ -34,10 +40,12 @@ function Banner() {
               brownopinionproject@brown.edu
             </a>
           </p>
+        </div>
       </div>
-      </div>
-      <div className="red-filter">
-        <div className="text font-avenir" style={{ fontSize: "1.7vw", lineHeight: "2" }}>
+
+      {/* Red section */} 
+      <div className="relative min-h-[300px] md:min-h-[420px] lg:min-h-[600px] w-full md:w-1/2 flex items-center justify-center px-12 md:px-16 lg:px-24 py-12 bg-[#e21c21a6] z-10">
+        <div className="text-white text-md md:text-lg lg:text-xl font-avenir font-bold leading-relaxed lg:leading-[40px] max-w-md text-center">
           The Brown Opinion Project is a student-run organization and
           publication that measures public opinion within the Brown University
           undergraduate community. We publish findings on our website and social
