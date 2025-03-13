@@ -1,6 +1,11 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { pollData } from './Polls';
+import { Pie } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+
+// Register Chart.js components
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function PollDetail() {
     const { pollId } = useParams();
@@ -9,6 +14,43 @@ export default function PollDetail() {
         const key = p.title.toLowerCase().replace(/\s+/g, '-') + "-poll";
         return key === pollId;
     });
+
+    // Sample data for the chart - replace with your actual poll data
+    const chartData = {
+        labels: ['Yes', 'No', 'Undecided'],
+        datasets: [
+            {
+                data: [60, 30, 10],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(255, 206, 86, 0.6)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                ],
+                borderWidth: 1,
+            },
+        ],
+    };
+
+    const chartOptions = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Poll Results',
+                font: {
+                    size: 18
+                }
+            },
+        },
+    };
 
     if (!poll) {
         return (
@@ -40,8 +82,14 @@ export default function PollDetail() {
                 </a>
             </div>
 
+            {/* Poll Results Chart */}
+            <div className="mb-10 max-w-md mx-auto">
+                <h3 className="text-2xl font-bold mb-4">Poll Results</h3>
+                <Pie data={chartData} options={chartOptions} />
+            </div>
+
             {/* PDF */}
-            <div className="flex justify-center w-full">
+            {/* <div className="flex justify-center w-full">
                 <div className="w-full max-w-4xl h-screen">
                     <iframe
                         src={poll.pdfUrl}
@@ -49,7 +97,7 @@ export default function PollDetail() {
                         className="w-full h-full border-0"
                     />
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }
