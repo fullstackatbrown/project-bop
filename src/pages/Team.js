@@ -45,13 +45,25 @@ function Banner() {
 
       {/* Red section */} 
       <div className="relative min-h-[300px] md:min-h-[420px] lg:min-h-[600px] w-full md:w-1/2 flex items-center justify-center px-12 md:px-16 lg:px-24 py-12 bg-[#e21c21a6] z-10">
-        <div className="text-white text-md md:text-lg lg:text-xl font-avenir font-bold leading-relaxed lg:leading-[40px] max-w-md text-center">
-          The Brown Opinion Project is a student-run organization and
-          publication that measures public opinion within the Brown University
-          undergraduate community. We publish findings on our website and social
-          media to amplify student voices, encourage meaningful discourse on
-          campus, and cultivate a better understanding of the Brown student
-          body.
+        <div className="flex flex-col text-white text-md md:text-lg lg:text-xl font-avenir font-bold leading-relaxed lg:leading-[40px] max-w-md text-center w-full">
+          <p>
+            The Brown Opinion Project is a student-run organization and
+            publication that measures public opinion within the Brown University
+            undergraduate community. We publish findings on our website and social
+            media to amplify student voices, encourage meaningful discourse on
+            campus, and cultivate a better understanding of the Brown student
+            body.
+          </p>
+
+          {/* Social Media Icons (Right-aligned) */}
+          <div style={{ paddingTop: "16px"}} className="flex space-x-2 mt-4 self-end">
+            <a href="https://www.instagram.com/brownopinionproject/" target="_blank" rel="noopener noreferrer">
+              <img src="https://static.wixstatic.com/media/11062b_603340b7bcb14e7785c7b65b233cd9f9~mv2.png/v1/fill/w_64,h_64,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_603340b7bcb14e7785c7b65b233cd9f9~mv2.png" alt="Instagram" className="w-8 h-8" />
+            </a>
+            <a href="https://twitter.com/brownu_opinion" target="_blank" rel="noopener noreferrer">
+              <img src="https://static.wixstatic.com/media/11062b_2533d1d4c31245408717d17b946bc8d8~mv2.png/v1/fill/w_64,h_64,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_2533d1d4c31245408717d17b946bc8d8~mv2.png" alt="Twitter" className="w-8 h-8" />
+            </a>
+          </div>
         </div>
       </div>
     </div>
