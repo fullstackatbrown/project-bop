@@ -19,7 +19,7 @@ function Banner() {
       {/* Background image container */}
       <div 
         className="absolute inset-0 bg-cover bg-center z-0" 
-        style={{ backgroundImage: "url('https://st.depositphotos.com/23042880/58942/i/1600/depositphotos_589420336-stock-photo-multiracial-group-student-people-listening.jpg')" }}
+        style={{ backgroundImage: "url('/bop_team_pic.avif')" }}
       />
       
       {/* Blue section */}
@@ -58,10 +58,10 @@ function Banner() {
           {/* Social Media Icons (Right-aligned) */}
           <div style={{ paddingTop: "16px"}} className="flex space-x-2 mt-4 self-end">
             <a href="https://www.instagram.com/brownopinionproject/" target="_blank" rel="noopener noreferrer">
-              <img src="https://static.wixstatic.com/media/11062b_603340b7bcb14e7785c7b65b233cd9f9~mv2.png/v1/fill/w_64,h_64,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_603340b7bcb14e7785c7b65b233cd9f9~mv2.png" alt="Instagram" className="w-8 h-8" />
+              <img src="/bop_ig_logo.avif" alt="Instagram" className="w-8 h-8" />
             </a>
             <a href="https://twitter.com/brownu_opinion" target="_blank" rel="noopener noreferrer">
-              <img src="https://static.wixstatic.com/media/11062b_2533d1d4c31245408717d17b946bc8d8~mv2.png/v1/fill/w_64,h_64,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_2533d1d4c31245408717d17b946bc8d8~mv2.png" alt="Twitter" className="w-8 h-8" />
+              <img src="/bop_twitter_logo.avif" alt="Twitter" className="w-8 h-8" />
             </a>
           </div>
         </div>
