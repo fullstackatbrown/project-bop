@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const pollData = [
+export const pollData = [
   { title: "November 2024", pdfUrl: "/pdfs/november-2024.pdf" },
   { title: "October 2024", pdfUrl: "/pdfs/october-2024.pdf" },
   { title: "April 2024", pdfUrl: "/pdfs/april-2024.pdf" },
@@ -16,7 +16,7 @@ const pollData = [
   { title: "March 2022", pdfUrl: "/pdfs/march-2022.pdf" },
   { title: "November 2021", pdfUrl: "/pdfs/november-2021.pdf" },
   { title: "October 2021", pdfUrl: "/pdfs/october-2021.pdf" },
-]; // pdf links are fake!
+]; // TODO: replace the pdfUrl values with the actual URLs
 
 
 export default function Polls() {
