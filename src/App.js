@@ -3,9 +3,12 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react"; // Icon for hamburger menu
 import Home from "./pages/Home";
 import Polls from "./pages/Polls";
+import PollDetail from "./pages/PollDetail"; // Import the new component
 import News from "./pages/News";
 import QuestionSubmissions from "./pages/QuestionSubmissions";
 import Team from "./pages/Team";
+import Visualization from "./pages/Visualization";
+import Article from "./pages/Article";
 
 const logo = "/bop-logo.png";
 
