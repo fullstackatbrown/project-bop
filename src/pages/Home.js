@@ -126,7 +126,7 @@ export default function Home() {
           </div>
 
           {/* Right Side - Image Slideshow with Red Overlay */}
-          <div className="w-full h-80 md:h-auto md:w-1/2 flex justify-center items-center relative">
+          <div className="w-full h-64 sm:h-72 md:h-auto md:w-1/2 flex justify-center items-center relative">
             {/* Red Overlay */}
             <div className="absolute inset-0 bg-red-900 bg-opacity-70 z-10"></div>
 
@@ -135,7 +135,7 @@ export default function Home() {
               {/* Navigation Buttons */}
               <button
                 onClick={prevImage}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black text-white p-2 rounded-full shadow-md"
+                className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-black text-white p-1 sm:p-2 rounded-full shadow-md"
               >
                 <ChevronLeft size={32} />
               </button>
@@ -154,7 +154,7 @@ export default function Home() {
 
               <button
                 onClick={nextImage}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black text-white p-2 rounded-full shadow-md"
+                className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-black text-white p-1 sm:p-2 rounded-full shadow-md"
               >
                 <ChevronRight size={32} />
               </button>
@@ -168,7 +168,7 @@ export default function Home() {
 
       {/* 'Check out our previous polls!' Section */}
       <section className="relative w-full flex flex-col items-center bg-blue-900 py-12">
-        <h2 className="text-3xl font-bold text-white mb-6">
+        <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
           Check out our previous polls!
         </h2>
 
@@ -196,13 +196,13 @@ export default function Home() {
         {/* Navigation Arrows */}
         <button
           onClick={prevPreviousPollsSlide}
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md"
+          className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white p-1 sm:p-2 rounded-full shadow-md"
         >
           <ChevronLeft size={32} />
         </button>
         <button
           onClick={nextPreviousPollsSlide}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md"
+          className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white p-1 sm:p-2 rounded-full shadow-md"
         >
           <ChevronRight size={32} />
         </button>
@@ -237,7 +237,7 @@ export default function Home() {
         </AnimatePresence>
         {/* Button */}
         <div className="w-30 mt-6">
-          <button className="w-full border-2 border-white text-white text-2xl font-semibold px-8 py-3 transition duration-300 hover:bg-white hover:text-black">
+          <button className="w-full border-2 border-white text-white text-lg md:text-2xl font-semibold px-8 py-3 transition duration-300 hover:bg-white hover:text-black">
             View past polls
           </button>
         </div>
