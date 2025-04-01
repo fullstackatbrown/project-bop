@@ -86,7 +86,7 @@ export default function Home() {
   return (
     <div>
       {/* 'Discover how Brown students feel about ...' Section */}
-      <section className="relative flex flex-col sm:flex-col md:flex-row items-center w-full h-[65vh] mx-auto">
+      <section className="relative flex flex-col w-full h-auto md:h-[65vh] mx-auto">
         {/* Background Image with Blue Overlay */}
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -96,10 +96,10 @@ export default function Home() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 flex w-full h-full">
+        <div className="relative z-10 flex flex-col md:flex-row w-full h-full">
           {/* Left Side - Animated Text & Button */}
-          <div className="w-full md:w-1/2 flex flex-col justify-center items-start text-white p-14">
-            <div className="text-xl sm:text-2xl md:text-5xl xl:text-7xl font-bold leading-tight">
+          <div className="w-full md:w-1/2 flex flex-row md:flex-col justify-center text-white p-4 sm:p-8 md:p-14">
+            <div className="w-1/2 md:w-full ml-8 md:ml-0 items-start text-3xl md:text-4xl xl:text-7xl font-bold leading-tight">
               <div>Discover how</div>
               <div>Brown students</div>
               <div>feel about</div>
@@ -118,15 +118,15 @@ export default function Home() {
             </div>
 
             {/* Button */}
-            <div className="w-full mt-6">
-              <button className="w-full border-2 border-white text-white text-2xl font-semibold px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:mix-blend-difference">
+            <div className="flex w-1/2 md:w-full mt-6 items-center justify-center">
+              <button className="w-3/4 sm:w-full border-2 border-white text-white text-md md:text-2xl font-semibold px-3 md:px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:mix-blend-difference">
                 See the newest poll results
               </button>
             </div>
           </div>
 
           {/* Right Side - Image Slideshow with Red Overlay */}
-          <div className="w-full md:w-1/2 flex justify-center items-center relative">
+          <div className="w-full h-80 md:h-auto md:w-1/2 flex justify-center items-center relative">
             {/* Red Overlay */}
             <div className="absolute inset-0 bg-red-900 bg-opacity-70 z-10"></div>
 
