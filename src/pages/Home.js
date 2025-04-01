@@ -86,7 +86,7 @@ export default function Home() {
   return (
     <div>
       {/* 'Discover how Brown students feel about ...' Section */}
-      <section className="relative flex items-center w-full h-[65vh] mx-auto">
+      <section className="relative flex flex-col sm:flex-col md:flex-row items-center w-full h-[65vh] mx-auto">
         {/* Background Image with Blue Overlay */}
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -98,8 +98,8 @@ export default function Home() {
         {/* Content */}
         <div className="relative z-10 flex w-full h-full">
           {/* Left Side - Animated Text & Button */}
-          <div className="w-1/2 flex flex-col justify-center items-start text-white p-14">
-            <div className="text-7xl font-bold leading-tight">
+          <div className="w-full md:w-1/2 flex flex-col justify-center items-start text-white p-14">
+            <div className="text-xl sm:text-2xl md:text-5xl xl:text-7xl font-bold leading-tight">
               <div>Discover how</div>
               <div>Brown students</div>
               <div>feel about</div>
@@ -126,7 +126,7 @@ export default function Home() {
           </div>
 
           {/* Right Side - Image Slideshow with Red Overlay */}
-          <div className="w-1/2 flex justify-center items-center relative">
+          <div className="w-full md:w-1/2 flex justify-center items-center relative">
             {/* Red Overlay */}
             <div className="absolute inset-0 bg-red-900 bg-opacity-70 z-10"></div>
 
