@@ -23,7 +23,7 @@ export default function App() {
           <div className="container flex justify-between mx-auto items-center p-4">
             {/* Logo */}
             <Link to="/" onClick={() => setIsOpen(false)}>
-              <img src={logo} alt="Logo" className="w-32 md:w-48" />
+              <img src={logo} alt="Logo" className="w-36 md:w-48" />
             </Link>
 
             {/* Desktop Menu */}
