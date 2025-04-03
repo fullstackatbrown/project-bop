@@ -10,9 +10,9 @@ nav {
 }
 
 .logo {
-  height: 100px;
-  width: auto;
-  padding: 0 15px;
+  /* height: 100px;
+  width: auto; */
+  /* padding: 0 15px; */
 }
 
 .navbar {
@@ -46,7 +46,7 @@ nav ul li a {
   font-family: "Outfit", serif;
   color: rgb(9, 8, 8);
   text-decoration: none;
-  padding: 10px 30px;
+  /* padding: 10px 30px; */
   font-size: 22px;
   transition: background-color 0.3s ease;
   font-weight: semi-bold;
