@@ -50,6 +50,33 @@ const previousPollsImages = [
   "/temp.png",
 ];
 
+const previousPollsData = [
+  {
+    labels: ["A", "B", "C", "D"],
+    values: [10, 20, 30, 40],
+  },
+  {
+    labels: ["X", "Y", "Z"],
+    values: [50, 25, 75],
+  },
+  {
+    labels: ["Jan", "Feb", "Mar"],
+    values: [100, 80, 60],
+  },
+  {
+    labels: ["Dogs", "Cats", "Birds"],
+    values: [30, 40, 10],
+  },
+  {
+    labels: ["Red", "Blue", "Green"],
+    values: [15, 25, 60],
+  },
+  {
+    labels: ["Spring", "Summer", "Fall", "Winter"],
+    values: [20, 50, 30, 10],
+  },
+];
+
 export default function Home() {
   const [currentTopic, setCurrentTopic] = useState(0);
   const [currentImage, setCurrentImage] = useState(0);
@@ -76,6 +103,7 @@ export default function Home() {
   {
     /* For 'Check out our previous polls!' Section */
   }
+
   const [currentPreviousPollsImageIndex, setCurrentPreviousPollsImageIndex] =
     useState(0);
   const [selectedPreviousPollsImage, setSelectedPreviousPollsImage] =
@@ -95,22 +123,6 @@ export default function Home() {
     );
   };
 
-  const previousPollsVisibleImages = [
-    previousPollsImages[
-      (currentPreviousPollsImageIndex - 1 + previousPollsImages.length) %
-        previousPollsImages.length
-    ], // Left cut-off
-    previousPollsImages[currentPreviousPollsImageIndex], // Fully visible
-    previousPollsImages[
-      (currentPreviousPollsImageIndex + 1) % previousPollsImages.length
-    ], // Fully visible
-    previousPollsImages[
-      (currentPreviousPollsImageIndex + 2) % previousPollsImages.length
-    ], // Fully visible
-    previousPollsImages[
-      (currentPreviousPollsImageIndex + 3) % previousPollsImages.length
-    ], // Right cut-off
-  ];
   const [news, setNews] = useState();
   const [loading, setLoading] = useState(true);
 
@@ -357,21 +369,44 @@ export default function Home() {
 
         {/* Carousel Container */}
         <div className="relative w-4/5 overflow-hidden">
-          {/* Images */}
           <div className="flex justify-center items-center space-x-4">
-            {previousPollsVisibleImages.map((img, index) => (
-              <motion.img
+            {previousPollsData.map((data, index) => (
+              <motion.div
                 key={index}
-                src={img}
-                alt={`Poll ${index}`}
-                className={`cursor-pointer object-cover rounded-lg transition-all ${
-                  index === 1 || index === 2 || index === 3
-                    ? "w-1/4 opacity-100" // Fully visible
-                    : "w-1/6 opacity-50" // Cut-off effect
+                className={`cursor-pointer bg-white rounded-lg p-2 transition-all ${
+                  index === currentPreviousPollsImageIndex
+                    ? "w-1/3 opacity-100"
+                    : "w-1/6 opacity-50"
                 }`}
-                onClick={() => setSelectedPreviousPollsImage(img)}
+                onClick={() => setSelectedPreviousPollsImage(data)}
                 whileHover={{ scale: 1.05 }}
-              />
+              >
+                <Bar
+                  data={{
+                    labels: data.labels,
+                    datasets: [
+                      {
+                        label: "Votes",
+                        data: data.values,
+                        backgroundColor: "rgba(75, 192, 192, 0.2)",
+                        borderColor: "rgba(75, 192, 192, 1)",
+                        borderWidth: 1,
+                      },
+                    ],
+                  }}
+                  options={{
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                      legend: { display: false },
+                    },
+                    scales: {
+                      y: { beginAtZero: true },
+                    },
+                  }}
+                  height={150}
+                />
+              </motion.div>
             ))}
           </div>
         </div>
@@ -399,18 +434,35 @@ export default function Home() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <div className="relative">
-                <motion.img
-                  src={selectedPreviousPollsImage}
-                  alt="Enlarged"
-                  className="w-auto h-96 object-contain rounded-lg"
-                  initial={{ scale: 0.8 }}
-                  animate={{ scale: 1 }}
-                  exit={{ scale: 0.8 }}
+              <div className="relative bg-white p-6 rounded-lg">
+                <Bar
+                  data={{
+                    labels: selectedPreviousPollsImage.labels,
+                    datasets: [
+                      {
+                        label: "Votes",
+                        data: selectedPreviousPollsImage.values,
+                        backgroundColor: "rgba(75, 192, 192, 0.2)",
+                        borderColor: "rgba(75, 192, 192, 1)",
+                        borderWidth: 1,
+                      },
+                    ],
+                  }}
+                  options={{
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                      legend: { display: false },
+                    },
+                    scales: {
+                      y: { beginAtZero: true },
+                    },
+                  }}
+                  height={300}
                 />
                 <button
                   onClick={() => setSelectedPreviousPollsImage(null)}
-                  className="absolute top-2 right-2 bg-white p-2 rounded-full"
+                  className="absolute top-2 right-2 bg-gray-300 p-2 rounded-full"
                 >
                   <X size={24} />
                 </button>
@@ -418,6 +470,7 @@ export default function Home() {
             </motion.div>
           )}
         </AnimatePresence>
+
         {/* Button */}
         <div className="w-30 mt-6">
           <button className="w-full border-2 border-white text-white text-lg md:text-2xl font-semibold px-8 py-3 transition duration-300 hover:bg-white hover:text-black">
