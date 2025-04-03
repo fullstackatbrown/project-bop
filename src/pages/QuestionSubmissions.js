@@ -46,16 +46,16 @@ function QuestionSubmissionPage() {
   };
 
   return (
-    <div className="flex justify-center mt-12 space-x-8">
+    <div className="flex flex-col ml-10 md:ml-0 md:flex-row justify-center mt-12 space-x-0 md:space-x-8 lg:space-x-16">
       {/* Left Div */}
-      <div className="w-1/3 p-4 flex items-end pb-2">
-        <p style={{ lineHeight: '1.3' }} className="text-5xl m-0 leading-none">
+      <div className="w-4/5 md:w-1/3 p-4 flex pb-2 justify-end items-end">
+        <p style={{ lineHeight: '1.3' }} className="text-3xl md:text-4xl lg:text-5xl">
           What questions do you want answered?
         </p>
       </div>
       {/* Right Div */}
-      <div className="w-1/3 p-4 relative">
-        <div className="flex flex-col justify-end h-64 space-y-6">
+      <div className="w-4/5 md:w-1/3 p-4 relative">
+        <div className="flex flex-col justify-end h-48 md:h-64 space-y-6">
           <p>Enter your question idea here:</p>
           <input
             type="text"
