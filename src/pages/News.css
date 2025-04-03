@@ -16,6 +16,12 @@
         gap: 1.5rem;
     }
 
+    @media only screen and (max-width: 600px) {
+        .articles-grid {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+
     .article-card {
         position: relative;
         height: 16rem;
@@ -42,7 +48,7 @@
     }
 
     .article-author {
-    font-size: 0.75rem;
+        font-size: 0.75rem;
     }
 
     .article-share-btn {
@@ -113,7 +119,7 @@
     .active {
         color: brown;
         font-weight: bold;
-    }    
+    }
 
     .disabled {
         color: grey;
