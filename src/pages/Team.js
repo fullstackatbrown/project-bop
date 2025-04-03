@@ -208,7 +208,7 @@ function Section({ title, style, members = [] }) {
   return (
     <div>
       <div style={{ ...style, paddingLeft: "5vw" }}>
-        <h2 className="section-title subheading-banner h-[75px] md:h-[100px]">{title}</h2>
+        <h2 className="section-title subheading-banner font-avenir h-[75px] md:h-[100px]">{title}</h2>
       </div>
       {members.length > 0 && <TeamGrid members={members} />}
     </div>
