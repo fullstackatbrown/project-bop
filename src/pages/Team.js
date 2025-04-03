@@ -144,7 +144,7 @@ function TeamSections() {
 
       <Section
         title="Executive Board"
-        style={{ backgroundColor: "#32488f", width: "1175px", margin: "0 auto" }}
+        style={{ backgroundColor: "#32488f", marginTop: 60, width: "100%" }}
         members={executives}
       />
 
