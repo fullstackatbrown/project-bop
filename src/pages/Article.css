@@ -14,7 +14,7 @@ h1 {
     font-weight: 900;
     margin-bottom: 7vh;
     margin-top: 5vh;
-    font-family: 'Bodoni Moda', serif;
+    font-family: "Avenir";
 }
 
 @media (min-width: 0px) {
@@ -61,8 +61,7 @@ h1 {
 }
 
 p {
-    font-family: "Outfit", serif;
-    color: rgb(41, 40, 40);
+    font-family: "Avenir";
 }
 
 img {
@@ -82,14 +81,14 @@ figure {
 figcaption {
     font-size: 14px;
     text-align: center;
-    font-family: "Outfit", serif;
+    font-family: "Avenir";
     color: rgb(41, 40, 40);
 }
 
 h2 {
     font-weight: bold;
     font-size: 20px;
-    font-family: 'Bodoni Moda', serif;
+    font-family: "Avenir";
     margin-top: 3vh;
     margin-bottom: 2vh;
 }
@@ -139,7 +138,7 @@ h2 {
 
 .recent-title {
     font-weight: bold;
-    font-family: 'Bodoni Moda', serif;
+    font-family: "Avenir";
 }
 
 .recent-headers {
@@ -195,7 +194,7 @@ h2 {
 
   .popup-buttons button {
     background-color: rgb(250, 131, 110);
-    font-family: "Outfit", serif;
+    font-family: "Avenir";
     color: white;
     padding: 5px 5px;
     border-radius: 5px;
