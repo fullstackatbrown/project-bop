@@ -202,7 +202,7 @@ export default function Home() {
       </section>
 
       {/* 'News!' Section */}
-      <section className="relative w-full flex flex-col items-center bg-slate-200 py-4 sm:py-8 mt-0 sm:mt-8 min-h-screen sm:h-auto">
+      <section className="relative w-full flex flex-col items-center bg-slate-200 py-4 sm:py-8 min-h-screen sm:h-auto">
         {/* Main article */}
         <div className="w-full px-4 sm:w-11/12 md:w-10/12 lg:w-4/5 max-w-6xl">
           {/* News heading */}
