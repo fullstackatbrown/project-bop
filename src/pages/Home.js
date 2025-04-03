@@ -3,6 +3,33 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { createBucketClient } from "@cosmicjs/sdk";
 
+//______________________________________________________________________________
+// Playing arounf with react-chartjs
+//______________________________________________________________________________
+import { Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+// Register the required Chart.js components
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+//______________________________________________________________________________
+//______________________________________________________________________________
+
 const topics = [
   "dating culture",
   "Brown",
@@ -26,6 +53,7 @@ const previousPollsImages = [
 export default function Home() {
   const [currentTopic, setCurrentTopic] = useState(0);
   const [currentImage, setCurrentImage] = useState(0);
+  const [chartData, setChartData] = useState(null);
 
   useEffect(() => {
     const topicInterval = setInterval(() => {
@@ -115,11 +143,64 @@ export default function Home() {
     fetchMembers();
   }, []);
 
+  //______________________________________________________________________________
+  // Playing arounf with react-chartjs
+  //______________________________________________________________________________
+
+  // useEffect(() => {
+  //   fetch("https://your-api.com/data") // Replace with your actual API URL
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setChartData({
+  //         labels: data.labels, // Ensure your API provides labels
+  //         datasets: [
+  //           {
+  //             label: "Sales",
+  //             data: data.values, // Ensure your API provides values
+  //             backgroundColor: "rgba(75, 192, 192, 0.2)",
+  //             borderColor: "rgba(75, 192, 192, 1)",
+  //             borderWidth: 1,
+  //           },
+  //         ],
+  //       });
+  //     })
+  //     .catch((error) => console.error("Error fetching data:", error));
+  // }, []);
+
+  useEffect(() => {
+    // Mock Data
+    const mockData = {
+      labels: ["January", "February", "March", "April", "May"],
+      values: [65, 59, 80, 81, 56],
+    };
+
+    // Simulating an API response
+    setTimeout(() => {
+      setChartData({
+        labels: mockData.labels,
+        datasets: [
+          {
+            label: "Sales",
+            data: mockData.values,
+            backgroundColor: "rgba(75, 192, 192, 0.2)",
+            borderColor: "rgba(75, 192, 192, 1)",
+            borderWidth: 1,
+          },
+        ],
+      });
+    }, 1000); // Simulating a delay like an API request
+  }, []);
+
+  if (!chartData) return <p>Loading...</p>;
+
+  //______________________________________________________________________________
+  //______________________________________________________________________________
+
+  console.log(news);
+
   if (loading) {
     return <p>Loading...</p>;
   }
-
-  console.log(news);
 
   return (
     <div>
