@@ -75,6 +75,7 @@ export default function App() {
             <Route path="/news" component={News} />
             <Route path="/question-submissions" component={QuestionSubmissions} />
             <Route path="/team" component={Team} />
+            <Route path="/visualization" component={Visualization} />
             <Route path="/" component={Home} />
           </Switch>
         </div>
