@@ -12,15 +12,15 @@ const topics = [
   "climate change",
 ];
 
-const carouselImages = ["/temp.png", "/temp.png", "/temp.png", "/temp.png"];
+const carouselImages = ["/temp_poll.png", "/temp_poll.png", "/temp_poll.png", "/temp_poll.png"];
 
 const previousPollsImages = [
-  "/temp.png",
-  "/temp.png",
-  "/temp.png",
-  "/temp.png",
-  "/temp.png",
-  "/temp.png",
+  "/temp_poll.png",
+  "/temp_poll.png",
+  "/temp_poll.png",
+  "/temp_poll.png",
+  "/temp_poll.png",
+  "/temp_poll.png",
 ];
 
 export default function Home() {
@@ -124,20 +124,20 @@ export default function Home() {
   return (
     <div>
       {/* 'Discover how Brown students feel about ...' Section */}
-      <section className="relative flex flex-col w-full h-auto md:h-[65vh] mx-auto">
+      <section className="relative flex flex-col w-full h-auto md:h-[60vh] mx-auto">
         {/* Background Image with Blue Overlay */}
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('/BrownUniversityImage.jpg')" }}
         >
-          <div className="absolute inset-0 bg-blue-900 bg-opacity-80"></div>
+          <div className="absolute inset-0 bg-blue-900 bg-opacity-80 bottom-1/2 md:bottom-0 md:right-1/2 md:w-1/2"></div>
         </div>
 
         {/* Content */}
         <div className="relative z-10 flex flex-col md:flex-row w-full h-full">
           {/* Left Side - Animated Text & Button */}
           <div className="w-full md:w-1/2 flex flex-row md:flex-col justify-center text-white p-4 sm:p-8 md:p-14">
-            <div className="w-1/2 md:w-full ml-8 md:ml-0 items-start text-3xl md:text-4xl xl:text-5xl font-bold leading-tight">
+            <div className="w-1/2 md:w-full ml-8 md:ml-0 items-start text-2xl md:text-4xl xl:text-5xl font-bold leading-tight">
               <div>Discover how</div>
               <div>Brown students</div>
               <div>feel about</div>
@@ -156,26 +156,26 @@ export default function Home() {
             </div>
 
             {/* Button */}
-            <div className="flex w-1/2 md:w-full mt-6 items-center justify-center">
-              <button className="w-3/4 sm:w-full border-2 border-white text-white text-md md:text-2xl font-semibold px-3 md:px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:mix-blend-difference">
+            <div className="flex w-1/2 md:w-full mt-6 items-center justify-start py-2">
+              <button className="md:w-1/2 border-2 rounded-lg border-white text-white text-sm md:text-2xl font-semibold px-3 md:px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:mix-blend-difference">
                 See the newest poll results
               </button>
             </div>
           </div>
 
           {/* Right Side - Image Slideshow with Red Overlay */}
-          <div className="w-full h-64 sm:h-72 md:h-auto md:w-1/2 flex justify-center items-center relative">
+          <div className="w-full h-60 sm:h-70 md:h-auto md:w-1/2 flex justify-center items-center relative">
             {/* Red Overlay */}
-            <div className="absolute inset-0 bg-red-900 bg-opacity-70 z-10"></div>
+            <div className="absolute inset-0 z-10"  style={{ backgroundColor: 'rgba(226, 28, 33, 0.65)' }}></div>
 
             {/* Curved White Box for Carousel */}
-            <div className="relative z-20 bg-white w-3/4 h-3/4 rounded-3xl shadow-lg flex items-center justify-center overflow-hidden">
+            <div className="relative z-20 bg-white h-3/4 shadow-lg flex items-center justify-center overflow-hidden rounded-3xl">
               {/* Navigation Buttons */}
               <button
                 onClick={prevImage}
                 className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-black text-white p-1 sm:p-2 rounded-full shadow-md"
               >
-                <ChevronLeft size={32} />
+                <ChevronLeft size={20} />
               </button>
 
               {/* Clickable Image */}
@@ -194,7 +194,7 @@ export default function Home() {
                 onClick={nextImage}
                 className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-black text-white p-1 sm:p-2 rounded-full shadow-md"
               >
-                <ChevronRight size={32} />
+                <ChevronRight size={20} />
               </button>
             </div>
           </div>
@@ -202,11 +202,11 @@ export default function Home() {
       </section>
 
       {/* 'News!' Section */}
-      <section className="relative w-full flex flex-col items-center bg-slate-200 py-4 sm:py-8 mt-0 sm:mt-8 min-h-screen sm:h-auto">
+      <section className="relative w-full flex flex-col items-center py-4 sm:py-8 mt-0 sm:mt-0 min-h-[90vh] sm:h-auto px-4">
         {/* Main article */}
-        <div className="w-full px-4 sm:w-11/12 md:w-10/12 lg:w-4/5 max-w-6xl">
+        <div className="w-full px-0 sm:w-11/12 md:w-10/12 lg:w-4/5 max-w-6xl">
           {/* News heading */}
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-950 mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-950 mb-4 py-8">
             News
           </h2>
 
@@ -215,7 +215,7 @@ export default function Home() {
             {/* Headline article container */}
             <div className="w-full md:w-3/5 flex flex-col bg-white shadow-md">
               {/* Article image */}
-              <div className="w-full h-48 sm:h-64 md:h-72 bg-slate-800 overflow-hidden">
+              <div className="w-full h-48 sm:h-64 md:h-72 bg-slate-800 overflow-hidden rounded-md">
                 <img
                   src={news[0].metadata.image.imgix_url}
                   alt={news[0].metadata.caption}
@@ -254,7 +254,7 @@ export default function Home() {
                   </div>
 
                   {/* Article image */}
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-slate-800 overflow-hidden">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-slate-800 overflow-hidden rounded-md">
                     <img
                       src={news[index].metadata.image.imgix_url}
                       alt={news[index].metadata.caption}
@@ -269,8 +269,8 @@ export default function Home() {
       </section>
 
       {/* 'Check out our previous polls!' Section */}
-      <section className="relative w-full flex flex-col items-center bg-blue-900 py-12">
-        <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
+      <section className="relative w-full flex flex-col items-center bg-blue-900 py-16 min-h-[56vh] md:min-h-[72vh] px-4">
+        <h2 className="text-xl md:text-4xl font-bold text-white mb-14">
           Check out our previous polls!
         </h2>
 
@@ -298,13 +298,13 @@ export default function Home() {
         {/* Navigation Arrows */}
         <button
           onClick={prevPreviousPollsSlide}
-          className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white p-1 sm:p-2 rounded-full shadow-md"
+          className="absolute left-2 sm:left-14 top-1/2 transform -translate-y-1/2 text-white p-1 sm:p-2"
         >
           <ChevronLeft size={32} />
         </button>
         <button
           onClick={nextPreviousPollsSlide}
-          className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white p-1 sm:p-2 rounded-full shadow-md"
+          className="absolute right-2 sm:right-14 top-1/2 transform -translate-y-1/2 text-white p-1 sm:p-2"
         >
           <ChevronRight size={32} />
         </button>
@@ -322,7 +322,7 @@ export default function Home() {
                 <motion.img
                   src={selectedPreviousPollsImage}
                   alt="Enlarged"
-                  className="w-auto h-96 object-contain rounded-lg"
+                  className="w-auto h-96 object-contain"
                   initial={{ scale: 0.8 }}
                   animate={{ scale: 1 }}
                   exit={{ scale: 0.8 }}
@@ -338,8 +338,8 @@ export default function Home() {
           )}
         </AnimatePresence>
         {/* Button */}
-        <div className="w-30 mt-6">
-          <button className="w-full border-2 border-white text-white text-lg md:text-2xl font-semibold px-8 py-3 transition duration-300 hover:bg-white hover:text-black">
+        <div className="w-30 mt-12">
+          <button className="border-2 border-white text-white text-md md:text-xl font-semibold px-8 py-3 transition duration-300 hover:bg-white hover:text-black rounded-3xl">
             View past polls
           </button>
         </div>
