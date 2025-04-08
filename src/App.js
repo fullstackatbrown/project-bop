@@ -70,7 +70,7 @@ export default function App() {
         </nav>
 
         {/* Page Content (Pushed Down to Avoid Navbar Overlap) */}
-        <div className="mt-28">
+        <div className="mt-24 md:mt-28">
           <Switch>
             <Route path="/polls" component={Polls} />
             <Route path="/news" component={News} />
