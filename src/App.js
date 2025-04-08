@@ -9,6 +9,7 @@ import QuestionSubmissions from "./pages/QuestionSubmissions";
 import Team from "./pages/Team";
 import Visualization from "./pages/Visualization";
 import Article from "./pages/Article";
+import Footer from "./Footer";
 
 const logo = "/bop-logo.png";
 
@@ -19,15 +20,15 @@ export default function App() {
     <Router>
       <div className="min-h-screen flex flex-col">
         {/* Navbar */}
-        <nav className="bg-white shadow-md z-50 w-full fixed top-0 left-0">
-          <div className="container flex justify-between mx-auto items-center p-4">
+        <nav className="bg-white shadow-md z-50 w-full fixed py-0 px-0">
+          <div className="flex justify-between items-center py-4 px-8 w-full">
             {/* Logo */}
             <Link to="/" onClick={() => setIsOpen(false)}>
-              <img src={logo} alt="Logo" className="w-36 md:w-48" />
+              <img src={logo} alt="Logo" className="w-60 md:w-72" />
             </Link>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden md:flex items-center space-x-8 px-8">
               <Link to="/" className="text-lg font-semibold text-gray-800 hover:text-gray-500">Home</Link>
               <Link to="/polls" className="text-lg font-semibold text-gray-800 hover:text-gray-500">Polls</Link>
               <Link to="/news" className="text-lg font-semibold text-gray-800 hover:text-gray-500">News</Link>
@@ -69,7 +70,7 @@ export default function App() {
         </nav>
 
         {/* Page Content (Pushed Down to Avoid Navbar Overlap) */}
-        <div className="mt-16 md:mt-20">
+        <div className="mt-24 md:mt-28">
           <Switch>
             <Route path="/polls" component={Polls} />
             <Route path="/news" component={News} />
@@ -79,6 +80,8 @@ export default function App() {
             <Route path="/" component={Home} />
           </Switch>
         </div>
+
+        <Footer/>
       </div>
     </Router>
   );

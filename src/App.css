@@ -6,13 +6,13 @@
 
 nav {
   background-color: #ffffff;
-  padding: 1rem;
+  padding:0%;
 }
 
 .logo {
-  /* height: 100px;
-  width: auto; */
-  /* padding: 0 15px; */
+  height: 9vh;
+  width: auto;
+  padding: 0%;
 }
 
 .navbar {
