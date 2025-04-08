@@ -22,7 +22,7 @@ export const pollData = [
 export default function Polls() {
   return (
     <div className="container mx-auto py-10 px-4">
-      <h2 className="text-3xl font-bold mb-8 text-center">Polls</h2>
+      <h2 className="text-4xl font-bold mb-8 text-center">Polls</h2>
 
       <div className="space-y-6 max-w-3xl mx-auto">
         {pollData.map((poll, index) => {
@@ -31,10 +31,10 @@ export default function Polls() {
             <Link
               to={`/polls/${key}`}
               key={key}
-              className="block text-white shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg p-6 border border-gray-200"
+              className="block mx-auto md:w-3/4 text-white shadow-md hover:shadow-lg transition-shadow duration-300 py-5 px-8 flex items-center justify-center rounded-xl"
               style={index % 2 === 0
-                ? { backgroundColor: 'rgb(179, 66, 66)' }
-                : { backgroundColor: 'rgb(50, 72, 143)' }
+                ? { backgroundColor: 'rgb(158, 43, 37)' }
+                : { backgroundColor: 'rgb(50, 70, 149)' }
               }
             >
               <div className="flex justify-between items-center">

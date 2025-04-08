@@ -157,7 +157,7 @@ export default function Home() {
 
             {/* Button */}
             <div className="flex w-1/2 md:w-full mt-6 items-center justify-start py-2">
-              <button className="md:w-1/2 border-2 rounded-lg border-white text-white text-sm md:text-2xl font-semibold px-3 md:px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:mix-blend-difference">
+              <button className="md:w-1/2 border-2 rounded-xl border-white text-white text-sm md:text-2xl font-semibold px-3 md:px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:mix-blend-difference">
                 See the newest poll results
               </button>
             </div>
