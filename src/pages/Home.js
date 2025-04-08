@@ -130,14 +130,14 @@ export default function Home() {
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('/BrownUniversityImage.jpg')" }}
         >
-          <div className="absolute inset-0 bg-blue-900 bg-opacity-80 right-1/2 w-1/2"></div>
+          <div className="absolute inset-0 bg-blue-900 bg-opacity-80 bottom-1/2 md:bottom-0 md:right-1/2 md:w-1/2"></div>
         </div>
 
         {/* Content */}
         <div className="relative z-10 flex flex-col md:flex-row w-full h-full">
           {/* Left Side - Animated Text & Button */}
           <div className="w-full md:w-1/2 flex flex-row md:flex-col justify-center text-white p-4 sm:p-8 md:p-14">
-            <div className="w-1/2 md:w-full ml-8 md:ml-0 items-start text-3xl md:text-4xl xl:text-5xl font-bold leading-tight">
+            <div className="w-1/2 md:w-full ml-8 md:ml-0 items-start text-2xl md:text-4xl xl:text-5xl font-bold leading-tight">
               <div>Discover how</div>
               <div>Brown students</div>
               <div>feel about</div>
@@ -157,14 +157,14 @@ export default function Home() {
 
             {/* Button */}
             <div className="flex w-1/2 md:w-full mt-6 items-center justify-start py-2">
-              <button className="w-1/2 border-2 rounded-lg border-white text-white text-md md:text-2xl font-semibold px-3 md:px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:mix-blend-difference">
+              <button className="md:w-1/2 border-2 rounded-lg border-white text-white text-sm md:text-2xl font-semibold px-3 md:px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:mix-blend-difference">
                 See the newest poll results
               </button>
             </div>
           </div>
 
           {/* Right Side - Image Slideshow with Red Overlay */}
-          <div className="w-full h-64 sm:h-72 md:h-auto md:w-1/2 flex justify-center items-center relative">
+          <div className="w-full h-60 sm:h-70 md:h-auto md:w-1/2 flex justify-center items-center relative">
             {/* Red Overlay */}
             <div className="absolute inset-0 z-10"  style={{ backgroundColor: 'rgba(226, 28, 33, 0.65)' }}></div>
 
@@ -175,7 +175,7 @@ export default function Home() {
                 onClick={prevImage}
                 className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-black text-white p-1 sm:p-2 rounded-full shadow-md"
               >
-                <ChevronLeft size={32} />
+                <ChevronLeft size={20} />
               </button>
 
               {/* Clickable Image */}
@@ -194,7 +194,7 @@ export default function Home() {
                 onClick={nextImage}
                 className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-black text-white p-1 sm:p-2 rounded-full shadow-md"
               >
-                <ChevronRight size={32} />
+                <ChevronRight size={20} />
               </button>
             </div>
           </div>
@@ -202,7 +202,7 @@ export default function Home() {
       </section>
 
       {/* 'News!' Section */}
-      <section className="relative w-full flex flex-col items-center py-4 sm:py-8 mt-0 sm:mt-0 min-h-[90vh] sm:h-auto">
+      <section className="relative w-full flex flex-col items-center py-4 sm:py-8 mt-0 sm:mt-0 min-h-[90vh] sm:h-auto px-4">
         {/* Main article */}
         <div className="w-full px-0 sm:w-11/12 md:w-10/12 lg:w-4/5 max-w-6xl">
           {/* News heading */}
@@ -269,8 +269,8 @@ export default function Home() {
       </section>
 
       {/* 'Check out our previous polls!' Section */}
-      <section className="relative w-full flex flex-col items-center bg-blue-900 py-16 min-h-[72vh]">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-14">
+      <section className="relative w-full flex flex-col items-center bg-blue-900 py-16 min-h-[56vh] md:min-h-[72vh] px-4">
+        <h2 className="text-xl md:text-4xl font-bold text-white mb-14">
           Check out our previous polls!
         </h2>
 
