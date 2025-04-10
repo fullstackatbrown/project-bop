@@ -1,11 +1,30 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { pollData } from './Polls';
-import { Pie } from 'react-chartjs-2';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Pie, Bar, Line, Doughnut } from 'react-chartjs-2';
+import {
+    Chart as ChartJS,
+    ArcElement,
+    Tooltip,
+    Legend,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    BarElement
+} from 'chart.js';
 
 // Register Chart.js components
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(
+    ArcElement,
+    Tooltip,
+    Legend,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    BarElement
+);
 
 export default function PollDetail() {
     const { pollId } = useParams();
@@ -15,42 +34,96 @@ export default function PollDetail() {
         return key === pollId;
     });
 
-    // Sample data for the chart - replace with your actual poll data
-    const chartData = {
-        labels: ['Yes', 'No', 'Undecided'],
-        datasets: [
-            {
-                data: [60, 30, 10],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.6)',
-                    'rgba(54, 162, 235, 0.6)',
-                    'rgba(255, 206, 86, 0.6)',
+    const mockData = [
+        {
+            type: "bar",
+            data: {
+                labels: ["Red", "Blue", "Green"],
+                datasets: [
+                    {
+                        label: "Votes",
+                        data: [10, 20, 30],
+                        backgroundColor: ["#F87171", "#60A5FA", "#34D399"],
+                    },
                 ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                ],
-                borderWidth: 1,
             },
-        ],
-    };
-
-    const chartOptions = {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top',
-            },
-            title: {
-                display: true,
-                text: 'Poll Results',
-                font: {
-                    size: 18
-                }
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                    },
+                },
             },
         },
-    };
+        {
+            type: "line",
+            data: {
+                labels: ["Jan", "Feb", "Mar"],
+                datasets: [
+                    {
+                        label: "Activity",
+                        data: [5, 15, 25],
+                        borderColor: "#60A5FA",
+                        backgroundColor: "#BFDBFE",
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                    },
+                },
+            },
+        },
+        {
+            type: "pie",
+            data: {
+                labels: ["Dogs", "Cats", "Birds"],
+                datasets: [
+                    {
+                        label: "Pets",
+                        data: [40, 30, 30],
+                        backgroundColor: ["#FCD34D", "#FBBF24", "#F59E0B"],
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                    },
+                },
+            },
+        },
+        {
+            type: "doughnut",
+            data: {
+                labels: ["Dogs", "Cats", "Birds"],
+                datasets: [
+                    {
+                        label: "Pets",
+                        data: [40, 30, 30],
+                        backgroundColor: ["#FCD34D", "#FBBF24", "#F59E0B"],
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                    },
+                },
+            },
+        },
+        // Other poll data...
+    ];
 
     if (!poll) {
         return (
@@ -65,6 +138,22 @@ export default function PollDetail() {
             </div>
         );
     }
+
+    // Function to render the appropriate chart based on type
+    const renderChart = (chartData, index) => {
+        switch (chartData.type) {
+            case 'bar':
+                return <Bar key={index} data={chartData.data} options={chartData.options} />;
+            case 'line':
+                return <Line key={index} data={chartData.data} options={chartData.options} />;
+            case 'pie':
+                return <Pie key={index} data={chartData.data} options={chartData.options} />;
+            case 'doughnut':
+                return <Doughnut key={index} data={chartData.data} options={chartData.options} />;
+            default:
+                return null;
+        }
+    };
 
     return (
         <div className="container mx-auto py-10 px-4 text-center">
@@ -82,10 +171,18 @@ export default function PollDetail() {
                 </a>
             </div>
 
-            {/* Poll Results Chart */}
-            <div className="mb-10 max-w-md mx-auto">
-                <h3 className="text-2xl font-bold mb-4">Poll Results</h3>
-                <Pie data={chartData} options={chartOptions} />
+            {/* Charts Section */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10 max-w-6xl mx-auto">
+                {mockData.map((chartData, index) => (
+                    <div key={index} className="bg-white p-6 rounded-lg shadow-md">
+                        <h3 className="text-xl font-bold mb-4">
+                            {chartData.data.datasets[0].label}
+                        </h3>
+                        <div className="h-64">
+                            {renderChart(chartData, index)}
+                        </div>
+                    </div>
+                ))}
             </div>
 
             {/* PDF */}
