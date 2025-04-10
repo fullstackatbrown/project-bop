@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { HiShare } from "react-icons/hi";
 import "./News.css";
@@ -76,6 +76,44 @@ const Articles = () => {
               }}
             >
               <div className="article-overlay"></div>
+              <div className="article-share-container">
+              <button
+                className="article-share-btn"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  const dropdown = document.getElementById(`dropdown-${idx}`);
+                  dropdown.classList.toggle("show-dropdown");
+                }}
+              >
+                <HiShare size={20} />
+              </button>
+              <div className="share-dropdown" id={`dropdown-${idx}`}>
+                <ul>
+                  <li>
+                    <img src="/facebook-logo.webp" alt="Facebook" />
+                    <span>Facebook</span>
+                  </li>
+                  <li>
+                    <img src="/x-logo.png" alt="X" />
+                    <span>X</span>
+                  </li>
+                  <li>
+                    <img src="/linkedin-icon.png" alt="LinkedIn" />
+                    <span>LinkedIn</span>
+                  </li>
+                  <li
+                    onClick={() => {
+                      navigator.clipboard.writeText(window.location.href);
+                      alert("Link copied!");
+                    }}
+                  >
+                    <img src="/link-icon.png" alt="Copy Link" />
+                    <span>Link</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
               <div className="article-author tracking-tight">
                 <h2>
                   <Link to={``} className="article-link">
@@ -84,9 +122,6 @@ const Articles = () => {
                 </h2>
                 <p className="card-date">{article.date}</p>
               </div>
-              <button className="article-share-btn">
-                <HiShare size={20} />
-              </button>
               <div className="article-title">
                 <h2>
                   <Link

@@ -136,3 +136,80 @@
     .tracking-tight {
         letter-spacing: -0.05em;
     }
+
+.article-share-container {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 10;
+}
+
+.article-share-btn {
+    background-color: #4a5568;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.article-share-btn:hover {
+    background-color: #2d3748;
+}
+
+.share-dropdown {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    position: absolute;
+    top: 30px;
+    right: 0; /* Keep the dropdown box right-aligned */
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 8px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 5;
+    min-width: 180px;
+}
+
+/* Aligning content inside the dropdown */
+.share-dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.share-dropdown li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Left-aligns both the button and text inside */
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+}
+
+.share-dropdown li:hover {
+    background-color: #f0f0f0;
+}
+
+/* Icon styling */
+.share-dropdown img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px; /* Adds space between the icon and text */
+}
+
+/* Show the dropdown */
+.share-dropdown.show-dropdown {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.show-dropdown {
+    display: block;
+}
