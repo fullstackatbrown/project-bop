@@ -35,3 +35,40 @@ export const getColumnProportions = (csvString, columnName) => {
 
     return proportions;
 };
+
+export const parsePollCSV = (csvText) => {
+    const lines = csvText.trim().split("\n");
+    const headers = lines[0].split(",").slice(1);
+    const columnData = headers.map(() => []);
+  
+    for (let i = 1; i < lines.length; i++) {
+      const row = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/); 
+      for (let j = 1; j < row.length; j++) {
+        let value = row[j].trim();
+        if (value.startsWith('"') && value.endsWith('"')) {
+          value = value.slice(1, -1); 
+        }
+        const splitValues = value.split(",").map(v => v.trim());
+        columnData[j - 1].push(...splitValues);
+      }
+    }
+
+    function countResponses(arr) {
+      const counts = {};
+      for (const val of arr) {
+        counts[val] = (counts[val] || 0) + 1;
+      }
+      return counts;
+    }
+  
+    const result = columnData.map((values, idx) => {
+      const counts = countResponses(values);
+      return {
+        question: headers[idx],
+        labels: Object.keys(counts),
+        values: Object.values(counts)
+      };
+    });
+  
+    return result;
+};
