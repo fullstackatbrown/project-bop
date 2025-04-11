@@ -9,6 +9,7 @@ export default function Team() {
     <div className="team-container">
       <Banner />
       <TeamSections />
+      <br />
     </div>
   );
 }
@@ -26,7 +27,6 @@ function Banner() {
       <div className="relative min-h-[300px] md:min-h-[420px] lg:min-h-[600px] w-full md:w-1/2 flex items-center justify-start px-12 md:px-16 lg:px-20 lg:px-24 py-12 bg-[#133578b5] z-10">
         <div className="text-white flex flex-col max-w-md">
           <h1 className="text-left text-5xl md:text-6xl font-avenir font-bold">We are BOP.</h1>
-          <h1 className="text-4xl md:text-6xl justify-center text-center font-avenir font-medium">&mdash;</h1>
           <p className="text-left mt-4 text-3xl lg:text-4xl font-avenir font-bold leading-[50px] lg:leading-[55px]">
             We make it easy to gauge what Brunonians really think.
           </p>
@@ -46,7 +46,7 @@ function Banner() {
       {/* Red section */} 
       <div className="relative min-h-[300px] md:min-h-[420px] lg:min-h-[600px] w-full md:w-1/2 flex items-center justify-center px-12 md:px-16 lg:px-24 py-12 bg-[#e21c21a6] z-10">
         <div className="flex flex-col text-white text-md md:text-lg lg:text-xl font-avenir font-bold leading-relaxed lg:leading-[40px] max-w-md text-center w-full">
-          <p>
+          <p style={{fontSize: "20px"}}>
             The Brown Opinion Project is a student-run organization and
             publication that measures public opinion within the Brown University
             undergraduate community. We publish findings on our website and social
@@ -138,7 +138,7 @@ function TeamSections() {
 
   return (
     <>
-      <div className="title center font-avenir font-bold text-3xl md:text-5xl lg:text-6xl">
+      <div className="title center font-avenir font-bold text-3xl md:text-5xl lg:text-6xl" style={{fontSize: "45px"}}> 
         Meet the Team
       </div>
 
@@ -198,8 +198,6 @@ function TeamSections() {
           },
         ]}
       />
-
-      <p>©2024 Brown Opinion Project</p>
     </>
   );
 }
@@ -207,7 +205,7 @@ function TeamSections() {
 function Section({ title, style, members = [] }) {
   return (
     <div>
-      <div style={{ ...style, paddingLeft: "5vw" }}>
+      <div style={{ ...style, paddingLeft: "5vw" }}  className={title.split(" ")[0]}>
         <h2 className="section-title subheading-banner font-avenir h-[75px] md:h-[100px]">{title}</h2>
       </div>
       {members.length > 0 && <TeamGrid members={members} />}
