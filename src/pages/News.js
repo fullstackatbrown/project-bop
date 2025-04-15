@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { HiShare } from "react-icons/hi";
 import "./News.css";
@@ -9,6 +9,7 @@ const Articles = () => {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const articlesPerPage = 4;
+  const dropdownRefs = useRef([]);
 
   useEffect(() => {
     const fetchMembers = async () => {
@@ -23,14 +24,9 @@ const Articles = () => {
           .props("metadata")
           .depth(1);
 
-        let newsList = [];
-        for (const member of response.objects) {
-          newsList.push(member.metadata);
-        }
-
+        const newsList = response.objects.map((member) => member.metadata);
         newsList.reverse();
         setArticles(newsList);
-
         setLoading(false);
       } catch (err) {
         console.log("Failed to fetch");
@@ -41,13 +37,22 @@ const Articles = () => {
     fetchMembers();
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      dropdownRefs.current.forEach((ref) => {
+        if (ref && !ref.contains(event.target)) {
+          ref.classList.remove("show-dropdown");
+        }
+      });
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   const indexOfLastArticle = currentPage * articlesPerPage;
   const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
-  const currentArticles = articles.slice(
-    indexOfFirstArticle,
-    indexOfLastArticle
-  );
-
+  const currentArticles = articles.slice(indexOfFirstArticle, indexOfLastArticle);
   const totalPages = Math.ceil(articles.length / articlesPerPage);
 
   const handlePageChange = (page) => {
@@ -60,11 +65,31 @@ const Articles = () => {
     return <div className="loading">Loading articles...</div>;
   }
 
+  const getEncodedURL = (slug) => {
+    const fullURL = `https://www.brownopinionproject.org/post/${slug}`;
+    return encodeURIComponent(fullURL);
+  };
+
+  const getShareLinks = (slug) => {
+    const encoded = getEncodedURL(slug);
+    return {
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encoded}`,
+      x: `https://x.com/intent/post?url=${encoded}`,
+      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encoded}`,
+    };
+  };
+
   return (
     <div className="articles-container">
       <div className="articles-grid">
         {currentArticles.map((article, idx) => {
-          let articlePhoto = article.image ? article.image.url : "";
+          const articlePhoto = article.image ? article.image.url : "";
+          const slug = article.article_title
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-+|-+$/g, "");
+          const shareLinks = getShareLinks(slug);
+
           return (
             <div
               key={idx}
@@ -76,6 +101,66 @@ const Articles = () => {
               }}
             >
               <div className="article-overlay"></div>
+
+              <div className="article-share-container">
+                <button
+                  className="article-share-btn"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    const dropdown = dropdownRefs.current[idx];
+                    if (dropdown) dropdown.classList.toggle("show-dropdown");
+                  }}
+                >
+                  <HiShare size={20} />
+                </button>
+                <div
+                  className="share-dropdown"
+                  id={`dropdown-${idx}`}
+                  ref={(el) => (dropdownRefs.current[idx] = el)}
+                >
+                  <div className="dropdown-title">Share</div>
+                  <ul>
+                    <a href={shareLinks.facebook} target="_blank" rel="noopener noreferrer">
+                      <li>
+                        <div className="share-icon">
+                          <img src="/facebook.png" alt="Facebook" />
+                        </div>
+                        <span className="share-label">Facebook</span>
+                      </li>
+                    </a>
+                    <a href={shareLinks.x} target="_blank" rel="noopener noreferrer">
+                      <li>
+                        <div className="share-icon">
+                          <img src="/x-logo.png" alt="X" />
+                        </div>
+                        <span className="share-label">X</span>
+                      </li>
+                    </a>
+                    <a href={shareLinks.linkedin} target="_blank" rel="noopener noreferrer">
+                      <li>
+                        <div className="share-icon">
+                          <img src="/linkedin-icon.png" alt="LinkedIn" />
+                        </div>
+                        <span className="share-label">LinkedIn</span>
+                      </li>
+                    </a>
+                    <li
+                      onClick={() => {
+                        navigator.clipboard.writeText(
+                          `https://www.brownopinionproject.org/post/${slug}`
+                        );
+                        alert("Link copied!");
+                      }}
+                    >
+                      <div className="share-icon">
+                        <img src="/link-icon.png" alt="Copy Link" />
+                      </div>
+                      <span className="share-label">Copy Link</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
               <div className="article-author tracking-tight">
                 <h2>
                   <Link to={``} className="article-link">
@@ -84,14 +169,14 @@ const Articles = () => {
                 </h2>
                 <p className="card-date">{article.date}</p>
               </div>
-              <button className="article-share-btn">
-                <HiShare size={20} />
-              </button>
+
               <div className="article-title">
                 <h2>
                   <Link
                     to={{
-                      pathname: `/articles/${encodeURIComponent(article.article_title.replace(/%/g, ""))}`,
+                      pathname: `/articles/${encodeURIComponent(
+                        article.article_title.replace(/%/g, "")
+                      )}`,
                       state: {
                         author: article.author,
                         image: article.image.url,
@@ -113,7 +198,7 @@ const Articles = () => {
           );
         })}
       </div>
-      {/* Pagination Controls */}
+
       <div className="pagination-container">
         <button
           onClick={() => handlePageChange(1)}
