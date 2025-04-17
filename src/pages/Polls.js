@@ -62,20 +62,18 @@ export default function Polls() {
       <div className="flex justify-center gap-4 mb-6">
         <button
           onClick={expandAllYears}
-          disabled={allOpen}
           className={`px-4 py-2 rounded transition ${
-            allOpen ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-800 hover:bg-gray-700 text-white'
-          }`}
+            allOpen ? 'bg-gray-300' : 'bg-gray-800 hover:bg-gray-700 text-white'
+          } ${allOpen ? 'pointer-events-none' : ''}`}
         >
           Expand All
         </button>
 
         <button
           onClick={collapseAllYears}
-          disabled={allClosed}
           className={`px-4 py-2 rounded transition ${
-            allClosed ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-800 hover:bg-gray-700 text-white'
-          }`}
+            allClosed ? 'bg-gray-300' : 'bg-gray-800 hover:bg-gray-700 text-white'
+          } ${allClosed ? 'pointer-events-none' : ''}`}
         >
           Collapse All
         </button>
