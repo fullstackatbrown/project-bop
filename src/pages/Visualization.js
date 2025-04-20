@@ -1,19 +1,5 @@
 // Visualization.js
-import React, { useState, useEffect, useEffect } from 'react';
-import Papa from 'papaparse';
-import { Bar } from 'react-chartjs-2';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
-
-// Register Chart.js components
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+import React, { useState, useEffect } from 'react';
 import Papa from 'papaparse';
 import { Bar } from 'react-chartjs-2';
 import {
@@ -30,7 +16,6 @@ import {
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export const Visualization = () => {
-  // Existing UI state
   // Existing UI state
   const [pollNumber, setPollNumber] = useState('1');
   const [analysisType, setAnalysisType] = useState('topline');
