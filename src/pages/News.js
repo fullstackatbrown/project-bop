@@ -2,39 +2,22 @@ import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { HiShare } from "react-icons/hi";
 import "./News.css";
-import { createBucketClient } from "@cosmicjs/sdk";
+import { queryObjects } from "../cosmic";
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const articlesPerPage = 4;
   const dropdownRefs = useRef([]);
 
   useEffect(() => {
-    const fetchMembers = async () => {
-      try {
-        const cosmic = createBucketClient({
-          bucketSlug: "bop-backend-production",
-          readKey: "8N6HiTQekcWvzJbMA4qSeTbIcb11wLI04UpzC68HzLyd2uuiXz",
-        });
-        const response = await cosmic.objects
-          .find({ type: "news-pages" })
-          .limit(100)
-          .props("metadata")
-          .depth(1);
-
-        const newsList = response.objects.map((member) => member.metadata);
-        newsList.reverse();
-        setArticles(newsList);
-        setLoading(false);
-      } catch (err) {
-        console.log("Failed to fetch");
-        setLoading(false);
-      }
-    };
-
-    fetchMembers();
+    (async () => {
+      setArticles(
+        (await queryObjects({ type: "news-posts" }))
+          .map(raw => { return { ...raw.metadata, title: raw.title, slug: raw.slug } })
+          .sort((a, b) => new Date(b.date_published).getTime() - new Date(a.date_published).getTime())
+      );
+    })();
   }, []);
 
   useEffect(() => {
@@ -61,10 +44,6 @@ const Articles = () => {
     }
   };
 
-  if (loading) {
-    return <div className="loading">Loading articles...</div>;
-  }
-
   const getEncodedURL = (slug) => {
     const fullURL = `https://www.brownopinionproject.org/post/${slug}`;
     return encodeURIComponent(fullURL);
@@ -84,7 +63,7 @@ const Articles = () => {
       <div className="articles-grid">
         {currentArticles.map((article, idx) => {
           const articlePhoto = article.image ? article.image.url : "";
-          const slug = article.article_title
+          const slug = article.title
             .toLowerCase()
             .replace(/[^a-z0-9]+/g, "-")
             .replace(/^-+|-+$/g, "");
@@ -163,34 +142,22 @@ const Articles = () => {
 
               <div className="article-author tracking-tight">
                 <h2>
-                  <Link to={``} className="article-link">
+                  <Link className="article-link">
                     {article.author}
                   </Link>
                 </h2>
-                <p className="card-date">{article.date}</p>
+                <p className="card-date">{"date"}</p>
               </div>
 
               <div className="article-title">
                 <h2>
                   <Link
                     to={{
-                      pathname: `/articles/${encodeURIComponent(
-                        article.article_title.replace(/%/g, "")
-                      )}`,
-                      state: {
-                        author: article.author,
-                        image: article.image.url,
-                        quote: article.quote,
-                        caption: article.caption,
-                        date: article.date,
-                        title: article.article_title,
-                        body: article.body,
-                        lastFour: articles.slice(0, 4),
-                      },
+                      pathname: `/articles/${article.slug}`
                     }}
                     className="article-link"
                   >
-                    {article.article_title}
+                    {article.title}
                   </Link>
                 </h2>
               </div>
@@ -223,9 +190,8 @@ const Articles = () => {
             <button
               key={page + 1}
               onClick={() => handlePageChange(page + 1)}
-              className={`pagination-btn ${
-                currentPage === page + 1 ? "active" : ""
-              }`}
+              className={`pagination-btn ${currentPage === page + 1 ? "active" : ""
+                }`}
             >
               {page + 1}
             </button>
@@ -233,18 +199,16 @@ const Articles = () => {
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className={`pagination-btn ${
-            currentPage === totalPages ? "disabled" : ""
-          }`}
+          className={`pagination-btn ${currentPage === totalPages ? "disabled" : ""
+            }`}
         >
           ›
         </button>
         <button
           onClick={() => handlePageChange(totalPages)}
           disabled={currentPage === totalPages}
-          className={`pagination-btn ${
-            currentPage === totalPages ? "disabled" : ""
-          }`}
+          className={`pagination-btn ${currentPage === totalPages ? "disabled" : ""
+            }`}
         >
           »
         </button>
