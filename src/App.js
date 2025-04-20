@@ -72,6 +72,7 @@ export default function App() {
         {/* Page Content (Pushed Down to Avoid Navbar Overlap) */}
         <div className="mt-24 md:mt-28">
           <Switch>
+            <Route path="/polls/:pollId" component={PollDetail} />
             <Route path="/polls" component={Polls} />
             <Route path="/news" component={News} />
             <Route path="/question-submissions" component={QuestionSubmissions} />
