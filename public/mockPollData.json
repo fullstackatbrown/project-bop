@@ -1,0 +1,29 @@
+{
+    "questions": [
+        {
+            "question": "Race",
+            "responses": ["Asian", "Black", "Other"]
+        },
+        {
+            "question": "What is your opinion on climate change?",
+            "responses": ["Serious issue", "Not real", "Not real"]
+        },
+        {
+            "question": "Do you support free healthcare?",
+            "responses": ["Yes", "No", "No"]
+        },
+        {
+            "question": "Should taxes be increased for the rich?",
+            "responses": ["Yes", "No", "No"]
+        },
+        {
+            "question": "Your favorite color?",
+            "responses": ["Blue", "Blue", "Green"]
+        },
+        {
+            "question": "Do you prefer coffee or tea?",
+            "responses": ["Coffee", "Tea", "Coffee"]
+        }
+    ]
+}
+  
