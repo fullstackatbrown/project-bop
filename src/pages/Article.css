@@ -53,7 +53,7 @@ h1 {
     }
 }
 
-.quote {
+blockquote {
     font-size: 23px;
     border-left: 3px solid rgb(247, 75, 75);
     padding-left: 10px;
