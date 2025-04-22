@@ -2,6 +2,13 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { createBucketClient } from "@cosmicjs/sdk";
+import { queryObjects } from "../cosmic";
+import Slider from "react-slick";
+import Poll from "../Poll";
+import "./Home.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 const topics = [
   "dating culture",
@@ -69,58 +76,61 @@ export default function Home() {
 
   const previousPollsVisibleImages = [
     previousPollsImages[
-      (currentPreviousPollsImageIndex - 1 + previousPollsImages.length) %
-        previousPollsImages.length
+    (currentPreviousPollsImageIndex - 1 + previousPollsImages.length) %
+    previousPollsImages.length
     ], // Left cut-off
     previousPollsImages[currentPreviousPollsImageIndex], // Fully visible
     previousPollsImages[
-      (currentPreviousPollsImageIndex + 1) % previousPollsImages.length
+    (currentPreviousPollsImageIndex + 1) % previousPollsImages.length
     ], // Fully visible
     previousPollsImages[
-      (currentPreviousPollsImageIndex + 2) % previousPollsImages.length
+    (currentPreviousPollsImageIndex + 2) % previousPollsImages.length
     ], // Fully visible
     previousPollsImages[
-      (currentPreviousPollsImageIndex + 3) % previousPollsImages.length
+    (currentPreviousPollsImageIndex + 3) % previousPollsImages.length
     ], // Right cut-off
   ];
-  const [news, setNews] = useState();
-  const [loading, setLoading] = useState(true);
+  const [news, setNews] = useState(null);
 
+  // useEffect(() => {
+  //   const fetchMembers = async () => {
+  //     try {
+  //       const cosmic = createBucketClient({
+  //         bucketSlug: "bop-backend-production",
+  //         readKey: "8N6HiTQekcWvzJbMA4qSeTbIcb11wLI04UpzC68HzLyd2uuiXz",
+  //       });
+  //       const response = await cosmic.objects
+  //         .find({ type: "news-pages" })
+  //         .limit(10)
+  //         .props("slug,title,metadata,type")
+  //         .depth(1);
+
+  //       let newsList = [];
+  //       for (const member of response.objects) {
+  //         newsList.push(member);
+  //       }
+  //       setNews(newsList);
+
+  //       setLoading(false);
+  //     } catch (err) {
+  //       console.log("Failed to fetch");
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchMembers();
+  // }, []);
   useEffect(() => {
-    const fetchMembers = async () => {
-      try {
-        const cosmic = createBucketClient({
-          bucketSlug: "bop-backend-production",
-          readKey: "8N6HiTQekcWvzJbMA4qSeTbIcb11wLI04UpzC68HzLyd2uuiXz",
-        });
-        const response = await cosmic.objects
-          .find({ type: "news-pages" })
-          .limit(10)
-          .props("slug,title,metadata,type")
-          .depth(1);
-
-        let newsList = [];
-        for (const member of response.objects) {
-          newsList.push(member);
-        }
-        setNews(newsList);
-
-        setLoading(false);
-      } catch (err) {
-        console.log("Failed to fetch");
-        setLoading(false);
-      }
-    };
-
-    fetchMembers();
+    (async () => {
+      setNews(
+        (await queryObjects({ type: "news-posts" }, 4))
+          .map(raw => { return { ...raw.metadata, title: raw.title, slug: raw.slug } })
+      );
+    })();
   }, []);
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
+  if (!news) return null;
   console.log(news);
-
   return (
     <div>
       {/* 'Discover how Brown students feel about ...' Section */}
@@ -166,7 +176,7 @@ export default function Home() {
           {/* Right Side - Image Slideshow with Red Overlay */}
           <div className="w-full h-60 sm:h-70 md:h-auto md:w-1/2 flex justify-center items-center relative">
             {/* Red Overlay */}
-            <div className="absolute inset-0 z-10"  style={{ backgroundColor: 'rgba(226, 28, 33, 0.65)' }}></div>
+            <div className="absolute inset-0 z-10" style={{ backgroundColor: 'rgba(226, 28, 33, 0.65)' }}></div>
 
             {/* Curved White Box for Carousel */}
             <div className="relative z-20 bg-white h-3/4 shadow-lg flex items-center justify-center overflow-hidden rounded-3xl">
@@ -217,21 +227,21 @@ export default function Home() {
               {/* Article image */}
               <div className="w-full h-48 sm:h-64 md:h-72 bg-slate-800 overflow-hidden rounded-md">
                 <img
-                  src={news[0].metadata.image.imgix_url}
-                  alt={news[0].metadata.caption}
+                  src={news[0].image.url}
+                  alt={news[0].image_caption}
                   className="w-full h-full object-cover"
                 />
               </div>
 
               {/* Text div */}
               <div className="p-4 sm:p-6 flex flex-col">
-                <p className="text-xs py-2">{news[0].metadata.date}</p>
+                <p className="text-xs py-2">{news[0].date}</p>
                 <h3 className="text-xl sm:text-2xl font-bold mb-2 overflow-hidden text-ellipsis line-clamp-2">
-                  {news[0].metadata.article_title}
+                  {news[0].title}
                 </h3>
                 <p className="text-sm overflow-hidden text-ellipsis line-clamp-3">
-                  By {news[0].metadata.author} "{news[0].metadata.quote}"{" "}
-                  {news[0].metadata.body} ...
+                  By {news[0].author} "{news[0].quote}"{" "}
+                  {news[0].content} ...
                 </p>
               </div>
             </div>
@@ -239,7 +249,7 @@ export default function Home() {
             {/* Secondary articles container */}
             <div className="w-full md:w-2/5 flex flex-col gap-4">
               {/* Individual articles */}
-              {[1, 2, 3, 4].map((index) => (
+              {[1, 2, 3].map((index) => (
                 <div
                   key={index}
                   className="w-full flex flex-row items-center bg-white shadow-md"
@@ -247,17 +257,17 @@ export default function Home() {
                   {/* Text div */}
                   <div className="w-4/5 sm:w-5/6 md:w-3/4 lg:w-2/3 xl:w-3/4 p-3 sm:p-4 flex flex-col justify-center">
                     <h3 className="text-xs md:text-lg font-bold mb-2 overflow-hidden text-ellipsis line-clamp-2">
-                      {news[index].metadata.article_title}
+                      {news[index].title}
                     </h3>
-                    <p className="text-xs">{news[index].metadata.author}</p>
-                    <p className="text-xs">{news[index].metadata.date}</p>
+                    <p className="text-xs">{news[index].author}</p>
+                    <p className="text-xs">{news[index].date}</p>
                   </div>
 
                   {/* Article image */}
                   <div className="w-16 h-16 sm:w-20 sm:h-20 bg-slate-800 overflow-hidden rounded-md">
                     <img
-                      src={news[index].metadata.image.imgix_url}
-                      alt={news[index].metadata.caption}
+                      src={news[index].image.url}
+                      alt={news[index].caption}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -269,81 +279,46 @@ export default function Home() {
       </section>
 
       {/* 'Check out our previous polls!' Section */}
-      <section className="relative w-full flex flex-col items-center bg-blue-900 py-16 min-h-[56vh] md:min-h-[72vh] px-4">
-        <h2 className="text-xl md:text-4xl font-bold text-white mb-14">
-          Check out our previous polls!
-        </h2>
+      <LatestPolls />
+    </div>
+  );
+}
 
-        {/* Carousel Container */}
-        <div className="relative w-4/5 overflow-hidden">
-          {/* Images */}
-          <div className="flex justify-center items-center space-x-4">
-            {previousPollsVisibleImages.map((img, index) => (
-              <motion.img
-                key={index}
-                src={img}
-                alt={`Poll ${index}`}
-                className={`cursor-pointer object-cover rounded-lg transition-all ${
-                  index === 1 || index === 2 || index === 3
-                    ? "w-1/4 opacity-100" // Fully visible
-                    : "w-1/6 opacity-50" // Cut-off effect
-                }`}
-                onClick={() => setSelectedPreviousPollsImage(img)}
-                whileHover={{ scale: 1.05 }}
-              />
-            ))}
+function LatestPolls() {
+  const latestPollGroupSlug = "february-2025";
+  const [pollGroup, setPollGroup] = useState(null);
+  useEffect(() => {
+    (async () => {
+      setPollGroup(
+        (await queryObjects({ type: "poll-groups", slug: latestPollGroupSlug }))
+          .map(raw => { return { ...raw.metadata, title: raw.title } })
+        [0]
+      );
+    })();
+  }, []);
+
+  console.log(pollGroup)
+
+  if (!pollGroup) return null;
+  return (
+    <div className="home-polls">
+      <h4>Check out our latest polls!</h4>
+      <Slider
+        dots={true}
+        infinite={true}
+        speed={500}
+        slidesToShow={2}
+        slidesToScroll={1}
+        arrows={true}
+        className="home-poll-slider">
+        {JSON.parse(pollGroup.data).slice(5).map((pollData, index) => (
+          <div className="home-poll-outer-box">
+            <div className="home-poll-box">
+              <Poll data={pollData} tag={`${latestPollGroupSlug.split("-").join(" ")} #${index + 6}`} />
+            </div>
           </div>
-        </div>
-
-        {/* Navigation Arrows */}
-        <button
-          onClick={prevPreviousPollsSlide}
-          className="absolute left-2 sm:left-14 top-1/2 transform -translate-y-1/2 text-white p-1 sm:p-2"
-        >
-          <ChevronLeft size={32} />
-        </button>
-        <button
-          onClick={nextPreviousPollsSlide}
-          className="absolute right-2 sm:right-14 top-1/2 transform -translate-y-1/2 text-white p-1 sm:p-2"
-        >
-          <ChevronRight size={32} />
-        </button>
-
-        {/* Modal for Enlarged Image */}
-        <AnimatePresence>
-          {selectedPreviousPollsImage && (
-            <motion.div
-              className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <div className="relative">
-                <motion.img
-                  src={selectedPreviousPollsImage}
-                  alt="Enlarged"
-                  className="w-auto h-96 object-contain"
-                  initial={{ scale: 0.8 }}
-                  animate={{ scale: 1 }}
-                  exit={{ scale: 0.8 }}
-                />
-                <button
-                  onClick={() => setSelectedPreviousPollsImage(null)}
-                  className="absolute top-2 right-2 bg-white p-2 rounded-full"
-                >
-                  <X size={24} />
-                </button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-        {/* Button */}
-        <div className="w-30 mt-12">
-          <button className="border-2 border-white text-white text-md md:text-xl font-semibold px-8 py-3 transition duration-300 hover:bg-white hover:text-black rounded-3xl">
-            View past polls
-          </button>
-        </div>
-      </section>
+        ))}
+      </Slider>
     </div>
   );
 }
