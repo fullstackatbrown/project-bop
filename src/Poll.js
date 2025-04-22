@@ -1,5 +1,6 @@
 import ReactECharts from "echarts-for-react";
 import "./Poll.css";
+import { useEffect, useRef } from "react";
 
 export default function Poll({data, tag}) {
     let option;
@@ -75,12 +76,18 @@ export default function Poll({data, tag}) {
         }
     }
     
+    const chartRef = useRef(null);
+    useEffect(() => {
+        if (chartRef.current) {
+          chartRef.current.getEchartsInstance().resize();
+        }
+      }, [data]);
 
     return (
-        <div className="poll">
+        <div className="poll" style={{width: "100%"}}>
             <p><b>{data.question}</b></p>
             <p className="poll-caption">BOP POLL {tag.toUpperCase()}</p>
-            <ReactECharts option={option} style={{ height: 400 }}></ReactECharts>
+            <ReactECharts ref={chartRef} option={option} style={{ height: 400 }}></ReactECharts>
         </div>
     );
 }

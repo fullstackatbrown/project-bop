@@ -93,34 +93,6 @@ export default function Home() {
   ];
   const [news, setNews] = useState(null);
 
-  // useEffect(() => {
-  //   const fetchMembers = async () => {
-  //     try {
-  //       const cosmic = createBucketClient({
-  //         bucketSlug: "bop-backend-production",
-  //         readKey: "8N6HiTQekcWvzJbMA4qSeTbIcb11wLI04UpzC68HzLyd2uuiXz",
-  //       });
-  //       const response = await cosmic.objects
-  //         .find({ type: "news-pages" })
-  //         .limit(10)
-  //         .props("slug,title,metadata,type")
-  //         .depth(1);
-
-  //       let newsList = [];
-  //       for (const member of response.objects) {
-  //         newsList.push(member);
-  //       }
-  //       setNews(newsList);
-
-  //       setLoading(false);
-  //     } catch (err) {
-  //       console.log("Failed to fetch");
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchMembers();
-  // }, []);
   useEffect(() => {
     (async () => {
       setNews(
@@ -148,9 +120,25 @@ export default function Home() {
         <div className="relative z-10 flex flex-col md:flex-row w-full h-full">
           {/* Left Side - Animated Text & Button */}
           <div className="w-full md:w-1/2 flex flex-row md:flex-col justify-center text-white p-4 sm:p-8 md:p-14">
-            <div className="w-1/2 md:w-full ml-8 md:ml-0 items-start text-2xl md:text-4xl xl:text-5xl font-bold leading-tight">
+            <div className="w-1/2 md:w-full ml-8 md:ml-0 items-start text-2xl md:text-4xl xl:text-5xl font-bold leading-tight mobile-hide">
               <div>Discover how</div>
               <div>Brown students</div>
+              <div>feel about</div>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={topics[currentTopic]}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.5 }}
+                  className="text-white"
+                >
+                  {topics[currentTopic]}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+            <div className="md:w-full ml-8 md:ml-0 items-start text-2xl md:text-4xl xl:text-5xl font-bold leading-tight mobile-show">
+              <div>Discover how Brown students</div>
               <div>feel about</div>
               <AnimatePresence mode="wait">
                 <motion.div
@@ -169,7 +157,7 @@ export default function Home() {
             {/* Button */}
             <div className="flex w-1/2 md:w-full mt-6 items-center justify-start py-2">
               <a href="/polls" style={{width: "100%"}}>
-                <button className="md:w-1/2 border-2 rounded-lg border-white text-white text-sm md:text-2xl font-semibold px-3 md:px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:mix-blend-difference">
+                <button className="md:w-1/2 border-2 rounded-lg border-white text-white text-sm md:text-2xl font-semibold px-3 md:px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:mix-blend-difference mobile-hide">
                   See the latest poll results
                 </button>
               </a>
@@ -177,7 +165,7 @@ export default function Home() {
           </div>
 
           {/* Right Side - Image Slideshow with Red Overlay */}
-          <div className="w-full h-80 sm:h-70 md:h-auto md:w-1/2 flex justify-center items-center relative">
+          <div className="w-full h-80 sm:h-70 md:h-auto md:w-1/2 flex justify-center items-center relative red-box">
             {/* Red Overlay */}
             <div className="absolute inset-0 z-10" style={{ backgroundColor: 'rgba(226, 28, 33, 0.65)' }}></div>
             
@@ -185,6 +173,12 @@ export default function Home() {
             <div className="relative z-20 bg-white shadow-lg flex items-top justify-center overflow-hidden rounded-3xl" style={{height: "90%"}}>
               <InstagramEmbed postUrl="https://www.instagram.com/p/DHRUj4uvZtY" />
             </div>
+
+            <a href="/polls" style={{width: "100%", textAlign: "center"}} className="mobile-show">
+              <button className="relative z-20 border-2 rounded-lg border-white text-white text-sm md:text-2xl font-semibold px-3 md:px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:mix-blend-difference">
+                See the latest poll results
+              </button>
+            </a>
           </div>
         </div>
       </section>
@@ -201,28 +195,27 @@ export default function Home() {
           {/* Main article container */}
           <div className="w-full flex flex-col md:flex-row gap-4">
             {/* Headline article container */}
-            <div className="w-full md:w-3/5 flex flex-col bg-white shadow-md">
-              {/* Article image */}
-              <div className="w-full h-48 sm:h-64 md:h-72 bg-slate-800 overflow-hidden rounded-md">
-                <img
-                  src={news[0].image.url}
-                  alt={news[0].image_caption}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+              <div className="w-full md:w-3/5 flex flex-col bg-white shadow-md">
+                {/* Article image */}
+                <div className="w-full h-48 sm:h-64 md:h-72 bg-slate-800 overflow-hidden rounded-md">
+                  <img
+                    src={news[0].image.url}
+                    alt={news[0].image_caption}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
 
-              {/* Text div */}
-              <div className="p-4 sm:p-6 flex flex-col">
-                <p className="text-xs py-2">{news[0].date}</p>
-                <h3 className="text-xl sm:text-2xl font-bold mb-2 overflow-hidden text-ellipsis line-clamp-2">
-                  {news[0].title}
-                </h3>
-                <p className="text-sm overflow-hidden text-ellipsis line-clamp-3">
-                  By {news[0].author} "{news[0].quote}"{" "}
-                  {news[0].content} ...
-                </p>
+                {/* Text div */}
+                <div className="p-4 sm:p-6 flex flex-col">
+                  <p className="text-xs py-2">{news[0].date}</p>
+                  <h3 className="text-xl sm:text-2xl font-bold mb-2 overflow-hidden text-ellipsis line-clamp-2">
+                    <a href={`/articles/${news[0].slug}`}>{news[0].title}</a>
+                  </h3>
+                  <p className="text-sm overflow-hidden text-ellipsis line-clamp-3">
+                    By {news[0].author} -{news[0].content.split("\n").slice(2).join("")} ...
+                  </p>
+                </div>
               </div>
-            </div>
 
             {/* Secondary articles container */}
             <div className="w-full md:w-2/5 flex flex-col gap-4">
@@ -235,7 +228,7 @@ export default function Home() {
                   {/* Text div */}
                   <div className="w-4/5 sm:w-5/6 md:w-3/4 lg:w-2/3 xl:w-3/4 p-3 sm:p-4 flex flex-col justify-center">
                     <h3 className="text-xs md:text-lg font-bold mb-2 overflow-hidden text-ellipsis line-clamp-2">
-                      {news[index].title}
+                    <a href={`/articles/${news[index].slug}`}>{news[index].title}</a>
                     </h3>
                     <p className="text-xs">{news[index].author}</p>
                     <p className="text-xs">{dateFormat(news[index].date_published)}</p>
@@ -295,6 +288,7 @@ function LatestPolls() {
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
+              arrows: false
             },
           },
         ]}>

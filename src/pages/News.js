@@ -142,7 +142,7 @@ const Articles = () => {
 
               <div className="article-author tracking-tight">
                 <h2>
-                  <p>
+                  <p style={{fontSize: 20}}>
                     {article.author}
                   </p>
                 </h2>
