@@ -214,7 +214,9 @@ function EmbedPoll({ line }) {
 
   if (!pollGroup) return null;
   return (
+    <div className="shadow-lg">
       <Poll data={JSON.parse(pollGroup.data)[index]} tag={parts.slice(2).join(" ")} />
+    </div>
   );
   return null;
 }

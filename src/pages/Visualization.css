@@ -1,0 +1,10 @@
+@media (max-width: 767px) {
+    .visualizer-main {
+        display: none !important;
+    }
+}
+@media (min-width: 768px) {
+    .visualizer-mobile-msg {
+        display: none;
+    }
+}

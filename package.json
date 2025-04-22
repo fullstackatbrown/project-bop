@@ -22,7 +22,8 @@
     "react-router-dom": "^5.3.4",
     "react-scripts": "5.0.1",
     "react-slick": "^0.30.3",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "use-immer": "^0.11.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -25,7 +25,7 @@ ChartJS.register(
 
 const Visualization = () => {
   // Hardcoded array of polls (CSV filenames with space)
-  const polls = ["March 2025.csv", "February 2025.csv", "November 2024.csv"];
+  const polls = ["February 2025.csv", "November 2024.csv"];
   const [selectedPoll, setSelectedPoll] = useState(polls[0]);
 
   // UI state

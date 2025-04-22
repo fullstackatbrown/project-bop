@@ -19,15 +19,19 @@ h1 {
 
 @media (min-width: 0px) {
     h1 {
-        font-size: 20px;
+        font-size: 28px;
     }
 
     .content, .icons {
         width: 70vw;
     }
 
-    .recent-article {
-        width: 20vw;
+    .recent-news {
+        display: none !important;
+    }
+
+    .recent-headers {
+        display: none !important;
     }
 
     p {
@@ -48,8 +52,20 @@ h1 {
         width: 16vw;
     }
 
+    .recent-headers {
+        display: flex !important;
+    }
+
+    .recent-news {
+        display: flex !important;
+    }
+
     p {
         font-size: 18px;
+    }
+
+    img {
+        width: 50vw;
     }
 }
 
@@ -65,7 +81,6 @@ p {
 }
 
 img {
-  width: 50vw;
   height: auto;
   display: block; 
   margin-left: auto; 

@@ -48,7 +48,7 @@ export default function PollDetail() {
 
             <div className="mb-6 max-w-4xl mx-auto">
                 <a
-                    href={`/pdfs/${pollId}.pdf`}
+                    href={`/${pollGroup.title}.csv`}
                     download
                     className="block w-full bg-gray-800 text-white uppercase font-bold py-4 rounded-lg hover:bg-gray-700 transition text-xl text-center"
                 >

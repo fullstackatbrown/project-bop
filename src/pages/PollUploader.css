@@ -1,0 +1,10 @@
+#pu button {
+    background-color: #eee;
+    border: 1px solid black;
+    padding: 0.25em;
+}
+#pu input[type="text"], #pu input[type="number"] {
+    border: 1px solid black;
+    padding: 0.25em;
+    width: 100%;
+}
