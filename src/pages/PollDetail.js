@@ -59,8 +59,8 @@ export default function PollDetail() {
             {/* Charts Section */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10 max-w-6xl mx-auto">
                 {JSON.parse(pollGroup.data).map((chartData, index) => (
-                    <div key={index} className="bg-white rounded-lg shadow-md">
-                        <Poll data={chartData} tag="x" />
+                    <div key={index} className="bg-white rounded-lg shadow-md" style={{paddingTop: "10px", paddingLeft: "10px", paddingRight: "10px"}}>
+                        <Poll data={chartData} tag={`${pollGroup.title} #${index + 1}`} />
                     </div>
                 ))}
             </div>

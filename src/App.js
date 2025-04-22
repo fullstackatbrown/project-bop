@@ -74,7 +74,7 @@ export default function App() {
           <Switch>
             <Route path="/polls/:pollId" component={PollDetail} />
             <Route path="/polls" component={Polls} />
-            <Route path="/articles/:x" component={Article} />
+            <Route path="/articles/:postSlug" component={Article} />
             <Route path="/news" component={News} />
             <Route path="/question-submissions" component={QuestionSubmissions} />
             <Route path="/team" component={Team} />

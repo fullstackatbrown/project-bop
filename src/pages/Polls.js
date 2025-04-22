@@ -2,20 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export const pollData = [
-  { title: "November 2024", pdfUrl: "/pdfs/november-2024.pdf" },
-  { title: "October 2024", pdfUrl: "/pdfs/october-2024.pdf" },
-  { title: "April 2024", pdfUrl: "/pdfs/april-2024.pdf" },
-  { title: "March 2024", pdfUrl: "/pdfs/march-2024.pdf" },
-  { title: "November 2023", pdfUrl: "/pdfs/november-2023.pdf" },
-  { title: "October 2023", pdfUrl: "/pdfs/october-2023.pdf" },
-  { title: "April 2023", pdfUrl: "/pdfs/april-2023.pdf" },
-  { title: "March 2023", pdfUrl: "/pdfs/march-2023.pdf" },
-  { title: "November 2022", pdfUrl: "/pdfs/november-2022.pdf" },
-  { title: "October 2022", pdfUrl: "/pdfs/october-2022.pdf" },
-  { title: "April 2022", pdfUrl: "/pdfs/april-2022.pdf" },
-  { title: "March 2022", pdfUrl: "/pdfs/march-2022.pdf" },
-  { title: "November 2021", pdfUrl: "/pdfs/november-2021.pdf" },
-  { title: "October 2021", pdfUrl: "/pdfs/october-2021.pdf" },
+  { title: "March 2025" },
+  { title: "February 2025" },
+  { title: "November 2024" }
 ];
 
 export default function Polls() {
@@ -109,7 +98,7 @@ export default function Polls() {
               >
                 <div className="space-y-3 ml-6">
                   {groupedByYear[year].map((poll, index) => {
-                    const key = poll.title.toLowerCase().replace(/\s+/g, '-') + "-poll";
+                    const key = poll.title.toLowerCase().replace(/\s+/g, '-');
                     return (
                       <Link
                         to={`/polls/${key}`}

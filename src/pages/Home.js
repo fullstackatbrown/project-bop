@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { createBucketClient } from "@cosmicjs/sdk";
-import { queryObjects } from "../cosmic";
+import { dateFormat, queryObjects } from "../cosmic";
 import Slider from "react-slick";
 import Poll from "../Poll";
 import "./Home.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link } from "react-router-dom";
 
 
 const topics = [
@@ -167,45 +168,22 @@ export default function Home() {
 
             {/* Button */}
             <div className="flex w-1/2 md:w-full mt-6 items-center justify-start py-2">
-              <button className="md:w-1/2 border-2 rounded-lg border-white text-white text-sm md:text-2xl font-semibold px-3 md:px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:mix-blend-difference">
-                See the newest poll results
-              </button>
+              <a href="/polls" style={{width: "100%"}}>
+                <button className="md:w-1/2 border-2 rounded-lg border-white text-white text-sm md:text-2xl font-semibold px-3 md:px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:mix-blend-difference">
+                  See the latest poll results
+                </button>
+              </a>
             </div>
           </div>
 
           {/* Right Side - Image Slideshow with Red Overlay */}
-          <div className="w-full h-60 sm:h-70 md:h-auto md:w-1/2 flex justify-center items-center relative">
+          <div className="w-full h-80 sm:h-70 md:h-auto md:w-1/2 flex justify-center items-center relative">
             {/* Red Overlay */}
             <div className="absolute inset-0 z-10" style={{ backgroundColor: 'rgba(226, 28, 33, 0.65)' }}></div>
-
+            
             {/* Curved White Box for Carousel */}
-            <div className="relative z-20 bg-white h-3/4 shadow-lg flex items-center justify-center overflow-hidden rounded-3xl">
-              {/* Navigation Buttons */}
-              <button
-                onClick={prevImage}
-                className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-black text-white p-1 sm:p-2 rounded-full shadow-md"
-              >
-                <ChevronLeft size={20} />
-              </button>
-
-              {/* Clickable Image */}
-              <motion.img
-                key={carouselImages[currentImage]}
-                src={carouselImages[currentImage]}
-                alt="Carousel Slide"
-                className="w-full h-full object-cover rounded-3xl cursor-pointer"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.5 }}
-              />
-
-              <button
-                onClick={nextImage}
-                className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-black text-white p-1 sm:p-2 rounded-full shadow-md"
-              >
-                <ChevronRight size={20} />
-              </button>
+            <div className="relative z-20 bg-white shadow-lg flex items-top justify-center overflow-hidden rounded-3xl" style={{height: "90%"}}>
+              <InstagramEmbed postUrl="https://www.instagram.com/p/DHRUj4uvZtY" />
             </div>
           </div>
         </div>
@@ -260,7 +238,7 @@ export default function Home() {
                       {news[index].title}
                     </h3>
                     <p className="text-xs">{news[index].author}</p>
-                    <p className="text-xs">{news[index].date}</p>
+                    <p className="text-xs">{dateFormat(news[index].date_published)}</p>
                   </div>
 
                   {/* Article image */}
@@ -302,7 +280,7 @@ function LatestPolls() {
   if (!pollGroup) return null;
   return (
     <div className="home-polls">
-      <h4>Check out our latest polls!</h4>
+      <h4 style={{textAlign: "center", fontSize: "200%", fontWeight: "bold"}}>Check out our latest polls!</h4>
       <Slider
         dots={true}
         infinite={true}
@@ -310,15 +288,55 @@ function LatestPolls() {
         slidesToShow={2}
         slidesToScroll={1}
         arrows={true}
-        className="home-poll-slider">
+        className="home-poll-slider"
+        responsive={[
+          {
+            breakpoint: 768, // Tailwind's 'md' breakpoint is 768px
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+            },
+          },
+        ]}>
         {JSON.parse(pollGroup.data).slice(5).map((pollData, index) => (
           <div className="home-poll-outer-box">
-            <div className="home-poll-box">
+            <div className="home-poll-box shadow-lg">
               <Poll data={pollData} tag={`${latestPollGroupSlug.split("-").join(" ")} #${index + 6}`} />
             </div>
           </div>
         ))}
       </Slider>
     </div>
+  );
+}
+
+function InstagramEmbed({ postUrl }) {
+  useEffect(() => {
+    // Create and append the Instagram embed script
+    const script = document.createElement("script");
+    script.src = "https://www.instagram.com/embed.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    // Cleanup: remove script on unmount
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, [postUrl]);
+
+  return (
+    <blockquote
+      className="instagram-media"
+      data-instgrm-permalink={postUrl}
+      data-instgrm-version="14"
+      style={{
+        width: "100%",
+        maxWidth: "540px",
+        margin: "1rem auto",
+        padding: 0,
+        border: "none",
+        overflow: "hidden",
+      }}
+    ></blockquote>
   );
 }
