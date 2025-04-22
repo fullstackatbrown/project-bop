@@ -4,7 +4,7 @@ import "./Article.css";
 import { Link } from "react-router-dom";
 import { createBucketClient } from "@cosmicjs/sdk";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { queryObjects } from "../cosmic";
+import { dateFormat, queryObjects } from "../cosmic";
 import Markdown from "react-markdown";
 import Poll from "../Poll";
 
@@ -121,6 +121,7 @@ function RecentArticles({ posts }) {
               key={"rec" + idx}
               image={article.image.url}
               title={article.title}
+              slug={article.slug}
             />
           );
         })}
@@ -129,13 +130,13 @@ function RecentArticles({ posts }) {
   );
 }
 
-function RecentArticle({ image, title }) {
+function RecentArticle({ image, title, slug }) {
   return (
     <div className="recent-article">
       <img src={image} />
       <p className="recent-title">
         <Link
-          to={`/articles/${encodeURIComponent(title.replace(/%/g, ""))}`}
+          to={`/articles/${slug}`}
           className="article-link"
           onClick={() => window.scrollTo(0, 0)}
         >
@@ -169,7 +170,7 @@ export default function Article() {
   return (
     <div className="curr-article">
       <div className="content">
-        <p className="date"> {"date"} </p>
+        <p className="date"> {dateFormat(post.date_published)} </p>
 
         <h1> {post.title} </h1>
 
@@ -183,7 +184,7 @@ export default function Article() {
         <div className="body">
           {post.content.split("\n").map(line =>
             <>
-              {line.startsWith("BOP POLL ") ? <EmbedPoll line={line} /> : <Markdown>{line}</Markdown>}
+              {line.startsWith("BOP POLL ") ? <EmbedPoll line={line} /> : <Markdown>{line.split("¶").join("")}</Markdown>}
               {line ? <br /> : null}
             </>
           )}

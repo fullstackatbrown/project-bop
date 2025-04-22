@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { HiShare } from "react-icons/hi";
 import "./News.css";
-import { queryObjects } from "../cosmic";
+import { dateFormat, queryObjects } from "../cosmic";
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
@@ -142,11 +142,11 @@ const Articles = () => {
 
               <div className="article-author tracking-tight">
                 <h2>
-                  <Link className="article-link">
+                  <p>
                     {article.author}
-                  </Link>
+                  </p>
                 </h2>
-                <p className="card-date">{"date"}</p>
+                <p className="card-date">{dateFormat(article.date_published)}</p>
               </div>
 
               <div className="article-title">

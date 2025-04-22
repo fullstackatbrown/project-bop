@@ -33,3 +33,20 @@ export async function deleteObject(id) {
         }
     );
 }
+
+export function dateFormat(dateStr) {
+    const date = new Date(dateStr);
+
+    const options = { month: "short", day: "numeric", year: "numeric" };
+    const parts = new Intl.DateTimeFormat("en-US", options).formatToParts(date);
+
+    let month = parts.find(p => p.type === "month").value;
+    const day = parts.find(p => p.type === "day").value;
+    const year = parts.find(p => p.type === "year").value;
+
+    // Only add period if the month is one of the truly abbreviated ones
+    const abbreviatedMonths = ["Jan", "Feb", "Apr", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    if (abbreviatedMonths.includes(month)) month += ".";
+
+    return `${month} ${day}, ${year}`;
+}
