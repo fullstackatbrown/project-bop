@@ -10,7 +10,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 
-
 const topics = [
   "dating culture",
   "Brown",
@@ -20,7 +19,12 @@ const topics = [
   "climate change",
 ];
 
-const carouselImages = ["/temp_poll.png", "/temp_poll.png", "/temp_poll.png", "/temp_poll.png"];
+const carouselImages = [
+  "/temp_poll.png",
+  "/temp_poll.png",
+  "/temp_poll.png",
+  "/temp_poll.png",
+];
 
 const previousPollsImages = [
   "/temp_poll.png",
@@ -77,18 +81,18 @@ export default function Home() {
 
   const previousPollsVisibleImages = [
     previousPollsImages[
-    (currentPreviousPollsImageIndex - 1 + previousPollsImages.length) %
-    previousPollsImages.length
+      (currentPreviousPollsImageIndex - 1 + previousPollsImages.length) %
+        previousPollsImages.length
     ], // Left cut-off
     previousPollsImages[currentPreviousPollsImageIndex], // Fully visible
     previousPollsImages[
-    (currentPreviousPollsImageIndex + 1) % previousPollsImages.length
+      (currentPreviousPollsImageIndex + 1) % previousPollsImages.length
     ], // Fully visible
     previousPollsImages[
-    (currentPreviousPollsImageIndex + 2) % previousPollsImages.length
+      (currentPreviousPollsImageIndex + 2) % previousPollsImages.length
     ], // Fully visible
     previousPollsImages[
-    (currentPreviousPollsImageIndex + 3) % previousPollsImages.length
+      (currentPreviousPollsImageIndex + 3) % previousPollsImages.length
     ], // Right cut-off
   ];
   const [news, setNews] = useState(null);
@@ -96,8 +100,9 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       setNews(
-        (await queryObjects({ type: "news-posts" }, 4))
-          .map(raw => { return { ...raw.metadata, title: raw.title, slug: raw.slug } })
+        (await queryObjects({ type: "news-posts" }, 4)).map((raw) => {
+          return { ...raw.metadata, title: raw.title, slug: raw.slug };
+        })
       );
     })();
   }, []);
@@ -156,7 +161,7 @@ export default function Home() {
 
             {/* Button */}
             <div className="flex w-1/2 md:w-full mt-6 items-center justify-start py-2">
-              <a href="/polls" style={{width: "100%"}}>
+              <a href="/polls" style={{ width: "100%" }}>
                 <button className="md:w-1/2 border-2 rounded-lg border-white text-white text-sm md:text-2xl font-semibold px-3 md:px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:mix-blend-difference mobile-hide">
                   See the latest poll results
                 </button>
@@ -167,14 +172,24 @@ export default function Home() {
           {/* Right Side - Image Slideshow with Red Overlay */}
           <div className="w-full h-80 sm:h-70 md:h-auto md:w-1/2 flex justify-center items-center relative red-box">
             {/* Red Overlay */}
-            <div className="absolute inset-0 z-10" style={{ backgroundColor: 'rgba(226, 28, 33, 0.65)' }}></div>
-            
+            <div
+              className="absolute inset-0 z-10"
+              style={{ backgroundColor: "rgba(226, 28, 33, 0.65)" }}
+            ></div>
+
             {/* Curved White Box for Carousel */}
-            <div className="relative z-20 bg-white shadow-lg flex items-top justify-center overflow-hidden rounded-3xl" style={{height: "90%"}}>
+            <div
+              className="relative z-20 bg-white shadow-lg flex items-top justify-center overflow-hidden rounded-3xl"
+              style={{ height: "90%" }}
+            >
               <InstagramEmbed postUrl="https://www.instagram.com/p/DHRUj4uvZtY" />
             </div>
 
-            <a href="/polls" style={{width: "100%", textAlign: "center"}} className="mobile-show">
+            <a
+              href="/polls"
+              style={{ width: "100%", textAlign: "center" }}
+              className="mobile-show"
+            >
               <button className="relative z-20 border-2 rounded-lg border-white text-white text-sm md:text-2xl font-semibold px-3 md:px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:mix-blend-difference">
                 See the latest poll results
               </button>
@@ -188,34 +203,35 @@ export default function Home() {
         {/* Main article */}
         <div className="w-full px-0 sm:w-11/12 md:w-10/12 lg:w-4/5 max-w-6xl">
           {/* News heading */}
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-950 mb-4 py-8">
+          <h2 className="text-2xl md:text-4xl xl:text-5xl font-bold text-slate-950 mb-4 py-2">
             News
           </h2>
 
           {/* Main article container */}
           <div className="w-full flex flex-col md:flex-row gap-4">
             {/* Headline article container */}
-              <div className="w-full md:w-3/5 flex flex-col bg-white shadow-md">
-                {/* Article image */}
-                <div className="w-full h-48 sm:h-64 md:h-72 bg-slate-800 overflow-hidden rounded-md">
-                  <img
-                    src={news[0].image.url}
-                    alt={news[0].image_caption}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                {/* Text div */}
-                <div className="p-4 sm:p-6 flex flex-col">
-                  <p className="text-xs py-2">{news[0].date}</p>
-                  <h3 className="text-xl sm:text-2xl font-bold mb-2 overflow-hidden text-ellipsis line-clamp-2">
-                    <a href={`/articles/${news[0].slug}`}>{news[0].title}</a>
-                  </h3>
-                  <p className="text-sm overflow-hidden text-ellipsis line-clamp-3">
-                    By {news[0].author} -{news[0].content.split("\n").slice(2).join("")} ...
-                  </p>
-                </div>
+            <div className="w-full md:w-3/5 flex flex-col bg-white shadow-md">
+              {/* Article image */}
+              <div className="w-full h-48 sm:h-64 md:h-72 bg-slate-800 overflow-hidden">
+                <img
+                  src={news[0].image.url}
+                  alt={news[0].image_caption}
+                  className="w-full h-full object-cover"
+                />
               </div>
+
+              {/* Text div */}
+              <div className="p-4 sm:p-6 flex flex-col">
+                <p className="text-xs py-2">{news[0].date}</p>
+                <h3 className="text-xl sm:text-2xl font-bold mb-2 overflow-hidden text-ellipsis line-clamp-2">
+                  <a href={`/articles/${news[0].slug}`}>{news[0].title}</a>
+                </h3>
+                <p className="text-sm overflow-hidden text-ellipsis line-clamp-3">
+                  By {news[0].author} -
+                  {news[0].content.split("\n").slice(2).join("")} ...
+                </p>
+              </div>
+            </div>
 
             {/* Secondary articles container */}
             <div className="w-full md:w-2/5 flex flex-col gap-4">
@@ -228,10 +244,14 @@ export default function Home() {
                   {/* Text div */}
                   <div className="w-4/5 sm:w-5/6 md:w-3/4 lg:w-2/3 xl:w-3/4 p-3 sm:p-4 flex flex-col justify-center">
                     <h3 className="text-xs md:text-lg font-bold mb-2 overflow-hidden text-ellipsis line-clamp-2">
-                    <a href={`/articles/${news[index].slug}`}>{news[index].title}</a>
+                      <a href={`/articles/${news[index].slug}`}>
+                        {news[index].title}
+                      </a>
                     </h3>
                     <p className="text-xs">{news[index].author}</p>
-                    <p className="text-xs">{dateFormat(news[index].date_published)}</p>
+                    <p className="text-xs">
+                      {dateFormat(news[index].date_published)}
+                    </p>
                   </div>
 
                   {/* Article image */}
@@ -261,19 +281,23 @@ function LatestPolls() {
   useEffect(() => {
     (async () => {
       setPollGroup(
-        (await queryObjects({ type: "poll-groups", slug: latestPollGroupSlug }))
-          .map(raw => { return { ...raw.metadata, title: raw.title } })
-        [0]
+        (
+          await queryObjects({ type: "poll-groups", slug: latestPollGroupSlug })
+        ).map((raw) => {
+          return { ...raw.metadata, title: raw.title };
+        })[0]
       );
     })();
   }, []);
 
-  console.log(pollGroup)
+  console.log(pollGroup);
 
   if (!pollGroup) return null;
   return (
     <div className="home-polls">
-      <h4 style={{textAlign: "center", fontSize: "200%", fontWeight: "bold"}}>Check out our latest polls!</h4>
+      <h4 className="text-center text-2xl md:text-4xl xl:text-5xl font-bold mb-2">
+        Check out our latest polls!
+      </h4>
       <Slider
         dots={true}
         infinite={true}
@@ -288,17 +312,25 @@ function LatestPolls() {
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
-              arrows: false
+              arrows: false,
             },
           },
-        ]}>
-        {JSON.parse(pollGroup.data).slice(5).map((pollData, index) => (
-          <div className="home-poll-outer-box">
-            <div className="home-poll-box shadow-lg">
-              <Poll data={pollData} tag={`${latestPollGroupSlug.split("-").join(" ")} #${index + 6}`} />
+        ]}
+      >
+        {JSON.parse(pollGroup.data)
+          .slice(5)
+          .map((pollData, index) => (
+            <div className="home-poll-outer-box">
+              <div className="home-poll-box shadow-lg">
+                <Poll
+                  data={pollData}
+                  tag={`${latestPollGroupSlug.split("-").join(" ")} #${
+                    index + 6
+                  }`}
+                />
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </Slider>
     </div>
   );
