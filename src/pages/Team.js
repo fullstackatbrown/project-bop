@@ -220,7 +220,7 @@ function TeamSections() {
           },
           {
             name: "Gabe Merkel ('23)",
-            position: "Founter & Co-President",
+            position: "Founder & Co-President",
             term: "Spring 2021 - Spring 2023",
           },
           {
