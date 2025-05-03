@@ -18,16 +18,20 @@ function Banner() {
   return (
     <div className="relative w-full flex flex-col md:flex-row">
       {/* Background image container */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center z-0" 
+      <div
+        className="absolute inset-0 bg-cover bg-center z-0"
         style={{ backgroundImage: "url('/bop_team_pic.avif')" }}
       />
-      
+
       {/* Blue section */}
       <div className="relative min-h-[300px] md:min-h-[420px] lg:min-h-[600px] w-full md:w-1/2 flex items-center justify-start px-12 md:px-16 lg:px-20 lg:px-24 py-12 bg-[#133578b5] z-10">
         <div className="text-white flex flex-col max-w-md">
-          <h1 className="text-left text-5xl md:text-6xl font-avenir font-bold my-0">We are BOP.</h1>
-          <h1 className="text-4xl md:text-6xl justify-center text-center font-avenir font-medium leading-none my-0">&mdash;</h1>
+          <h1 className="text-left text-5xl md:text-6xl font-avenir font-bold my-0">
+            We are BOP.
+          </h1>
+          <h1 className="text-4xl md:text-6xl justify-center text-center font-avenir font-medium leading-none my-0">
+            &mdash;
+          </h1>
           <p className="text-left mt-4 text-3xl text-white lg:text-4xl font-avenir font-bold leading-[50px] lg:leading-[55px]">
             We make it easy to gauge what Brunonians really think.
           </p>
@@ -44,25 +48,44 @@ function Banner() {
         </div>
       </div>
 
-      {/* Red section */} 
+      {/* Red section */}
       <div className="relative min-h-[300px] md:min-h-[420px] lg:min-h-[600px] w-full md:w-1/2 flex items-center justify-center px-12 md:px-16 lg:px-24 py-12 bg-[#e21c21a6] z-10">
         <div className="flex flex-col text-white text-md md:text-lg lg:text-xl font-avenir font-bold leading-relaxed lg:leading-[40px] max-w-md text-center w-full">
-          <p style={{fontSize: "20px"}}>
+          <p style={{ fontSize: "20px" }}>
             The Brown Opinion Project is a student-run organization and
             publication that measures public opinion within the Brown University
-            undergraduate community. We publish findings on our website and social
-            media to amplify student voices, encourage meaningful discourse on
-            campus, and cultivate a better understanding of the Brown student
-            body.
+            undergraduate community. We publish findings on our website and
+            social media to amplify student voices, encourage meaningful
+            discourse on campus, and cultivate a better understanding of the
+            Brown student body.
           </p>
 
           {/* Social Media Icons (Right-aligned) */}
-          <div style={{ paddingTop: "16px"}} className="flex space-x-2 mt-4 self-end">
-            <a href="https://www.instagram.com/brownopinionproject/" target="_blank" rel="noopener noreferrer">
-              <img src="/bop_ig_logo.avif" alt="Instagram" className="w-8 h-8" />
+          <div
+            style={{ paddingTop: "16px" }}
+            className="flex space-x-2 mt-4 self-end"
+          >
+            <a
+              href="https://www.instagram.com/brownopinionproject/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="/bop_ig_logo.avif"
+                alt="Instagram"
+                className="w-8 h-8"
+              />
             </a>
-            <a href="https://twitter.com/brownu_opinion" target="_blank" rel="noopener noreferrer">
-              <img src="/bop_twitter_logo.avif" alt="Twitter" className="w-8 h-8" />
+            <a
+              href="https://twitter.com/brownu_opinion"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="/bop_twitter_logo.avif"
+                alt="Twitter"
+                className="w-8 h-8"
+              />
             </a>
           </div>
         </div>
@@ -139,7 +162,10 @@ function TeamSections() {
 
   return (
     <>
-      <div className="title center font-avenir font-bold text-3xl md:text-5xl lg:text-6xl" style={{fontSize: "45px"}}> 
+      <div
+        className="title center font-avenir font-bold text-3xl md:text-5xl lg:text-6xl"
+        style={{ fontSize: "45px" }}
+      >
         Meet the Team
       </div>
 
@@ -157,7 +183,12 @@ function TeamSections() {
 
       <Section
         title="Leadership Alumni"
-        style={{ backgroundColor: "#32488f", marginBottom: 40, marginTop: 30, width: "100%" }}
+        style={{
+          backgroundColor: "#32488f",
+          marginBottom: 40,
+          marginTop: 30,
+          width: "100%",
+        }}
       />
 
       <AlumniSection
@@ -206,8 +237,13 @@ function TeamSections() {
 function Section({ title, style, members = [] }) {
   return (
     <div>
-      <div style={{ ...style, paddingLeft: "5vw" }}  className={title.split(" ")[0]}>
-        <h2 className="section-title subheading-banner font-avenir h-[75px] md:h-[100px]">{title}</h2>
+      <div
+        style={{ ...style, paddingLeft: "5vw" }}
+        className={title.split(" ")[0]}
+      >
+        <h2 className="section-title subheading-banner font-avenir h-[75px] md:h-[100px]">
+          {title}
+        </h2>
       </div>
       {members.length > 0 && <TeamGrid members={members} />}
     </div>
@@ -232,4 +268,3 @@ function TeamGrid({ members }) {
     </div>
   );
 }
-
