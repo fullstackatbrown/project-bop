@@ -203,20 +203,20 @@ export default function Home() {
       </section>
 
       {/* 'News!' Section */}
-      <section className="relative w-full flex flex-col items-center py-4 sm:py-8 mt-0 sm:mt-0 min-h-[90vh] sm:h-auto px-4">
+      <section className="relative w-full flex flex-col items-center py-4 sm:py-8 mt-0 sm:mt-0 sm:h-auto px-4 mb-14">
         {/* Main article */}
         <div className="w-full px-0 sm:w-11/12 md:w-10/12 lg:w-4/5 max-w-6xl">
           {/* News heading */}
-          <h2 className="text-2xl md:text-4xl xl:text-5xl font-bold text-slate-950 mb-4 py-2">
+          <h2 className="text-3xl md:text-3xl xl:text-4xl font-bold text-slate-950 mb-4 py-2">
             News
           </h2>
 
           {/* Main article container */}
           <div className="w-full flex flex-col md:flex-row gap-4">
             {/* Headline article container */}
-            <div className="w-full md:w-3/5 flex flex-col bg-white shadow-md">
+            <div className="w-full md:w-3/5 flex flex-col bg-white shadow-md rounded-lg">
               {/* Article image */}
-              <div className="w-full h-48 sm:h-64 md:h-72 bg-slate-800 overflow-hidden">
+              <div className="w-full h-48 sm:h-64 md:h-72 bg-slate-800 overflow-hidden rounded-t-lg">
                 <img
                   src={news[0].image.url}
                   alt={news[0].image_caption}
@@ -225,13 +225,13 @@ export default function Home() {
               </div>
 
               {/* Text div */}
-              <div className="p-4 sm:p-6 flex flex-col">
+              <div className="px-4 pb-4 pt-2 sm:px-6 sm:pb-6 sm:pt-2 flex flex-col">
                 <p className="text-xs py-2">{news[0].date}</p>
-                <h3 className="text-xl sm:text-2xl font-bold mb-2 overflow-hidden text-ellipsis line-clamp-2">
+                <h3 className="text-xl sm:text-2xl leading-6 sm:leading-[1.75rem] md:leading-6 lg:leading-6 font-bold mb-2 overflow-hidden text-ellipsis line-clamp-2">
                   <a href={`/articles/${news[0].slug}`}>{news[0].title}</a>
                 </h3>
                 <p className="text-sm overflow-hidden text-ellipsis line-clamp-3">
-                  By {news[0].author} -
+                  By {news[0].author} -&nbsp;
                   {news[0].content.split("\n").slice(2).join("")} ...
                 </p>
               </div>
@@ -243,11 +243,11 @@ export default function Home() {
               {[1, 2, 3].map((index) => (
                 <div
                   key={index}
-                  className="w-full flex flex-row items-center bg-white shadow-md"
+                  className="w-full flex flex-row items-start justify-between bg-white shadow-md rounded-lg pr-4"
                 >
                   {/* Text div */}
                   <div className="w-4/5 sm:w-5/6 md:w-3/4 lg:w-2/3 xl:w-3/4 p-3 sm:p-4 flex flex-col justify-center">
-                    <h3 className="text-xs md:text-lg font-bold mb-2 overflow-hidden text-ellipsis line-clamp-2">
+                    <h3 className="text-md md:text-lg font-bold mb-2 overflow-hidden text-ellipsis line-clamp-2 leading-5 md:leading-5">
                       <a href={`/articles/${news[index].slug}`}>
                         {news[index].title}
                       </a>
@@ -259,7 +259,7 @@ export default function Home() {
                   </div>
 
                   {/* Article image */}
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-slate-800 overflow-hidden rounded-md">
+                  <div className="my-4 w-16 h-16 sm:w-20 sm:h-20 bg-slate-800 overflow-hidden rounded-md">
                     <img
                       src={news[index].image.url}
                       alt={news[index].caption}
