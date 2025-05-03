@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
-    <footer className="text-black py-6 mt-auto">
-      <div className="mx-auto px-10 flex flex-col gap-2 md:flex-row justify-between items-center">
+    <footer className="bg-gradient-to-b from-[#F5F7FA] to-white text-black py-6 mt-auto">
+      <div className=" mx-auto px-10 flex flex-col gap-2 md:flex-row justify-between items-center">
         <div className="flex flex-row items-center gap-[5px]">
           <div className="text-sm">
             Developed by{" "}
