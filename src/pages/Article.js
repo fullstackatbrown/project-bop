@@ -1,8 +1,6 @@
-import { useLocation } from "react-router-dom";
 import React, { useEffect, useState, useRef } from "react";
 import "./Article.css";
 import { Link } from "react-router-dom";
-import { createBucketClient } from "@cosmicjs/sdk";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { dateFormat, queryObjects } from "../cosmic";
 import Markdown from "react-markdown";
@@ -39,6 +37,7 @@ function ShareBar() {
         <a
           href={"https://www.facebook.com/sharer/sharer.php?u=" + currentURL}
           target="_blank"
+          rel="noopener noreferrer"
           className="facebook-share-button"
         >
           <img
@@ -51,6 +50,7 @@ function ShareBar() {
         <a
           href={"https://twitter.com/intent/tweet?url=" + currentURL}
           target="_blank"
+          rel="noopener noreferrer"
           className="x-share-button"
         >
           <img src="/xlogo.svg" alt="Share on X" class="x-icon" />
@@ -60,6 +60,7 @@ function ShareBar() {
             "https://www.linkedin.com/sharing/share-offsite/?url=" + currentURL
           }
           target="_blank"
+          rel="noopener noreferrer"
           className="linkedin-share-button"
         >
           <img
@@ -68,9 +69,9 @@ function ShareBar() {
             className="linkedin-icon"
           />
         </a>
-        <a>
-          <img src="/shareicon.png" onClick={togglePopup} />
-        </a>
+        <button className="share-button" onClick={togglePopup}>
+          <img src="/shareicon.png" alt="Share icon" />
+        </button>
       </div>
 
       {showPopup && (
@@ -80,7 +81,10 @@ function ShareBar() {
               &times;
             </span>
             <p>Share this page:</p>
-            <p ref={textRef} className="popup-link"> {currentURL} </p>
+            <p ref={textRef} className="popup-link">
+              {" "}
+              {currentURL}{" "}
+            </p>
             <div className="popup-buttons">
               <button
                 onClick={() => {
@@ -94,9 +98,7 @@ function ShareBar() {
             </div>
           </div>
 
-          {copied && (
-            <p className="copied"> Copied! </p>
-          )}
+          {copied && <p className="copied"> Copied! </p>}
         </div>
       )}
     </div>
@@ -133,7 +135,7 @@ function RecentArticles({ posts }) {
 function RecentArticle({ image, title, slug }) {
   return (
     <div className="recent-article">
-      <img src={image} />
+      <img src={image} alt="recent article img" />
       <p className="recent-title">
         <Link
           to={`/articles/${slug}`}
@@ -154,15 +156,22 @@ export default function Article() {
   useEffect(() => {
     (async () => {
       setPost(
-        (await queryObjects({ type: "news-posts", slug: postSlug }))
-          .map(raw => { return { ...raw.metadata, title: raw.title, slug: raw.slug } })
-        [0]
+        (await queryObjects({ type: "news-posts", slug: postSlug })).map(
+          (raw) => {
+            return { ...raw.metadata, title: raw.title, slug: raw.slug };
+          }
+        )[0]
       );
 
-      const lastFour = (await queryObjects({ type: "news-posts" }, 4))
-        .map(raw => { return { ...raw.metadata, title: raw.title, slug: raw.slug } });
+      const lastFour = (await queryObjects({ type: "news-posts" }, 4)).map(
+        (raw) => {
+          return { ...raw.metadata, title: raw.title, slug: raw.slug };
+        }
+      );
 
-      setRecentPosts(lastFour.filter(recent => recent.slug != postSlug).slice(0, 3));
+      setRecentPosts(
+        lastFour.filter((recent) => recent.slug !== postSlug).slice(0, 3)
+      );
     })();
   }, [postSlug]);
 
@@ -175,19 +184,23 @@ export default function Article() {
         <h1> {post.title} </h1>
 
         <figure>
-          <img src={post.image.url} alt="Image not found" />
+          <img src={post.image.url} alt="not found" />
           <figcaption>{post.image_caption}</figcaption>
         </figure>
 
         <h2 className="author"> By {post.author}</h2>
 
         <div className="body">
-          {post.content.split("\n").map(line =>
+          {post.content.split("\n").map((line) => (
             <>
-              {line.startsWith("BOP POLL ") ? <EmbedPoll line={line} /> : <Markdown>{line.split("¶").join("")}</Markdown>}
+              {line.startsWith("BOP POLL ") ? (
+                <EmbedPoll line={line} />
+              ) : (
+                <Markdown>{line.split("¶").join("")}</Markdown>
+              )}
               {line ? <br /> : null}
             </>
-          )}
+          ))}
         </div>
       </div>
       <ShareBar />
@@ -203,20 +216,22 @@ function EmbedPoll({ line }) {
 
   const [pollGroup, setPollGroup] = useState(null);
   useEffect(() => {
-      (async () => {
-          setPollGroup(
-              (await queryObjects({type: "poll-groups", slug: slug}))
-                  .map(raw => {return {...raw.metadata, title: raw.title}})
-                  [0]
-          );
-      })();
-  }, []);
+    (async () => {
+      setPollGroup(
+        (await queryObjects({ type: "poll-groups", slug: slug })).map((raw) => {
+          return { ...raw.metadata, title: raw.title };
+        })[0]
+      );
+    })();
+  }, [slug]);
 
   if (!pollGroup) return null;
   return (
     <div className="shadow-lg">
-      <Poll data={JSON.parse(pollGroup.data)[index]} tag={parts.slice(2).join(" ")} />
+      <Poll
+        data={JSON.parse(pollGroup.data)[index]}
+        tag={parts.slice(2).join(" ")}
+      />
     </div>
   );
-  return null;
 }

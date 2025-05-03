@@ -1,14 +1,11 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import { createBucketClient } from "@cosmicjs/sdk";
 import { dateFormat, queryObjects } from "../cosmic";
 import Slider from "react-slick";
 import Poll from "../Poll";
 import "./Home.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Link } from "react-router-dom";
 
 const topics = [
   "dating culture",
@@ -57,9 +54,7 @@ export default function Home() {
     );
   };
 
-  {
-    /* For 'Check out our previous polls!' Section */
-  }
+  /* For 'Check out our previous polls!' Section */
   const [currentPreviousPollsImageIndex, setCurrentPreviousPollsImageIndex] =
     useState(0);
   const [selectedPreviousPollsImage, setSelectedPreviousPollsImage] =
