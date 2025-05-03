@@ -8,7 +8,14 @@ export const pollData = [
 ];
 
 export default function Polls() {
-  const [openYears, setOpenYears] = useState({});
+  const [openYears, setOpenYears] = useState(() => {
+    const initialState = {};
+    pollData.forEach((poll) => {
+      const year = poll.title.split(" ")[1];
+      initialState[year] = true;
+    });
+    return initialState;
+  });
 
   const groupedByYear = pollData.reduce((acc, poll) => {
     const year = poll.title.split(" ")[1];
