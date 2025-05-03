@@ -124,8 +124,8 @@ export default function Home() {
         {/* Content */}
         <div className="relative z-10 flex flex-col md:flex-row w-full h-full">
           {/* Left Side - Animated Text & Button */}
-          <div className="w-full md:w-1/2 flex flex-row md:flex-col justify-center text-white p-4 sm:p-8 md:p-14">
-            <div className="w-1/2 md:w-full ml-8 md:ml-0 items-start text-2xl md:text-4xl xl:text-5xl font-bold leading-tight mobile-hide">
+          <div className="w-full md:w-1/2 flex flex-row md:flex-col items-center justify-center text-white p-4 sm:p-5 md:p-14">
+            <div className="w-1/2 md:w-full ml-8 md:ml-0 flex flex-col items-center text-2xl md:text-4xl xl:text-5xl font-bold leading-tight mobile-hide">
               <div>Discover how</div>
               <div>Brown students</div>
               <div>feel about</div>
@@ -142,7 +142,7 @@ export default function Home() {
                 </motion.div>
               </AnimatePresence>
             </div>
-            <div className="md:w-full ml-8 md:ml-0 items-start text-2xl md:text-4xl xl:text-5xl font-bold leading-tight mobile-show">
+            <div className="md:w-full ml-8 md:ml-0 items-start text-2xl md:text-4xl xl:text-5xl font-bold leading-tight mobile-show overflow-hidden">
               <div>Discover how Brown students</div>
               <div>feel about</div>
               <AnimatePresence mode="wait">
@@ -160,9 +160,13 @@ export default function Home() {
             </div>
 
             {/* Button */}
-            <div className="flex w-1/2 md:w-full mt-6 items-center justify-start py-2">
-              <a href="/polls" style={{ width: "100%" }}>
-                <button className="md:w-1/2 border-2 rounded-lg border-white text-white text-sm md:text-2xl font-semibold px-3 md:px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:mix-blend-difference mobile-hide">
+            <div className="flex w-1/2 md:w-full mt-6 items-center justify-center py-2">
+              <a
+                href="/polls"
+                className="flex flex-col items-center"
+                style={{ width: "100%" }}
+              >
+                <button className="md:w-1/2 border-2 rounded-lg bg-blue-900 bg-opacity-60 border-white text-white text-sm md:text-2xl font-semibold px-3 md:px-4 py-3 transition duration-300 hover:bg-white hover:text-black hover:mix-blend-difference mobile-hide">
                   See the latest poll results
                 </button>
               </a>
