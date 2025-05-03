@@ -298,8 +298,8 @@ function LatestPolls() {
 
   if (!pollGroup) return null;
   return (
-    <div className="home-polls">
-      <h4 className="text-center text-2xl md:text-4xl xl:text-5xl font-bold mb-2">
+    <div className="home-polls px-5 py-10 sm:py-14">
+      <h4 className="text-center text-3xl md:text-4xl xl:text-4xl font-bold mb-2">
         Check out our latest polls!
       </h4>
       <Slider
