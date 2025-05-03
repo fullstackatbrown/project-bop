@@ -166,7 +166,7 @@ export default function Home() {
                 className="flex flex-col items-center"
                 style={{ width: "100%" }}
               >
-                <button className="md:w-1/2 border-2 rounded-lg bg-blue-900 bg-opacity-60 border-white text-white text-sm md:text-2xl font-semibold px-3 md:px-4 py-3 transition duration-300 hover:bg-white hover:text-black hover:mix-blend-difference mobile-hide">
+                <button className="md:w-[55%] border-2 rounded-lg bg-blue-900 bg-opacity-60 border-white text-white text-md md:text-2xl font-semibold px-3 md:px-4 py-3 transition duration-300 hover:bg-white hover:text-black hover:mix-blend-difference mobile-hide">
                   See the latest poll results
                 </button>
               </a>
@@ -194,7 +194,7 @@ export default function Home() {
               style={{ width: "100%", textAlign: "center" }}
               className="mobile-show"
             >
-              <button className="relative z-20 border-2 rounded-lg border-white text-white text-sm md:text-2xl font-semibold px-3 md:px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:mix-blend-difference">
+              <button className="relative z-20 border-2 rounded-lg bg-[#e21c21b0] border-white text-white text-lg md:text-2xl font-semibold px-3 md:px-8 py-3 transition duration-300 hover:bg-white hover:text-black">
                 See the latest poll results
               </button>
             </a>
@@ -246,20 +246,20 @@ export default function Home() {
                   className="w-full flex flex-row items-start justify-between bg-white shadow-md rounded-lg pr-4"
                 >
                   {/* Text div */}
-                  <div className="w-4/5 sm:w-5/6 md:w-3/4 lg:w-2/3 xl:w-3/4 p-3 sm:p-4 flex flex-col justify-center">
-                    <h3 className="text-md md:text-lg font-bold mb-2 overflow-hidden text-ellipsis line-clamp-2 leading-5 md:leading-5">
+                  <div className="flex-grow p-3 sm:p-4 flex flex-col justify-center">
+                    <h3 className="text-lg md:text-lg font-bold mb-2 overflow-hidden text-ellipsis line-clamp-2 leading-5 md:leading-5">
                       <a href={`/articles/${news[index].slug}`}>
                         {news[index].title}
                       </a>
                     </h3>
-                    <p className="text-xs">{news[index].author}</p>
-                    <p className="text-xs">
+                    <p className="text-sm">{news[index].author}</p>
+                    <p className="text-sm">
                       {dateFormat(news[index].date_published)}
                     </p>
                   </div>
 
                   {/* Article image */}
-                  <div className="my-4 w-16 h-16 sm:w-20 sm:h-20 bg-slate-800 overflow-hidden rounded-md">
+                  <div className="flex-shrink-0 my-4 w-16 h-16 sm:w-20 sm:h-20 bg-slate-800 overflow-hidden rounded-md">
                     <img
                       src={news[index].image.url}
                       alt={news[index].caption}
