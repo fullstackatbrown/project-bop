@@ -22,6 +22,7 @@ export default function NewsList() {
         (await queryObjects({ type: "news-posts" }))
           .map(raw => (
             {
+              id: raw.id,
               slug: raw.slug,
               title: raw.title,
               date: raw.metadata.date_published
@@ -37,8 +38,8 @@ export default function NewsList() {
 
   const navigate = useNavigate();
 
-const handleEdit = (slug) => {
-  navigate(`/news/edit/${slug}`);
+const handleEdit = (id) => {
+  navigate(`/news/${id}`);
 };
 
   const confirmDelete = (index) => {
@@ -65,7 +66,7 @@ const handleEdit = (slug) => {
               <Col xs={8}>{article.title}</Col>
               <Col xs={3} className="text-end">
                 <ButtonGroup size="sm">
-                  <Button variant="outline-primary" onClick={() => handleEdit(article.slug)}>
+                  <Button variant="outline-primary" onClick={() => handleEdit(article.id)}>
                     Edit
                   </Button>
                   <Button variant="outline-danger" onClick={() => confirmDelete(index)}>
