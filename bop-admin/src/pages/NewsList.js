@@ -10,16 +10,15 @@ import {
   Col,
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { queryObjects } from "../cosmic";
+import { cosmic } from "../cosmic";
 
 export default function NewsList() {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
     (async () => {
-      console.log((await queryObjects({ type: "news-posts" })))
       setArticles(
-        (await queryObjects({ type: "news-posts" }))
+        (await cosmic.objects.find({ type: "news-posts" })).objects
           .map(raw => (
             {
               id: raw.id,
