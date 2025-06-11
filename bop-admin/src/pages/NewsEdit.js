@@ -36,12 +36,12 @@ export default function NewsEdit() {
         })();
     }, [id]);
 
-    const handleChange = (e) => {
+    const handleChange = e => {
         const { name, value } = e.target;
         setForm((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
         console.log("Updated Article:", form);
         cosmic.objects.updateOne(
