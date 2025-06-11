@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
     Form,
@@ -6,21 +6,13 @@ import {
     Container,
     Modal,
 } from "react-bootstrap";
-import { queryObjects } from "../cosmic";
-import { createBucketClient } from "@cosmicjs/sdk";
-
-const cosmic = createBucketClient({
-  bucketSlug: "project-bop-production",
-  readKey: "vfxvljbNYWkluUCXn5Q0Obgr868PJBWXq2XHLpMn5SUHU5gz5c",     // optional if public
-  writeKey: "HC6pQfEKvvXoC9MPxDeXwBc911oEqgh19OzV0WY2jppinuEwkP",   // required to save
-});
+import { cosmic } from "../cosmic";
 
 export default function NewsEdit() {
     const navigate = useNavigate();
     const { id } = useParams();
 
     const [form, setForm] = useState({
-        id: "",
         title: "",
         author: "",
         image: "",
@@ -31,10 +23,9 @@ export default function NewsEdit() {
 
     useEffect(() => {
         (async () => {
-            const raw = (await queryObjects({ type: "news-posts", id }, 1))[0];
+            const raw = (await cosmic.objects.findOne({ type: "news-posts", id })).object;
             setForm(
                 {
-                    id: raw.id,
                     title: raw.title,
                     author: raw.metadata.author,
                     image: raw.metadata.image.url,
@@ -54,7 +45,7 @@ export default function NewsEdit() {
         e.preventDefault();
         console.log("Updated Article:", form);
         cosmic.objects.updateOne(
-            form.id,
+            id,
             {
                 title: form.title,
                 metadata: {
