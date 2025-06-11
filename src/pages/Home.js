@@ -256,13 +256,12 @@ export default function Home() {
 }
 
 function LatestPolls() {
-  const latestPollGroupSlug = "february-2025";
   const [pollGroup, setPollGroup] = useState(null);
   useEffect(() => {
     (async () => {
       setPollGroup(
-        (await queryObjects({ type: "poll-groups", slug: latestPollGroupSlug }))
-          .map(raw => { return { ...raw.metadata, title: raw.title } })
+        (await queryObjects({ type: "poll-groups" }, 1))
+          .map(raw => { return { ...raw.metadata, title: raw.title, slug: raw.slug } })
         [0]
       );
     })();
@@ -295,7 +294,7 @@ function LatestPolls() {
         {JSON.parse(pollGroup.data).slice(5).map((pollData, index) => (
           <div className="home-poll-outer-box">
             <div className="home-poll-box shadow-lg">
-              <Poll data={pollData} tag={`${latestPollGroupSlug.split("-").join(" ")} #${index + 6}`} />
+              <Poll data={pollData} tag={`${pollGroup.slug.split("-").join(" ")} #${index + 6}`} />
             </div>
           </div>
         ))}
