@@ -16,25 +16,8 @@ const topics = [
   "climate change",
 ];
 
-const carouselImages = [
-  "/temp_poll.png",
-  "/temp_poll.png",
-  "/temp_poll.png",
-  "/temp_poll.png",
-];
-
-const previousPollsImages = [
-  "/temp_poll.png",
-  "/temp_poll.png",
-  "/temp_poll.png",
-  "/temp_poll.png",
-  "/temp_poll.png",
-  "/temp_poll.png",
-];
-
 export default function Home() {
   const [currentTopic, setCurrentTopic] = useState(0);
-  const [currentImage, setCurrentImage] = useState(0);
 
   useEffect(() => {
     const topicInterval = setInterval(() => {
@@ -44,52 +27,6 @@ export default function Home() {
     return () => clearInterval(topicInterval);
   }, []);
 
-  const nextImage = () => {
-    setCurrentImage((prev) => (prev + 1) % carouselImages.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImage(
-      (prev) => (prev - 1 + carouselImages.length) % carouselImages.length
-    );
-  };
-
-  /* For 'Check out our previous polls!' Section */
-  const [currentPreviousPollsImageIndex, setCurrentPreviousPollsImageIndex] =
-    useState(0);
-  const [selectedPreviousPollsImage, setSelectedPreviousPollsImage] =
-    useState(null);
-
-  const nextPreviousPollsSlide = () => {
-    setCurrentPreviousPollsImageIndex(
-      (prevIndex) => (prevIndex + 1) % previousPollsImages.length
-    );
-  };
-
-  const prevPreviousPollsSlide = () => {
-    setCurrentPreviousPollsImageIndex(
-      (prevIndex) =>
-        (prevIndex - 1 + previousPollsImages.length) %
-        previousPollsImages.length
-    );
-  };
-
-  const previousPollsVisibleImages = [
-    previousPollsImages[
-      (currentPreviousPollsImageIndex - 1 + previousPollsImages.length) %
-        previousPollsImages.length
-    ], // Left cut-off
-    previousPollsImages[currentPreviousPollsImageIndex], // Fully visible
-    previousPollsImages[
-      (currentPreviousPollsImageIndex + 1) % previousPollsImages.length
-    ], // Fully visible
-    previousPollsImages[
-      (currentPreviousPollsImageIndex + 2) % previousPollsImages.length
-    ], // Fully visible
-    previousPollsImages[
-      (currentPreviousPollsImageIndex + 3) % previousPollsImages.length
-    ], // Right cut-off
-  ];
   const [news, setNews] = useState(null);
 
   useEffect(() => {
