@@ -124,7 +124,26 @@ export default function PollUploader() {
                             {Object.entries(data.results).map(([name, count]) => (
                                 <div className="row">
                                     <div className="col-5">
-                                        <input type="text" value={name}></input>
+                                        <input type="text" value={name} onChange={event => {
+                                            setPollGroup(pollGroup => {
+                                                const renameObjKey = (oldObj, oldKey, newKey) => {
+                                                    const keys = Object.keys(oldObj);
+                                                    const newObj = keys.reduce((acc, val)=>{
+                                                        if(val === oldKey){
+                                                            acc[newKey] = oldObj[oldKey];
+                                                        }
+                                                        else {
+                                                            acc[val] = oldObj[val];
+                                                        }
+                                                        return acc;
+                                                    }, {});
+
+                                                    return newObj;
+                                                };
+                                                pollGroup[dataIndex].results = renameObjKey(pollGroup[dataIndex].results, name, event.target.value);
+                                                return pollGroup;
+                                            })
+                                        }}></input>
                                     </div>
                                     <div className="col-5">
                                         <input type="number" value={count} onChange={event => {

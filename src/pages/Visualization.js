@@ -12,6 +12,7 @@ import {
   Legend,
 } from 'chart.js';
 import "./Visualization.css";
+import { queryObjects } from '../cosmic';
 
 // Register Chart.js components
 ChartJS.register(
@@ -25,8 +26,16 @@ ChartJS.register(
 
 const Visualization = () => {
   // Hardcoded array of polls (CSV filenames with space)
-  const polls = ["March 2025.csv", "February 2025.csv", "November 2024.csv"];
-  const [selectedPoll, setSelectedPoll] = useState(polls[0]);
+  const [polls, setPolls] = useState([]);
+  const [selectedPoll, setSelectedPoll] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      const recvPolls = (await queryObjects({ type: "poll-groups" })).map(raw => raw.title);
+      setPolls(recvPolls);
+      setSelectedPoll(recvPolls[0]);
+    })();
+  }, []);
 
   // UI state
   const [analysisType, setAnalysisType] = useState('topline');
@@ -61,23 +70,20 @@ const Visualization = () => {
 
   // Load CSV when poll changes
   useEffect(() => {
-    Papa.parse(`/${selectedPoll}`, {
-      header: true,
-      download: true,
-      complete: ({ data, meta }) => {
-        setCsvData(data);
-        if (meta && meta.fields) {
-          const headers = meta.fields.slice(1).filter(h => !h.startsWith('Column'));
-          setCsvHeaders(headers);
-          if (headers.length) {
-            setSelectedQuestion(prev => prev || headers[0]);
-            setCrosstabBy(prev => prev || headers[0]);
-            setCrosstabResults(prev => prev || headers[1] || headers[0]);
-          }
+    (async () => {
+      const pollCSV = (await queryObjects({ type: "poll-groups", slug: selectedPoll.toLowerCase().split(" ").join("-") }))[0].metadata.csv_data;
+      const { data, meta } = Papa.parse(pollCSV, { header: true });
+      setCsvData(data);
+      if (meta && meta.fields) {
+        const headers = meta.fields.slice(1).filter(h => !h.startsWith('Column'));
+        setCsvHeaders(headers);
+        if (headers.length) {
+          setSelectedQuestion(prev => prev || headers[0]);
+          setCrosstabBy(prev => prev || headers[0]);
+          setCrosstabResults(prev => prev || headers[1] || headers[0]);
         }
-      },
-      error: console.error,
-    });
+      }
+    })();
   }, [selectedPoll]);
 
   // Build topline chart data

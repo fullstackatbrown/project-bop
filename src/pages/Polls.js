@@ -1,21 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
-export const pollData = [
-  { title: "March 2025" },
-  { title: "February 2025" },
-  { title: "November 2024" }
-];
+import { queryObjects } from '../cosmic';
 
 export default function Polls() {
   const [openYears, setOpenYears] = useState({});
+  const [groupedByYear, setGroupedByYear] = useState({});
 
-  const groupedByYear = pollData.reduce((acc, poll) => {
-    const year = poll.title.split(" ")[1];
-    if (!acc[year]) acc[year] = [];
-    acc[year].push(poll);
-    return acc;
-  }, {});
+  useEffect(() => {
+    (async () => {
+      const pollData = (await queryObjects({ type: "poll-groups" }))
+        .map(raw => raw.title);
+      setGroupedByYear(
+        pollData.reduce((acc, poll) => {
+          const year = poll.split(" ")[1];
+          if (!acc[year]) acc[year] = [];
+          acc[year].push(poll);
+          return acc;
+        }, {})
+      );
+    })();
+  }, []);
 
   const toggleYear = (year) => {
     setOpenYears((prev) => ({
@@ -98,7 +102,7 @@ export default function Polls() {
               >
                 <div className="space-y-3 ml-6">
                   {groupedByYear[year].map((poll, index) => {
-                    const key = poll.title.toLowerCase().replace(/\s+/g, '-');
+                    const key = poll.toLowerCase().replace(/\s+/g, '-');
                     return (
                       <Link
                         to={`/polls/${key}`}
@@ -110,7 +114,7 @@ export default function Polls() {
                         }
                       >
                         <div className="flex justify-between items-center">
-                          <span className="text-lg">{poll.title}</span>
+                          <span className="text-lg">{poll}</span>
                         </div>
                       </Link>
                     );

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { db } from './Firebase';
-import { updateDoc, doc, getDoc } from "firebase/firestore";
+import { postObject } from '../cosmic';
 
 function QuestionSubmissionPage() {
   const [inputValue, setInputValue] = useState('');
@@ -28,21 +27,12 @@ function QuestionSubmissionPage() {
 
   const handleSubmission = async () => {
     if (inputValue.trim() === '') return;
+    await postObject({
+      type: "questions",
+      title: inputValue.trim()
+    });
     setSubmitted(true);
     setInputValue('');
-    try {
-      const docRef = doc(db, "bop-questions", "questions");
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        const fieldCount = Object.keys(data).length;
-        const id = "question-" + fieldCount;
-        const newField = { [id]: inputValue };
-        await updateDoc(docRef, newField);
-      }
-    } catch (error) {
-      console.error("Error updating doc: ", error);
-    }
   };
 
   return (

@@ -98,12 +98,12 @@ function TeamSections() {
     const fetchMembers = async () => {
       try {
         const cosmic = createBucketClient({
-          bucketSlug: "bop-backend-production",
-          readKey: "8N6HiTQekcWvzJbMA4qSeTbIcb11wLI04UpzC68HzLyd2uuiXz",
+          bucketSlug: "project-bop-production",
+          readKey: "vfxvljbNYWkluUCXn5Q0Obgr868PJBWXq2XHLpMn5SUHU5gz5c",
         });
 
         const response = await cosmic.objects
-          .find({ type: "members" })
+          .find({ type: "team-members" })
           .limit(100)
           .props("metadata")
           .depth(1);
