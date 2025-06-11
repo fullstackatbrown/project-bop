@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NewsList from "./pages/NewsList";
 import NewsEdit from "./pages/NewsEdit";
