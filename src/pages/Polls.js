@@ -56,8 +56,8 @@ export default function Polls() {
         <button
           onClick={expandAllYears}
           className={`px-4 py-2 rounded transition ${
-            allOpen ? 'bg-gray-300' : 'bg-gray-800 hover:bg-gray-700 text-white'
-          } ${allOpen ? 'pointer-events-none' : ''}`}
+            allOpen ? "bg-gray-300" : "bg-gray-800 hover:bg-gray-700 text-white"
+          } ${allOpen ? "pointer-events-none" : ""}`}
         >
           Expand All
         </button>
@@ -65,8 +65,10 @@ export default function Polls() {
         <button
           onClick={collapseAllYears}
           className={`px-4 py-2 rounded transition ${
-            allClosed ? 'bg-gray-300' : 'bg-gray-800 hover:bg-gray-700 text-white'
-          } ${allClosed ? 'pointer-events-none' : ''}`}
+            allClosed
+              ? "bg-gray-300"
+              : "bg-gray-800 hover:bg-gray-700 text-white"
+          } ${allClosed ? "pointer-events-none" : ""}`}
         >
           Collapse All
         </button>
@@ -83,21 +85,27 @@ export default function Polls() {
               >
                 <svg
                   className={`w-4 h-4 mr-2 transform transition-transform duration-200 ${
-                    openYears[year] ? 'rotate-90' : 'rotate-0'
+                    openYears[year] ? "rotate-90" : "rotate-0"
                   }`}
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="2"
                   viewBox="0 0 24 24"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
                 {year} Polls
               </button>
 
               <div
                 className={`transition-all duration-300 ease-in-out overflow-hidden ${
-                  openYears[year] ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+                  openYears[year]
+                    ? "max-h-screen opacity-100"
+                    : "max-h-0 opacity-0"
                 }`}
               >
                 <div className="space-y-3 ml-6">
@@ -108,9 +116,10 @@ export default function Polls() {
                         to={`/polls/${key}`}
                         key={key}
                         className="block text-white shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg p-4 border border-gray-200"
-                        style={index % 2 === 0
-                          ? { backgroundColor: 'rgb(179, 66, 66)' }
-                          : { backgroundColor: 'rgb(50, 72, 143)' }
+                        style={
+                          index % 2 === 0
+                            ? { backgroundColor: "rgb(179, 66, 66)" }
+                            : { backgroundColor: "rgb(50, 72, 143)" }
                         }
                       >
                         <div className="flex justify-between items-center">
