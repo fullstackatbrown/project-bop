@@ -21,6 +21,7 @@ export default function NewsEdit() {
         imageUrl: "",
         image_caption: "",
         content: "",
+        modifiedAt: ""
     });
     const [imageFile, setImageFile] = useState(null);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -36,7 +37,8 @@ export default function NewsEdit() {
                 author: raw.metadata.author,
                 imageUrl: raw.metadata.image?.url,
                 image_caption: raw.metadata.image_caption,
-                content: raw.metadata.content
+                content: raw.metadata.content,
+                modifiedAt: raw.modified_at
             });
         })();
     }, [id]);
@@ -55,6 +57,14 @@ export default function NewsEdit() {
     };
 
     const handleSubmit = async () => {
+        if (currentId != "new") {
+            const latestModified = (await cosmic.objects.findOne({ type: "news-posts", id })).object.modified_at;
+            // eslint-disable-next-line no-restricted-globals
+            if (form.modifiedAt != latestModified && !confirm("modified times vary")) {
+                return;
+            }
+        }
+
         let uploadMedia;
         if (imageFile) {
             try {
