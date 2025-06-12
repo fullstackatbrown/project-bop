@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { cosmic } from "../cosmic";
-import LoadingButton from "../LoadingButton";
+import LoadingButton from "./LoadingButton";
 
 export default function NewsList() {
     const [articles, setArticles] = useState([]);
