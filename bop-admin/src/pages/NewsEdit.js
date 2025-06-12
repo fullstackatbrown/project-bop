@@ -8,6 +8,7 @@ import {
     Image
 } from "react-bootstrap";
 import { cosmic } from "../cosmic";
+import LoadingButton from "../LoadingButton";
 
 export default function NewsEdit() {
     const navigate = useNavigate();
@@ -17,7 +18,7 @@ export default function NewsEdit() {
     const [form, setForm] = useState({
         title: "",
         author: "",
-        image: "",
+        imageUrl: "",
         image_caption: "",
         content: "",
     });
@@ -33,7 +34,7 @@ export default function NewsEdit() {
             setForm({
                 title: raw.title,
                 author: raw.metadata.author,
-                imageUrl: raw.metadata.image?.url || "",
+                imageUrl: raw.metadata.image?.url,
                 image_caption: raw.metadata.image_caption,
                 content: raw.metadata.content
             });
@@ -53,9 +54,7 @@ export default function NewsEdit() {
         }
     };
 
-    const handleSubmit = async e => {
-        e.preventDefault();
-
+    const handleSubmit = async () => {
         let uploadMedia;
         if (imageFile) {
             try {
@@ -65,9 +64,12 @@ export default function NewsEdit() {
                 alert("Image upload failed");
                 return;
             }
+        } else if (!form.imageUrl) {
+            alert("Please upload an image.");
+            return;
         }
 
-        // try {
+        try {
             const payload = {
                 title: form.title,
                 metadata: {
@@ -94,10 +96,10 @@ export default function NewsEdit() {
             }
             setImageFile(null);
             setShowSuccessModal(true);
-        // } catch (err) {
-        //     console.error("Update failed:", err);
-        //     alert("Article update failed");
-        // }
+        } catch (err) {
+            console.error("Update failed:", err);
+            alert("Article update failed");
+        }
     };
 
     return (
@@ -153,9 +155,7 @@ export default function NewsEdit() {
                     />
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
-                    Save Article
-                </Button>
+                <LoadingButton variant="primary" text="Save article" onClick={handleSubmit} />
             </Form>
 
             <Modal show={showSuccessModal} onHide={() => setShowSuccessModal(false)} centered>
