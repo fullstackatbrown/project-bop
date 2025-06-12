@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
-import { Container, Form, Row, Col, Button, Card } from "react-bootstrap";
+import { Container, Form, Row, Col, Button, Card, Modal } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { cosmic } from "../cosmic";
 import LoadingButton from "./LoadingButton";
 
 export default function ExistingGroupView({ id }) {
+    const navigate = useNavigate();
+
     const [title, setTitle] = useState("");
     const [group, setGroup] = useState([]);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
 
     useEffect(() => {
         (async () => {
@@ -22,6 +26,7 @@ export default function ExistingGroupView({ id }) {
                 data: JSON.stringify(group, null, 4)
             }
         });
+        setShowSuccessModal(true);
     };
 
     if (!group) return null;
@@ -30,10 +35,25 @@ export default function ExistingGroupView({ id }) {
             <h3>
                 Edit Poll Group {title}
                 &nbsp;
-                <LoadingButton variant="primary" text="Save changes" onClick={handleSubmit} />
+                <LoadingButton variant="primary" text="Save edits" onClick={handleSubmit} />
             </h3>
 
             <GroupEditor group={group} setGroup={setGroup} />
+
+            <Modal show={showSuccessModal} onHide={() => setShowSuccessModal(false)} centered>
+                <Modal.Header closeButton>
+                    <Modal.Title>Poll Group Saved</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Your edits have been saved.</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowSuccessModal(false)}>
+                        Continue editing
+                    </Button>
+                    <Button variant="success" onClick={() => navigate("/poll")}>
+                        Return to menu
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </Container>
     );
 }
