@@ -8,7 +8,7 @@ import {
     Image
 } from "react-bootstrap";
 import { cosmic } from "../cosmic";
-import LoadingButton from "../LoadingButton";
+import LoadingButton from "./LoadingButton";
 
 export default function NewsEdit() {
     const navigate = useNavigate();
