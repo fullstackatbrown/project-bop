@@ -55,7 +55,12 @@ export default function NewsList() {
 
     return (
         <Container className="mt-4">
-            <h3>News Articles</h3>
+            <h3>
+                News Articles
+                &nbsp;
+                <Button variant="success" onClick={() => navigate("/news/new")}>+ New</Button>
+            </h3>
+
             <ListGroup>
                 {articles.map((article, index) => (
                     <ListGroup.Item key={index}>

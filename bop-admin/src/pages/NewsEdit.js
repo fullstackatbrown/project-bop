@@ -13,6 +13,7 @@ export default function NewsEdit() {
     const navigate = useNavigate();
     const { id } = useParams();
 
+    const [currentId, setCurrentId] = useState(null);
     const [form, setForm] = useState({
         title: "",
         author: "",
@@ -25,6 +26,9 @@ export default function NewsEdit() {
 
     useEffect(() => {
         (async () => {
+            setCurrentId(id);
+            if (id == "new") return;
+
             const raw = (await cosmic.objects.findOne({ type: "news-posts", id })).object;
             setForm({
                 title: raw.title,
@@ -63,22 +67,37 @@ export default function NewsEdit() {
             }
         }
 
-        try {
-            await cosmic.objects.updateOne(id, {
+        // try {
+            const payload = {
                 title: form.title,
                 metadata: {
                     author: form.author,
-                    image: uploadMedia?.name,
                     image_caption: form.image_caption,
                     content: form.content
                 },
-            });
-            setForm(prev => ({ ...prev, imageUrl: uploadMedia.url }));
+            };
+            if (uploadMedia) {
+                payload.metadata.image = uploadMedia.name;
+            }
+
+            if (currentId == "new") {
+                payload.type = "news-posts";
+                payload.metadata.date_published = new Date().toISOString().split("T")[0];
+                console.log(payload)
+                setCurrentId((await cosmic.objects.insertOne(payload)).object.id);
+            } else {
+                await cosmic.objects.updateOne(currentId, payload);
+            }
+
+            if (uploadMedia) {
+                setForm(prev => ({ ...prev, imageUrl: uploadMedia.url }));
+            }
+            setImageFile(null);
             setShowSuccessModal(true);
-        } catch (err) {
-            console.error("Update failed:", err);
-            alert("Article update failed");
-        }
+        // } catch (err) {
+        //     console.error("Update failed:", err);
+        //     alert("Article update failed");
+        // }
     };
 
     return (
@@ -97,6 +116,17 @@ export default function NewsEdit() {
                     />
                 </Form.Group>
 
+                <Form.Group className="mb-3" controlId="formAuthor">
+                    <Form.Label>Author</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="author"
+                        value={form.author}
+                        onChange={handleChange}
+                        required
+                    />
+                </Form.Group>
+
                 <ImageUpload form={form} handleImageFileChange={handleImageFileChange} />
                 <br />
 
@@ -107,6 +137,7 @@ export default function NewsEdit() {
                         name="image_caption"
                         value={form.image_caption}
                         onChange={handleChange}
+                        required
                     />
                 </Form.Group>
 
