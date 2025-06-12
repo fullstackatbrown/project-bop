@@ -10,6 +10,7 @@ import {
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { cosmic } from "../cosmic";
+import LoadingButton from "../LoadingButton";
 
 export default function NewsList() {
     const [articles, setArticles] = useState([]);
@@ -97,9 +98,7 @@ export default function NewsList() {
                     <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
                         Cancel
                     </Button>
-                    <Button variant="danger" onClick={handleDeleteConfirmed}>
-                        Delete
-                    </Button>
+                    <LoadingButton variant="danger" text="Delete" onClick={handleDeleteConfirmed} />
                 </Modal.Footer>
             </Modal>
         </Container>
