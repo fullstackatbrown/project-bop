@@ -6,7 +6,7 @@ import {
     Container,
     Modal,
     Row,
-    Col,
+    Col
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { cosmic } from "../cosmic";
@@ -14,40 +14,44 @@ import { cosmic } from "../cosmic";
 export default function NewsList() {
     const [articles, setArticles] = useState([]);
 
-    useEffect(() => {
-        (async () => {
-            setArticles(
-                (await cosmic.objects.find({ type: "news-posts" })).objects
-                    .map(raw => (
-                        {
-                            id: raw.id,
-                            slug: raw.slug,
-                            title: raw.title,
-                            date: raw.metadata.date_published
-                        }
-                    ))
-                    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-            );
-        })();
-    }, []);
-
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [idToDelete, setIdToDelete] = useState(null);
 
-    const navigate = useNavigate();
-
-    const handleEdit = id => {
-        navigate(`/news/${id}`);
+    const reloadArticles = async () => {
+        setArticles(
+            (await cosmic.objects.find({ type: "news-posts" })).objects
+                .map(raw => (
+                    {
+                        id: raw.id,
+                        slug: raw.slug,
+                        title: raw.title,
+                        date: raw.metadata.date_published
+                    }
+                ))
+                .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        );
     };
+
+    useEffect(() => { reloadArticles() }, []);
+
+    const navigate = useNavigate();
 
     const confirmDelete = id => {
         setIdToDelete(id);
         setShowDeleteModal(true);
     };
 
-    const handleDeleteConfirmed = () => {
-        if (idToDelete !== null) {
-            // cosmic delete
+    const handleDeleteConfirmed = async () => {
+        if (idToDelete != null) {
+            try {
+                await cosmic.objects.deleteOne(idToDelete);
+            } catch (err) {
+                console.error("Article deletion failed:", err);
+                alert("Article deletion failed");
+                return;
+            }
+
+            await reloadArticles();
             setShowDeleteModal(false);
             setIdToDelete(null);
         }
@@ -69,7 +73,7 @@ export default function NewsList() {
                             <Col xs={8}>{article.title}</Col>
                             <Col xs={3} className="text-end">
                                 <ButtonGroup size="sm">
-                                    <Button variant="outline-primary" onClick={() => handleEdit(article.id)}>
+                                    <Button variant="outline-primary" onClick={() => navigate(`/news/${article.id}`)}>
                                         Edit
                                     </Button>
                                     <Button variant="outline-danger" onClick={() => confirmDelete(article.id)}>
