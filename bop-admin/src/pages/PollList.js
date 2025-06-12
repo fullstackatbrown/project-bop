@@ -12,25 +12,23 @@ import { useNavigate } from "react-router-dom";
 import { cosmic } from "../cosmic";
 import LoadingButton from "../LoadingButton";
 
-export default function NewsList() {
-    const [articles, setArticles] = useState([]);
+export default function PollList() {
+    const [pollGroups, setPollGroups] = useState([]);
 
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [idToDelete, setIdToDelete] = useState(null);
 
-    const reloadArticles = async () => {
-        setArticles(
-            (await cosmic.objects.find({ type: "news-posts" })).objects
+    const reloadPollGroups = async () => {
+        setPollGroups(
+            (await cosmic.objects.find({ type: "poll-groups" })).objects
                 .map(raw => ({
                     id: raw.id,
-                    title: raw.title,
-                    date: raw.metadata.date_published
+                    title: raw.title
                 }))
-                .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
         );
     };
 
-    useEffect(() => { reloadArticles() }, []);
+    useEffect(() => { reloadPollGroups() }, []);
 
     const navigate = useNavigate();
 
@@ -49,7 +47,7 @@ export default function NewsList() {
                 return;
             }
 
-            await reloadArticles();
+            await reloadPollGroups();
             setShowDeleteModal(false);
             setIdToDelete(null);
         }
@@ -58,23 +56,22 @@ export default function NewsList() {
     return (
         <Container className="mt-4">
             <h3>
-                News Articles
+                Poll Groups
                 &nbsp;
-                <Button variant="success" onClick={() => navigate("/news/new")}>+ New</Button>
+                <Button variant="success" onClick={() => navigate("/poll/new")}>+ New</Button>
             </h3>
 
             <ListGroup>
-                {articles.map((article, index) => (
+                {pollGroups.map((pollGroup, index) => (
                     <ListGroup.Item key={index}>
                         <Row className="align-items-center">
-                            <Col xs={1} className="text-muted small">{article.date}</Col>
-                            <Col xs={8}>{article.title}</Col>
+                            <Col xs={9}>{pollGroup.title}</Col>
                             <Col xs={3} className="text-end">
                                 <ButtonGroup size="sm">
-                                    <Button variant="outline-primary" onClick={() => navigate(`/news/${article.id}`)}>
+                                    <Button variant="outline-primary" onClick={() => navigate(`/poll/${pollGroup.id}`)}>
                                         Edit
                                     </Button>
-                                    <Button variant="outline-danger" onClick={() => confirmDelete(article.id)}>
+                                    <Button variant="outline-danger" onClick={() => confirmDelete(pollGroup.id)}>
                                         Delete
                                     </Button>
                                 </ButtonGroup>
@@ -89,7 +86,7 @@ export default function NewsList() {
                     <Modal.Title>Confirm Deletion</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    Are you sure you want to delete this article?
+                    Are you sure you want to delete this poll group?
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
