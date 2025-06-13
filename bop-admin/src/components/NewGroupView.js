@@ -20,6 +20,11 @@ export default function NewGroupView({ setId }) {
             }
             return res;
         };
+
+        const objectToArray = obj => {
+            return Object.entries(obj)
+                .map(([option, value]) => ({ option, value }));
+        }
         
         const parseRes = csvParse(text);
         if (parseRes.errors.length != 0) {
@@ -32,19 +37,21 @@ export default function NewGroupView({ setId }) {
                 for (let i = 1; i < col.length; i++) {
                     const names = col[i].split(", ");
                     for (const name of names) {
-                        if (results[name])
+                        if (results[name]) {
                             results[name]++;
-                        else
+                        } else {
                             results[name] = 1;
+                        }
                     }
                 }
                 for (const [name, count] of Object.entries(results)) {
-                    if (isNaN(parseFloat(name)) && count <= 3)
+                    if (isNaN(parseFloat(name)) && count <= 3) {
                         delete results[name];
+                    }
                 }
                 return {
                     question: col[0],
-                    results
+                    results: objectToArray(results)
                 }
             });
     };
