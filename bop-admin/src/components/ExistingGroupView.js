@@ -3,6 +3,7 @@ import { Container, Form, Row, Col, Button, Card, Modal } from "react-bootstrap"
 import { useNavigate } from "react-router-dom";
 import { cosmic } from "../cosmic";
 import LoadingButton from "./LoadingButton";
+import PollView from "./PollView";
 
 export default function ExistingGroupView({ id }) {
     const navigate = useNavigate();
@@ -84,7 +85,7 @@ function GroupEditor({ group, setGroup }) {
             {group.map((poll, i) => (
                 <Card key={i} className="mb-4 p-3">
                     <div className="d-flex justify-content-between align-items-start mb-2">
-                        <h5>Poll {i + 1}</h5>
+                        <h5>Poll #{i + 1}</h5>
                         <Button variant="danger" size="sm" onClick={() => removePoll(i)}>
                             Delete
                         </Button>
@@ -141,55 +142,62 @@ function PollEditor({ poll, setPoll }) {
                 />
             </Form.Group>
 
-            {poll.results.map((entry, index) => (
-                <Row key={index} className="mb-2 align-items-center">
-                    <Col>
-                        <Form.Control
-                            type="text"
-                            value={entry.option}
-                            onChange={e => handleOptionChange(index, e.target.value)}
-                        />
-                    </Col>
-                    <Col>
-                        <Form.Control
-                            type="number"
-                            min="0"
-                            value={entry.value}
-                            onChange={e => handleValueChange(index, e.target.value)}
-                        />
-                    </Col>
-                    <Col xs="auto" className="d-flex gap-1 px-0">
-                        <Button
-                            variant="outline-secondary"
-                            size="sm"
-                            onClick={() => moveOption(index, index - 1)}
-                            disabled={index == 0}
-                        >
-                            &uarr;
-                        </Button>
-                        <Button
-                            variant="outline-secondary"
-                            size="sm"
-                            onClick={() => moveOption(index, index + 1)}
-                            disabled={index == poll.results.length - 1}
-                        >
-                            &darr;
-                        </Button>
-                        <Button
-                            variant="outline-danger"
-                            size="sm"
-                            onClick={() => removeOption(index)}
-                        >
-                            &times;
-                        </Button>
-                    </Col>
+            <Row>
+                <Col>
+                    <PollView data={poll} />
+                </Col>
+                <Col>
+                    {poll.results.map((entry, index) => (
+                        <Row key={index} className="mb-2 align-items-center">
+                            <Col>
+                                <Form.Control
+                                    type="text"
+                                    value={entry.option}
+                                    onChange={e => handleOptionChange(index, e.target.value)}
+                                />
+                            </Col>
+                            <Col>
+                                <Form.Control
+                                    type="number"
+                                    min="0"
+                                    value={entry.value}
+                                    onChange={e => handleValueChange(index, e.target.value)}
+                                />
+                            </Col>
+                            <Col xs="auto" className="d-flex gap-1 px-0">
+                                <Button
+                                    variant="outline-secondary"
+                                    size="sm"
+                                    onClick={() => moveOption(index, index - 1)}
+                                    disabled={index == 0}
+                                >
+                                    &uarr;
+                                </Button>
+                                <Button
+                                    variant="outline-secondary"
+                                    size="sm"
+                                    onClick={() => moveOption(index, index + 1)}
+                                    disabled={index == poll.results.length - 1}
+                                >
+                                    &darr;
+                                </Button>
+                                <Button
+                                    variant="outline-danger"
+                                    size="sm"
+                                    onClick={() => removeOption(index)}
+                                >
+                                    &times;
+                                </Button>
+                            </Col>
 
-                </Row>
-            ))}
+                        </Row>
+                    ))}
 
-            <Button variant="outline-primary" onClick={addOption}>
-                + Add option
-            </Button>
+                    <Button variant="outline-primary" onClick={addOption}>
+                        + Add option
+                    </Button>
+                </Col>
+            </Row>
         </Container>
     );
 }
