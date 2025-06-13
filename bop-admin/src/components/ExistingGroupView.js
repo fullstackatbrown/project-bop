@@ -60,9 +60,9 @@ export default function ExistingGroupView({ id }) {
 
 function GroupEditor({ group, setGroup }) {
     const updatePoll = (index, newPoll) => {
-        const updated = [...group];
-        updated[index] = newPoll;
-        setGroup(updated);
+        const newGroup = [...group];
+        newGroup[index] = newPoll;
+        setGroup(newGroup);
     };
 
     const addPoll = () => {
@@ -75,9 +75,8 @@ function GroupEditor({ group, setGroup }) {
         ]);
     };
 
-    const removePoll = index => { // doesnt work
-        const updated = group.filter((_, i) => i !== index);
-        setGroup(updated);
+    const removePoll = index => {
+        setGroup(group.filter((_, i) => i != index));
     };
 
     return (
@@ -102,25 +101,26 @@ function GroupEditor({ group, setGroup }) {
 }
 
 function PollEditor({ poll, setPoll }) {
-    const handleKeyChange = (key, newKey) => {
-        if (newKey === key) return;
-
-        const newResults = { ...poll.results };
-        newResults[newKey] = newResults[key];
-        delete newResults[key];
-
-        setPoll({ question: poll.question, results: newResults });
+    const handleOptionChange = (index, newOption) => {
+        const newResults = [...poll.results];
+        newResults[index].option = newOption;
+        setPoll({ ...poll, results: newResults });
     };
 
-    const handleValueChange = (key, newValue) => {
-        const newResults = { ...poll.results, [key]: parseInt(newValue) || 0 };
-        setPoll({ question: poll.question, results: newResults });
+    const handleValueChange = (index, newValue) => {
+        const newResults = [...poll.results];
+        newResults[index].value = parseInt(newValue) || 0;
+        setPoll({ ...poll, results: newResults });
     };
 
     const addOption = () => {
-        const newKey = `Option ${Object.keys(poll.results).length}`;
-        const newResults = { ...poll.results, [newKey]: 0 };
-        setPoll({ question: poll.question, results: newResults });
+        const newResults = [...poll.results, { option: `Option ${poll.results.length + 1}`, value: 0 }];
+        setPoll({ ...poll, results: newResults });
+    };
+
+    const removeOption = (index) => {
+        const newResults = poll.results.filter((_, i) => i !== index);
+        setPoll({ ...poll, results: newResults });
     };
 
     return (
@@ -130,28 +130,31 @@ function PollEditor({ poll, setPoll }) {
                 <Form.Control
                     type="text"
                     value={poll.question}
-                    onChange={e => {
-                        setPoll({ question: e.target.value, results: poll.results });
-                    }}
+                    onChange={(e) => setPoll({ ...poll, question: e.target.value })}
                 />
             </Form.Group>
 
-            {Object.entries(poll.results).map(([key, value]) => (
-                <Row key={key} className="mb-2">
+            {poll.results.map((entry, index) => (
+                <Row key={index} className="mb-2 align-items-center">
                     <Col>
                         <Form.Control
                             type="text"
-                            value={key}
-                            onChange={e => handleKeyChange(key, e.target.value)}
+                            value={entry.option}
+                            onChange={(e) => handleOptionChange(index, e.target.value)}
                         />
                     </Col>
                     <Col>
                         <Form.Control
                             type="number"
                             min="0"
-                            value={value}
-                            onChange={e => handleValueChange(key, e.target.value)}
+                            value={entry.value}
+                            onChange={(e) => handleValueChange(index, e.target.value)}
                         />
+                    </Col>
+                    <Col xs="auto">
+                        <Button variant="outline-danger" onClick={() => removeOption(index)} size="sm">
+                            &times;
+                        </Button>
                     </Col>
                 </Row>
             ))}
