@@ -101,6 +101,14 @@ function GroupEditor({ group, setGroup }) {
 }
 
 function PollEditor({ poll, setPoll }) {
+    const moveOption = (fromIndex, toIndex) => {
+        if (toIndex < 0 || toIndex >= poll.results.length) return;
+        const newResults = [...poll.results];
+        const [moved] = newResults.splice(fromIndex, 1);
+        newResults.splice(toIndex, 0, moved);
+        setPoll({ ...poll, results: newResults });
+    };
+
     const handleOptionChange = (index, newOption) => {
         const newResults = [...poll.results];
         newResults[index].option = newOption;
@@ -118,19 +126,18 @@ function PollEditor({ poll, setPoll }) {
         setPoll({ ...poll, results: newResults });
     };
 
-    const removeOption = (index) => {
-        const newResults = poll.results.filter((_, i) => i !== index);
+    const removeOption = index => {
+        const newResults = poll.results.filter((_, i) => i != index);
         setPoll({ ...poll, results: newResults });
     };
 
     return (
         <Container>
             <Form.Group className="mb-3">
-                <Form.Label>Question</Form.Label>
                 <Form.Control
                     type="text"
                     value={poll.question}
-                    onChange={(e) => setPoll({ ...poll, question: e.target.value })}
+                    onChange={e => setPoll({ ...poll, question: e.target.value })}
                 />
             </Form.Group>
 
@@ -140,7 +147,7 @@ function PollEditor({ poll, setPoll }) {
                         <Form.Control
                             type="text"
                             value={entry.option}
-                            onChange={(e) => handleOptionChange(index, e.target.value)}
+                            onChange={e => handleOptionChange(index, e.target.value)}
                         />
                     </Col>
                     <Col>
@@ -148,14 +155,35 @@ function PollEditor({ poll, setPoll }) {
                             type="number"
                             min="0"
                             value={entry.value}
-                            onChange={(e) => handleValueChange(index, e.target.value)}
+                            onChange={e => handleValueChange(index, e.target.value)}
                         />
                     </Col>
-                    <Col xs="auto">
-                        <Button variant="outline-danger" onClick={() => removeOption(index)} size="sm">
+                    <Col xs="auto" className="d-flex gap-1 px-0">
+                        <Button
+                            variant="outline-secondary"
+                            size="sm"
+                            onClick={() => moveOption(index, index - 1)}
+                            disabled={index == 0}
+                        >
+                            &uarr;
+                        </Button>
+                        <Button
+                            variant="outline-secondary"
+                            size="sm"
+                            onClick={() => moveOption(index, index + 1)}
+                            disabled={index == poll.results.length - 1}
+                        >
+                            &darr;
+                        </Button>
+                        <Button
+                            variant="outline-danger"
+                            size="sm"
+                            onClick={() => removeOption(index)}
+                        >
                             &times;
                         </Button>
                     </Col>
+
                 </Row>
             ))}
 
