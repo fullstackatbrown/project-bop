@@ -147,6 +147,18 @@ function PollEditor({ poll, setPoll }) {
                     <PollView data={poll} />
                 </Col>
                 <Col>
+                    <Form.Group className="mb-3 d-flex align-items-center gap-2">
+                        <Form.Label className="mb-0">Chart type</Form.Label>
+                        <Form.Select
+                            value={poll.chart}
+                            onChange={(e) => setPoll({ ...poll, chart: e.target.value })}
+                            style={{ width: "120px" }}
+                        >
+                            <option value="bar">Bar</option>
+                            <option value="pie">Pie</option>
+                        </Form.Select>
+                    </Form.Group>
+
                     {poll.results.map((entry, index) => (
                         <Row key={index} className="mb-2 align-items-center">
                             <Col>

@@ -38,7 +38,7 @@ export default function PollView({ data, tag }) {
                         color: "#000",
                         fontSize: 11,
                         fontFamily: "Avenir",
-                        formatter: (params) => params.name,
+                        formatter: params => params.name,
                     },
                 },
             ],

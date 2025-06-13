@@ -51,7 +51,8 @@ export default function NewGroupView({ setId }) {
                 }
                 return {
                     question: col[0],
-                    results: objectToArray(results)
+                    results: objectToArray(results),
+                    chart: "pie"
                 }
             });
     };
