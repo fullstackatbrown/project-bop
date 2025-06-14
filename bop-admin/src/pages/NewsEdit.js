@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
     Form,
     Button,
@@ -8,10 +8,11 @@ import {
     Image
 } from "react-bootstrap";
 import { cosmic } from "../cosmic";
+import { useSearchSaveNavigate } from "../searchSaveNavigate";
 import LoadingButton from "../components/LoadingButton";
 
 export default function NewsEdit() {
-    const navigate = useNavigate();
+    const navigate = useSearchSaveNavigate();
     const { id } = useParams();
 
     const [currentId, setCurrentId] = useState(null);

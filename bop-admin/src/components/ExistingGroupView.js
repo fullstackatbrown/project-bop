@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Container, Form, Row, Col, Button, Card, Modal } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import { cosmic } from "../cosmic";
+import { useSearchSaveNavigate } from "../searchSaveNavigate";
 import LoadingButton from "./LoadingButton";
 import PollView from "./PollView";
 
 export default function ExistingGroupView({ id }) {
-    const navigate = useNavigate();
+    const navigate = useSearchSaveNavigate();
 
     const [title, setTitle] = useState(null);
     const [group, setGroup] = useState(null);
