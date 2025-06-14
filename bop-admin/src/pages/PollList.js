@@ -8,11 +8,13 @@ import {
     Row,
     Col
 } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import { cosmic } from "../cosmic";
+import { useSearchSaveNavigate } from "../searchSaveNavigate";
 import LoadingButton from "../components/LoadingButton";
 
 export default function PollList() {
+    const navigate = useSearchSaveNavigate();
+
     const [pollGroups, setPollGroups] = useState([]);
 
     const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -29,8 +31,6 @@ export default function PollList() {
     };
 
     useEffect(() => { reloadPollGroups() }, []);
-
-    const navigate = useNavigate();
 
     const confirmDelete = id => {
         setIdToDelete(id);

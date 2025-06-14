@@ -1,8 +1,8 @@
 import { Button, Container } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useSearchSaveNavigate } from "../searchSaveNavigate";
 
 export default function Main() {
-    const navigate = useNavigate();
+    const navigate = useSearchSaveNavigate();
 
     return (
         <Container className="d-flex flex-column align-items-center text-center mt-5">
