@@ -103,7 +103,7 @@ export default function NewGroupView({ setId }) {
     };
 
     return (
-        <Container>
+        <Container className="mt-4">
             <h3>Create New Poll Group</h3>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formGroupTitle">

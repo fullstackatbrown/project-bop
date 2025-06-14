@@ -41,7 +41,7 @@ export default function ExistingGroupView({ id }) {
 
     if (!title) return null;
     return (
-        <Container>
+        <Container className="mt-4">
             <h3>
                 Edit Poll Group {title}
                 &nbsp;
