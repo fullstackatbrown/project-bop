@@ -8,29 +8,38 @@ import PollView from "./PollView";
 export default function ExistingGroupView({ id }) {
     const navigate = useNavigate();
 
-    const [title, setTitle] = useState("");
-    const [group, setGroup] = useState([]);
+    const [title, setTitle] = useState(null);
+    const [group, setGroup] = useState(null);
+    const [loadModified, setLoadModified] = useState(null);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
 
     useEffect(() => {
         (async () => {
             const obj = (await cosmic.objects.findOne({ id })).object;
-            setTitle(obj.title);
             setGroup(JSON.parse(obj.metadata.data));
+            setLoadModified(obj.modified_at);
+            setTitle(obj.title);
         })();
     }, [id]);
 
     const handleSubmit = async () => {
-        await cosmic.objects.updateOne(id, {
+        const latestModified = (await cosmic.objects.findOne({ id })).object.modified_at;
+        // eslint-disable-next-line no-restricted-globals
+        if (loadModified != latestModified && !confirm("modified times vary")) {
+            return;
+        }
+        
+        const updateRes = await cosmic.objects.updateOne(id, {
             title,
             metadata: {
                 data: JSON.stringify(group, null, 4)
             }
         });
+        setLoadModified(updateRes.object.modified_at);
         setShowSuccessModal(true);
     };
 
-    if (!group) return null;
+    if (!title) return null;
     return (
         <Container>
             <h3>

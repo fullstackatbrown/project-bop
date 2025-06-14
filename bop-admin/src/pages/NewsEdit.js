@@ -95,15 +95,21 @@ export default function NewsEdit() {
             if (currentId == "new") {
                 payload.type = "news-posts";
                 payload.metadata.date_published = new Date().toISOString().split("T")[0];
-                console.log(payload)
-                setCurrentId((await cosmic.objects.insertOne(payload)).object.id);
+
+                const insertRes = await cosmic.objects.insertOne(payload);
+                setForm({
+                    ...form,
+                    imageUrl: uploadMedia.url,
+                    modifiedAt: insertRes.modified_at
+                });
+                setCurrentId(insertRes.id);
             } else {
                 await cosmic.objects.updateOne(currentId, payload);
+                if (uploadMedia) {
+                    setForm({ ...form, imageUrl: uploadMedia.url });
+                }
             }
 
-            if (uploadMedia) {
-                setForm(prev => ({ ...prev, imageUrl: uploadMedia.url }));
-            }
             setImageFile(null);
             setShowSuccessModal(true);
         } catch (err) {
