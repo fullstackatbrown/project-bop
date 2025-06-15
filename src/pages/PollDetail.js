@@ -31,14 +31,24 @@ ChartJS.register(
 export default function PollDetail() {
     const { pollId } = useParams();
     const [pollGroup, setPollGroup] = useState(null);
+    const [csvUrl, setCsvUrl] = useState(null);
+
     useEffect(() => {
         (async () => {
-            setPollGroup(
-                (await queryObjects({type: "poll-groups", slug: pollId}))
-                    .map(raw => {return {...raw.metadata, title: raw.title}})
-                    [0]
-            );
+            const pollGroupRecv = (await queryObjects({ type: "poll-groups", slug: pollId }))
+                .map(raw => { return { ...raw.metadata, title: raw.title } })[0];
+
+            setPollGroup(pollGroupRecv);
+            
+            const csvBlob = new Blob([pollGroupRecv.csv_data], { type: "text/csv" });
+            setCsvUrl(URL.createObjectURL(csvBlob));
         })();
+
+        return () => {
+            if (csvUrl) {
+                URL.revokeObjectURL(csvUrl);
+            }
+        };
     }, []);
 
     if (!pollGroup) return;
@@ -48,8 +58,8 @@ export default function PollDetail() {
 
             <div className="mb-6 max-w-4xl mx-auto">
                 <a
-                    href={`/${pollGroup.title}.csv`}
-                    download
+                    href={csvUrl}
+                    download={`BOP ${pollGroup.title}.csv`}
                     className="block w-full bg-gray-800 text-white uppercase font-bold py-4 rounded-lg hover:bg-gray-700 transition text-xl text-center"
                 >
                     Download Full Results
@@ -59,7 +69,7 @@ export default function PollDetail() {
             {/* Charts Section */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10 max-w-6xl mx-auto">
                 {JSON.parse(pollGroup.data).map((chartData, index) => (
-                    <div key={index} className="bg-white rounded-lg shadow-md" style={{paddingTop: "10px", paddingLeft: "10px", paddingRight: "10px"}}>
+                    <div key={index} className="bg-white rounded-lg shadow-md" style={{ paddingTop: "10px", paddingLeft: "10px", paddingRight: "10px" }}>
                         <Poll data={chartData} tag={`${pollGroup.title} #${index + 1}`} />
                     </div>
                 ))}
