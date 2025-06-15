@@ -10,7 +10,6 @@ import Team from "./pages/Team";
 import Visualization from "./pages/Visualization";
 import Article from "./pages/Article";
 import Footer from "./Footer";
-import PollUploader from "./pages/PollUploader";
 
 const logo = "/bop-logo.png";
 
@@ -81,7 +80,6 @@ export default function App() {
             <Route path="/question-submissions" component={QuestionSubmissions} />
             <Route path="/team" component={Team} />
             <Route path="/visualization" component={Visualization} />
-            <Route path="/poll-uploader" component={PollUploader} />
             <Route path="/" component={Home} />
           </Switch>
         </div>
