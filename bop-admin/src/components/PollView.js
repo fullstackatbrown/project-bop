@@ -1,31 +1,41 @@
 import ReactECharts from "echarts-for-react";
 import { useEffect, useRef } from "react";
 
+const barChartColors = [
+    "#84a0f6", "#91cc75", "#ee6666", "#fac858", "#73c0de",
+    "#6bc2a2", "#fc8452", "#9a60b4", "#ea7ccc"
+];
+
 export default function PollView({ data, tag }) {
     let option;
     if (data.chart === "bar") {
         option = {
             tooltip: {
-                trigger: "item",
+                trigger: "item"
             },
             legend: {
                 top: "0%",
                 left: "center",
-                show: false,
+                show: false
             },
             xAxis: {
                 type: "category",
                 data: data.results.map(({ option, value }) => option),
-                show: false,
+                show: false
             },
             yAxis: {
-                type: "value",
+                type: "value"
             },
             series: [
                 {
-                    data: data.results.map(({ option, value }) => value),
                     type: "bar",
-                    color: "lightblue",
+                    data: data.results.map(({ option, value }, index) => ({
+                        value,
+                        name: option,
+                        itemStyle: {
+                            color: barChartColors[index % barChartColors.length]
+                        }
+                    })),
                     showBackground: true,
                     backgroundStyle: {
                         color: "rgba(180, 180, 180, 0.2)",
@@ -38,20 +48,20 @@ export default function PollView({ data, tag }) {
                         color: "#000",
                         fontSize: 11,
                         fontFamily: "Avenir",
-                        formatter: params => params.name,
-                    },
-                },
-            ],
+                        formatter: params => params.name
+                    }
+                }
+            ]
         };
     } else {
         option = {
             tooltip: {
-                trigger: "item",
+                trigger: "item"
             },
             legend: {
                 top: "0%",
                 left: "center",
-                show: false,
+                show: false
             },
             series: [
                 {
@@ -69,9 +79,9 @@ export default function PollView({ data, tag }) {
                     labelLine: {
                         show: true,
                     },
-                    data: data.results.map((({ option, value }) => ({ name: option, value }))),
-                },
-            ],
+                    data: data.results.map((({ option, value }) => ({ name: option, value })))
+                }
+            ]
         };
     }
 
@@ -84,7 +94,7 @@ export default function PollView({ data, tag }) {
 
     return (
         <div style={{ width: "100%" }}>
-            {/* <p className="poll-caption">BOP POLL {tag.toUpperCase()}</p> */}
+            {tag && <p className="poll-caption">BOP POLL {tag.toUpperCase()}</p>}
             <ReactECharts
                 ref={chartRef}
                 option={option}
