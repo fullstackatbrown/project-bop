@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 import { dateFormat, queryObjects } from "../cosmic";
 import Slider from "react-slick";
 import Poll from "../Poll";
@@ -145,59 +146,63 @@ export default function Home() {
           {/* Main article container */}
           <div className="w-full flex flex-col md:flex-row gap-4">
             {/* Headline article container */}
-            <div className="w-full md:w-3/5 flex flex-col bg-white shadow-md rounded-lg">
-              {/* Article image */}
-              <div className="w-full h-48 sm:h-64 md:h-72 bg-slate-800 overflow-hidden rounded-t-lg">
-                <img
-                  src={news[0].image.url}
-                  alt={news[0].image_caption}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+            <Link to={`/articles/${news[0].slug}`} className="md:w-3/5">
+              <div className="w-full flex flex-col bg-white shadow-md rounded-lg">
+                {/* Article image */}
+                <div className="w-full h-48 sm:h-64 md:h-72 bg-slate-800 overflow-hidden rounded-t-lg">
+                  <img
+                    src={news[0].image.url}
+                    alt={news[0].image_caption}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
 
-              {/* Text div */}
-              <div className="px-4 pb-4 pt-2 sm:px-6 sm:pb-6 sm:pt-2 flex flex-col">
-                <p className="text-xs py-2">{news[0].date}</p>
-                <h3 className="text-xl sm:text-2xl leading-6 sm:leading-[1.75rem] md:leading-6 lg:leading-6 font-bold mb-2 overflow-hidden text-ellipsis line-clamp-2">
-                  <a href={`/articles/${news[0].slug}`}>{news[0].title}</a>
-                </h3>
-                <p className="text-sm overflow-hidden text-ellipsis line-clamp-3">
-                  By {news[0].author} -&nbsp;
-                  {news[0].content.split("\n").slice(2).join("")} ...
-                </p>
+                {/* Text div */}
+                <div className="px-4 pb-4 pt-2 sm:px-6 sm:pb-6 sm:pt-2 flex flex-col">
+                  <p className="text-xs py-2">{news[0].date}</p>
+                  <h3 className="text-xl sm:text-2xl leading-6 sm:leading-[1.75rem] md:leading-6 lg:leading-6 font-bold mb-2 overflow-hidden text-ellipsis line-clamp-2">
+                    <span>{news[0].title}</span>
+                  </h3>
+                  <p className="text-sm overflow-hidden text-ellipsis line-clamp-3">
+                    By {news[0].author} -&nbsp;
+                    {news[0].content.split("\n").slice(2).join("")} ...
+                  </p>
+                </div>
               </div>
-            </div>
+            </Link>
 
             {/* Secondary articles container */}
             <div className="w-full md:w-2/5 flex flex-col gap-4">
               {/* Individual articles */}
               {[1, 2, 3].map((index) => (
-                <div
-                  key={index}
-                  className="w-full flex flex-row items-start justify-between bg-white shadow-md rounded-lg pr-4"
-                >
-                  {/* Text div */}
-                  <div className="flex-grow p-3 sm:p-4 flex flex-col justify-center">
-                    <h3 className="text-lg md:text-lg font-bold mb-2 overflow-hidden text-ellipsis line-clamp-2 leading-5 md:leading-5">
-                      <a href={`/articles/${news[index].slug}`}>
-                        {news[index].title}
-                      </a>
-                    </h3>
-                    <p className="text-sm">{news[index].author}</p>
-                    <p className="text-sm">
-                      {dateFormat(news[index].date_published)}
-                    </p>
-                  </div>
+                <Link to={`/articles/${news[index].slug}`}>
+                  <div
+                    key={index}
+                    className="w-full flex flex-row items-start justify-between bg-white shadow-md rounded-lg pr-4"
+                  >
+                    {/* Text div */}
+                    <div className="flex-grow p-3 sm:p-4 flex flex-col justify-center">
+                      <h3 className="text-lg md:text-lg font-bold mb-2 overflow-hidden text-ellipsis line-clamp-2 leading-5 md:leading-5">
+                        <span>
+                          {news[index].title}
+                        </span>
+                      </h3>
+                      <p className="text-sm">{news[index].author}</p>
+                      <p className="text-sm">
+                        {dateFormat(news[index].date_published)}
+                      </p>
+                    </div>
 
-                  {/* Article image */}
-                  <div className="flex-shrink-0 my-4 w-16 h-16 sm:w-20 sm:h-20 bg-slate-800 overflow-hidden rounded-md">
-                    <img
-                      src={news[index].image.url}
-                      alt={news[index].caption}
-                      className="w-full h-full object-cover"
-                    />
+                    {/* Article image */}
+                    <div className="flex-shrink-0 my-4 w-16 h-16 sm:w-20 sm:h-20 bg-slate-800 overflow-hidden rounded-md">
+                      <img
+                        src={news[index].image.url}
+                        alt={news[index].caption}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>

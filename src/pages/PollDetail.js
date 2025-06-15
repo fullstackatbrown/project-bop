@@ -1,32 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { pollData } from './Polls';
-import { Pie, Bar, Line, Doughnut } from 'react-chartjs-2';
-import {
-    Chart as ChartJS,
-    ArcElement,
-    Tooltip,
-    Legend,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    BarElement
-} from 'chart.js';
 import { queryObjects } from '../cosmic';
 import Poll from '../Poll';
-
-// Register Chart.js components
-ChartJS.register(
-    ArcElement,
-    Tooltip,
-    Legend,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    BarElement
-);
 
 export default function PollDetail() {
     const { pollId } = useParams();
@@ -39,7 +14,7 @@ export default function PollDetail() {
                 .map(raw => { return { ...raw.metadata, title: raw.title } })[0];
 
             setPollGroup(pollGroupRecv);
-            
+
             const csvBlob = new Blob([pollGroupRecv.csv_data], { type: "text/csv" });
             setCsvUrl(URL.createObjectURL(csvBlob));
         })();
