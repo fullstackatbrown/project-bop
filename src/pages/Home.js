@@ -40,7 +40,6 @@ export default function Home() {
   }, []);
 
   if (!news) return null;
-  console.log(news);
   return (
     <div>
       {/* 'Discover how Brown students feel about ...' Section */}
@@ -223,8 +222,6 @@ function LatestPolls() {
       );
     })();
   }, []);
-
-  console.log(pollGroup);
 
   if (!pollGroup) return null;
   return (

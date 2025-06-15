@@ -148,7 +148,6 @@ function TeamSections() {
         setStaff(staffList);
         setLoading(false);
       } catch (err) {
-        console.log("Failed to fetch");
         setLoading(false);
       }
     };
