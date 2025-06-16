@@ -110,7 +110,7 @@ const Articles = () => {
                     <a href={shareLinks.x} target="_blank" rel="noopener noreferrer">
                       <li>
                         <div className="share-icon">
-                          <img src="/x-logo.png" alt="X" />
+                          <img src="/xlogo.svg" alt="X" />
                         </div>
                         <span className="share-label">X</span>
                       </li>
