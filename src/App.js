@@ -17,7 +17,7 @@ export default function App() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Router>
+    <Router basename="/bop-deploy">
       <div className="min-h-screen flex flex-col">
         {/* Navbar */}
         <nav className="bg-white shadow-md z-50 w-full fixed py-0 px-0">

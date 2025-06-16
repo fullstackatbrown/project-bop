@@ -8,7 +8,7 @@ import Main from "./pages/Main";
 
 function App() {
     return (
-        <Router>
+        <Router basename="/bop-deploy/admin">
             <LockoutView>
                 <Routes>
                     <Route path="/news/:id" element={(<NewsEdit />)} />
