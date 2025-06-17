@@ -119,7 +119,7 @@ export default function Home() {
               className="relative z-20 bg-white shadow-lg flex items-top justify-center overflow-hidden rounded-3xl"
               style={{ height: "90%" }}
             >
-              <InstagramEmbed postUrl="https://www.instagram.com/p/DHRUj4uvZtY" />
+              <InstagramEmbed postUrl="https://www.instagram.com/p/DJ7v4PQN8nm" />
             </div>
 
             <a
