@@ -64,6 +64,15 @@ export default function TeamList() {
         if (idToDelete != null) {
             try {
                 await cosmic.objects.deleteOne(idToDelete);
+
+                const idBelow = members.find(member => member.idAbove == idToDelete)?.id;
+                if (idBelow) {
+                    const idAbove = members.find(member => member.id == idToDelete).idAbove;
+                    await cosmic.objects.updateOne(
+                        idBelow,
+                        { metadata: { id_above: idAbove } }
+                    );
+                }
             } catch (err) {
                 console.error("Member deletion failed:", err);
                 alert("Member deletion failed");
