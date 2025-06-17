@@ -5,6 +5,8 @@ import NewsEdit from "./pages/NewsEdit";
 import PollList from "./pages/PollList";
 import PollEdit from "./pages/PollEdit";
 import Main from "./pages/Main";
+import TeamEdit from "./pages/TeamEdit";
+import TeamList from "./pages/TeamList";
 
 function App() {
     return (
@@ -15,6 +17,8 @@ function App() {
                     <Route path="/news" element={(<NewsList />)} />
                     <Route path="/poll/:id" element={(<PollEdit />)} />
                     <Route path="/poll" element={(<PollList />)} />
+                    <Route path="/team/:id" element={(<TeamEdit />)} />
+                    <Route path="/team" element={(<TeamList />)} />
                     <Route path="/" element={(<Main />)} />
                 </Routes>
             </LockoutView>

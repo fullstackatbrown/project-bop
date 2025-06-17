@@ -14,6 +14,9 @@ export default function Main() {
                 <Button variant="secondary" onClick={() => navigate("/poll")}>
                     Edit poll groups
                 </Button>
+                <Button variant="secondary" onClick={() => navigate("/team")}>
+                    Edit team members
+                </Button>
             </div>
         </Container>
     );
