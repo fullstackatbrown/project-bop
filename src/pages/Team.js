@@ -21,7 +21,7 @@ function Banner() {
       {/* Background image container */}
       <div
         className="absolute inset-0 bg-cover bg-center z-0"
-        style={{ backgroundImage: "url('/bop_team_pic.avif')" }}
+        style={{ backgroundImage: `url(${publicUrl("/bop_team_pic.avif")})` }}
       />
 
       {/* Blue section */}
@@ -120,6 +120,19 @@ function TeamSections() {
 
   useEffect(() => {
     const fetchMembers = async () => {
+      const sortMembers = start => {
+        try {
+          let end = [start.find(member => member.metadata.id_above == "0")];
+          while (end.length < start.length) {
+            end.push(start.find(member => member.metadata.id_above == end[end.length - 1].id));
+          }
+          return end;
+        } catch (err) {
+          console.error("sort failed");
+          return start;
+        }
+      };
+
       try {
         const cosmic = createBucketClient({
           bucketSlug: "project-bop-production",
@@ -129,13 +142,14 @@ function TeamSections() {
         const response = await cosmic.objects
           .find({ type: "team-members" })
           .limit(100)
-          .props("metadata")
           .depth(1);
+
+        const members = sortMembers(response.objects);
 
         let execsList = [];
         let staffList = [];
 
-        for (const member of response.objects) {
+        for (const member of members) {
           if (member.metadata.section === "executive") {
             execsList.push(member.metadata);
           } else {
