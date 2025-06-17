@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { queryObjects } from '../cosmic';
+import { publicUrl } from '../publicUrl';
 
 const pdfTitles = [
     "April 2022",
@@ -143,8 +144,7 @@ export default function Polls() {
                                         } else {
                                             return (
                                                 <a
-                                                    href={`/pdfs/${key}.pdf`}
-                                                    download={`bop-${key}.pdf`}
+                                                    href={publicUrl(`/pdfs/${key}.pdf`)}
                                                     className="block text-white shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg p-4 border border-gray-200"
                                                     style={
                                                         index % 2 === 0
