@@ -55,9 +55,27 @@ export default function TeamEdit() {
         }
     };
 
+    const getLastListId = async () => {
+        const members = (await cosmic.objects.find({ type: "team-members" })).objects;
+
+        let lastId = "0", nextMember;
+        while ((nextMember = members.find(member => member.metadata.id_above == lastId))) {
+            lastId = nextMember.id;
+        }
+        return lastId;
+    };
+
+    const makeSlug = str => {
+        return str
+            .split(" (")[0]
+            .toLowerCase()
+            .split(" ")
+            .join("-");
+    };
+
     const handleSubmit = async () => {
         if (currentId != "new") {
-            const latestModified = (await cosmic.objects.findOne({ type: "team-members", id })).object.modified_at;
+            const latestModified = (await cosmic.objects.findOne({ type: "team-members", id: currentId })).object.modified_at;
             // eslint-disable-next-line no-restricted-globals
             if (form.modifiedAt != latestModified && !confirm("modified times vary")) {
                 return;
@@ -77,6 +95,7 @@ export default function TeamEdit() {
 
         try {
             const payload = {
+                title: makeSlug(form.name),
                 metadata: {
                     name: form.name,
                     club_title: form.clubTitle,
@@ -89,11 +108,12 @@ export default function TeamEdit() {
 
             if (currentId == "new") {
                 payload.type = "team-members";
+                payload.metadata.id_above = await getLastListId();
 
-                const insertRes = await cosmic.objects.insertOne(payload);
+                const insertRes = (await cosmic.objects.insertOne(payload)).object;
                 setForm({
                     ...form,
-                    imageUrl: uploadMedia.url,
+                    imageUrl: uploadMedia?.url,
                     modifiedAt: insertRes.modified_at
                 });
                 setCurrentId(insertRes.id);
