@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { HiShare } from "react-icons/hi";
 import "./News.css";
 import { dateFormat, queryObjects } from "../cosmic";
+import { publicUrl } from "../publicUrl";
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
@@ -102,7 +103,7 @@ const Articles = () => {
                     <a href={shareLinks.facebook} target="_blank" rel="noopener noreferrer">
                       <li>
                         <div className="share-icon">
-                          <img src="/facebook.png" alt="Facebook" />
+                          <img src={publicUrl("/facebook.png")} alt="Facebook" />
                         </div>
                         <span className="share-label">Facebook</span>
                       </li>
@@ -110,7 +111,7 @@ const Articles = () => {
                     <a href={shareLinks.x} target="_blank" rel="noopener noreferrer">
                       <li>
                         <div className="share-icon">
-                          <img src="/xlogo.svg" alt="X" />
+                          <img src={publicUrl("/xlogo.svg")} alt="X" />
                         </div>
                         <span className="share-label">X</span>
                       </li>
@@ -118,7 +119,7 @@ const Articles = () => {
                     <a href={shareLinks.linkedin} target="_blank" rel="noopener noreferrer">
                       <li>
                         <div className="share-icon">
-                          <img src="/linkedin-icon.png" alt="LinkedIn" />
+                          <img src={publicUrl("/linkedin-icon.png")} alt="LinkedIn" />
                         </div>
                         <span className="share-label">LinkedIn</span>
                       </li>
@@ -132,7 +133,7 @@ const Articles = () => {
                       }}
                     >
                       <div className="share-icon">
-                        <img src="/link-icon.png" alt="Copy Link" />
+                        <img src={publicUrl("/link-icon.png")} alt="Copy Link" />
                       </div>
                       <span className="share-label">Copy Link</span>
                     </li>

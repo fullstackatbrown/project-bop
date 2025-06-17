@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { dateFormat, queryObjects } from "../cosmic";
 import Markdown from "react-markdown";
 import Poll from "../Poll";
+import { publicUrl } from "../publicUrl";
 
 function ShareBar() {
   const currentURL = window.location.href;
@@ -41,7 +42,7 @@ function ShareBar() {
           className="facebook-share-button"
         >
           <img
-            src="/facebook.png"
+            src={publicUrl("/facebook.png")}
             alt="Share on Facebook"
             className="facebook-icon"
           />
@@ -53,7 +54,7 @@ function ShareBar() {
           rel="noopener noreferrer"
           className="x-share-button"
         >
-          <img src="/xlogo.svg" alt="Share on X" class="x-icon" />
+          <img src={publicUrl("/xlogo.svg")} alt="Share on X" class="x-icon" />
         </a>
         <a
           href={
@@ -64,13 +65,13 @@ function ShareBar() {
           className="linkedin-share-button"
         >
           <img
-            src="/linkedin.png"
+            src={publicUrl("/linkedin.png")}
             alt="Share on LinkedIn"
             className="linkedin-icon"
           />
         </a>
         <button className="share-button" onClick={togglePopup}>
-          <img src="/shareicon.png" alt="Share icon" />
+          <img src={publicUrl("/shareicon.png")} alt="Share icon" />
         </button>
       </div>
 

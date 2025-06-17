@@ -1,3 +1,5 @@
+import { publicUrl } from "./publicUrl";
+
 export default function Footer() {
   return (
     <footer className="bg-gradient-to-b from-[#F5F7FA] to-white text-black py-6 mt-auto">
@@ -14,7 +16,7 @@ export default function Footer() {
               Full Stack at Brown
             </a>
           </div>
-          <img src="/fsab-circle.png" alt="fsab logo" className="w-5 h-auto" />
+          <img src={publicUrl("/fsab-circle.png")} alt="fsab logo" className="w-5 h-auto" />
         </div>
 
         {/* Copyright */}
@@ -30,7 +32,7 @@ export default function Footer() {
             className="flex items-center justify-center text-center text-white bg-black rounded-full hover:text-blue-500 w-10 h-10"
           >
             <img
-              src="/twitter-icon.png"
+              src={publicUrl("/twitter-icon.png")}
               alt="twitter icon"
               className="w-1/3 h-auto"
             />
@@ -41,7 +43,7 @@ export default function Footer() {
             className="flex items-center justify-center text-center text-white bg-black rounded-full hover:text-blue-500 w-10 h-10"
           >
             <img
-              src="/tiktok-icon.png"
+              src={publicUrl("/tiktok-icon.png")}
               alt="tiktok icon"
               className="w-1/3 h-auto"
             />
@@ -52,7 +54,7 @@ export default function Footer() {
             className="flex items-center justify-center text-center bg-black rounded-full hover:text-blue-500 w-10 h-10"
           >
             <img
-              src="/instagram-icon.png"
+              src={publicUrl("/instagram-icon.png")}
               alt="instagram icon"
               className="w-1/3 h-auto"
             />
