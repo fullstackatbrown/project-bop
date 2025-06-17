@@ -7,6 +7,7 @@ import PollEdit from "./pages/PollEdit";
 import Main from "./pages/Main";
 import TeamEdit from "./pages/TeamEdit";
 import TeamList from "./pages/TeamList";
+import QuestionList from "./pages/QuestionList";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                     <Route path="/poll" element={(<PollList />)} />
                     <Route path="/team/:id" element={(<TeamEdit />)} />
                     <Route path="/team" element={(<TeamList />)} />
+                    <Route path="/questions" element={(<QuestionList />)} />
                     <Route path="/" element={(<Main />)} />
                 </Routes>
             </LockoutView>
