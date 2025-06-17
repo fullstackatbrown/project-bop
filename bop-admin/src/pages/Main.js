@@ -17,6 +17,9 @@ export default function Main() {
                 <Button variant="secondary" onClick={() => navigate("/team")}>
                     Edit team members
                 </Button>
+                <Button variant="secondary" onClick={() => navigate("/questions")}>
+                    View submitted questions
+                </Button>
             </div>
         </Container>
     );
