@@ -10,8 +10,7 @@ import Team from "./pages/Team";
 import Visualization from "./pages/Visualization";
 import Article from "./pages/Article";
 import Footer from "./Footer";
-
-const logo = "/bop-logo.png";
+import { publicUrl } from "./publicUrl";
 
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +23,7 @@ export default function App() {
           <div className="flex justify-between items-center py-4 px-8 w-full">
             {/* Logo */}
             <Link to="/" onClick={() => setIsOpen(false)}>
-              <img src={logo} alt="Logo" className="w-60 md:w-72" />
+              <img src={publicUrl("/bop-logo.png")} alt="Logo" className="w-60 md:w-72" />
             </Link>
 
             {/* Desktop Menu */}

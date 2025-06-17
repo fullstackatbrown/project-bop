@@ -3,6 +3,7 @@ import MemberCard from "../MemberCard";
 import AlumniRow from "../AlumniRow";
 import { createBucketClient } from "@cosmicjs/sdk";
 import { useState, useEffect } from "react";
+import { publicUrl } from "../publicUrl";
 
 export default function Team() {
   return (
@@ -71,7 +72,7 @@ function Banner() {
               rel="noopener noreferrer"
             >
               <img
-                src="/bop_ig_logo.avif"
+                src={publicUrl("/bop_ig_logo.avif")}
                 alt="Instagram"
                 className="w-8 h-8"
               />
@@ -82,7 +83,7 @@ function Banner() {
               rel="noopener noreferrer"
             >
               <img
-                src="/bop_twitter_logo.avif"
+                src={publicUrl("/bop_twitter_logo.avif")}
                 alt="Twitter"
                 className="w-8 h-8"
               />
