@@ -2,8 +2,8 @@ import ReactECharts from "echarts-for-react";
 import { useEffect, useRef } from "react";
 import "./Poll.css";
 
-const barChartColors = [
-    "#84a0f6", "#91cc75", "#ee6666", "#fac858", "#73c0de",
+const chartColors = [
+    "#fac858", "#91cc75", "#ee6666", "#84a0f6", "#73c0de",
     "#6bc2a2", "#fc8452", "#9a60b4", "#ea7ccc"
 ];
 
@@ -34,7 +34,7 @@ export default function Poll({ data, tag }) {
                         value,
                         name: option,
                         itemStyle: {
-                            color: barChartColors[index % barChartColors.length]
+                            color: chartColors[index % chartColors.length]
                         }
                     })),
                     showBackground: true,
@@ -64,6 +64,7 @@ export default function Poll({ data, tag }) {
                 left: "center",
                 show: false
             },
+            color: chartColors,
             series: [
                 {
                     type: "pie",

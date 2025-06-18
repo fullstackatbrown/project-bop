@@ -94,15 +94,15 @@ export default function Home() {
 
             {/* Button */}
             <div className="flex w-1/2 md:w-full mt-6 items-center justify-center py-2">
-              <a
-                href="/polls"
+              <Link
+                to="/polls"
                 className="flex flex-col items-center"
                 style={{ width: "100%" }}
               >
                 <button className="md:w-[55%] border-2 rounded-lg bg-blue-900 bg-opacity-60 border-white text-white text-md md:text-2xl font-semibold px-3 md:px-4 py-3 transition duration-300 hover:bg-white hover:text-black hover:mix-blend-difference mobile-hide">
                   See the latest poll results
                 </button>
-              </a>
+              </Link>
             </div>
           </div>
 
