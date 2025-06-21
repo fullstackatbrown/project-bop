@@ -29,7 +29,7 @@ function App() {
 }
 
 function LockoutView({ children }) {
-    if (useLocation().search != "?abcde") return null;
+    if (useLocation().search != "?IkAjOm7qM0PA52QojudUsaAK6y6NeyLo") return null;
 
     return children;
 }
