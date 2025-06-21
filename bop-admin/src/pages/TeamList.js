@@ -142,7 +142,7 @@ export default function TeamList() {
                 &nbsp;
                 <Button variant="success" onClick={() => navigate("/team/new")}>+ New</Button>
             </h3>
-            <button onClick={magic}>magic</button>
+            {/* <button onClick={magic}>magic</button> */}
 
             <ListGroup>
                 {members.map((member, index) => (
