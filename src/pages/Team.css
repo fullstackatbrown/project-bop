@@ -117,3 +117,100 @@
 .Executive {
     margin: 0 !important;
 }
+
+.member-card {
+    width: 320px;
+    height: 420px;
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.member-card:hover {
+    transform: scale(1.05);
+    /* Increases the size slightly */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    /* Adds a subtle shadow */
+}
+
+.member-image {
+    width: 300px;
+    height: 300px;
+    border-radius: 8px;
+}
+
+.member-name {
+    font-size: 1.25rem;
+    margin: 10px 0;
+}
+
+.member-position {
+    font-style: italic;
+    color: gray;
+}
+
+.alumni-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.alumni-row:hover {
+    background-color: #6c81ba;
+}
+
+.light-blue {
+    background-color: #98ade9;
+    /* Dark Blue */
+}
+
+.light-gray {
+    background-color: #d4deec;
+    /* Light Blue */
+    color: black;
+}
+
+.alumni-column {
+    flex: 1;
+    /* Each section takes equal space */
+    display: flex;
+    justify-content: center;
+    /* Centers text horizontally */
+    align-items: center;
+    /* Centers text vertically */
+}
+
+.alumni-name {
+    text-align: center;
+    flex: 1;
+    font-weight: 600;
+    font-size: small;
+    color: black;
+}
+
+.alumni-position {
+    text-align: center;
+    flex: 1;
+    font-weight: 600;
+    font-size: small;
+    color: black;
+}
+
+.alumni-term {
+    text-align: center;
+    flex: 1;
+    font-style: italic;
+    font-weight: 600;
+    font-size: small;
+    color: black;
+}

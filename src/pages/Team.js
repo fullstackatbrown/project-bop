@@ -1,6 +1,4 @@
 import "./Team.css";
-import MemberCard from "../components/MemberCard";
-import AlumniRow from "../components/AlumniRow";
 import { createBucketClient } from "@cosmicjs/sdk";
 import { useState, useEffect } from "react";
 import { publicUrl } from "../publicUrl";
@@ -96,18 +94,14 @@ function Banner() {
 }
 
 function AlumniSection({ alumni }) {
-    const [selectedIndex, setSelectedIndex] = useState(null);
-
     return (
         <div className="alumni-section">
             {alumni.map((person, index) => (
-                <AlumniRow
-                    key={index}
-                    index={index}
-                    {...person}
-                    selectedIndex={selectedIndex}
-                    setSelectedIndex={setSelectedIndex}
-                />
+                <div key={index} className={`alumni-row ${index % 2 === 0 ? "light-blue" : "light-gray"}`}>
+                    <span className="alumni-name">{person.name}</span>
+                    <span className="alumni-position">{person.position}</span>
+                    <span className="alumni-term">{person.term}</span>
+                </div>
             ))}
         </div>
     );
@@ -268,15 +262,14 @@ function TeamGrid({ members }) {
     return (
         <div className="team-grid mx-5">
             {members.map((member, index) => {
-                let memberPhoto = member.photo ? member.photo.url : "";
+                let memberPhoto = member.photo ? member.photo.url : publicUrl("/logos/bop_red.avif");
 
                 return (
-                    <MemberCard
-                        key={index}
-                        name={member.name}
-                        position={member.club_title}
-                        image={memberPhoto}
-                    />
+                    <div key={index} className="member-card">
+                        <img src={memberPhoto} alt={member.name} className="member-image" />
+                        <h2 className="member-name font-bold font-avenir">{member.name}</h2>
+                        <p className="member-position font-bold">{member.club_title}</p>
+                    </div>
                 );
             })}
         </div>
