@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { dateFormat, queryObjects } from "../cosmic";
+import { cosmic, dateFormat } from "../cosmic";
 import Slider from "react-slick";
 import Poll from "../Poll";
 import "./Home.css";
@@ -34,7 +34,7 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       setNews(
-        (await queryObjects({ type: "news-posts" }, 4)).map((raw) => {
+        (await cosmic.objects.find({ type: "news-posts", limit: 4 })).objects.map((raw) => {
           return { ...raw.metadata, title: raw.title, slug: raw.slug };
         })
       );
@@ -221,7 +221,7 @@ function LatestPolls() {
   useEffect(() => {
     (async () => {
       setPollGroup(
-          (await queryObjects({ type: "poll-groups" }, 1))
+          (await cosmic.objects.find({ type: "poll-groups", limit: 1 })).objects
           .map((raw) => {
           return { ...raw.metadata, title: raw.title, slug: raw.slug };
         })[0]

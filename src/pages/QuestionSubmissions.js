@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { postObject } from '../cosmic';
+import { cosmic } from '../cosmic';
 
 function QuestionSubmissionPage() {
   const [inputValue, setInputValue] = useState("");
@@ -27,7 +27,7 @@ function QuestionSubmissionPage() {
 
   const handleSubmission = async () => {
     if (inputValue.trim() === '') return;
-    await postObject({
+    await cosmic.objects.insertOne({
       type: "questions",
       title: inputValue.trim()
     });

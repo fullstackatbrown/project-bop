@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import "./Article.css";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { dateFormat, queryObjects } from "../cosmic";
+import { cosmic, dateFormat } from "../cosmic";
 import Markdown from "react-markdown";
 import Poll from "../Poll";
 import { publicUrl } from "../publicUrl";
@@ -157,14 +157,14 @@ export default function Article() {
   useEffect(() => {
     (async () => {
       setPost(
-        (await queryObjects({ type: "news-posts", slug: postSlug })).map(
+        (await cosmic.objects.find({ type: "news-posts", slug: postSlug })).objects.map(
           (raw) => {
             return { ...raw.metadata, title: raw.title, slug: raw.slug };
           }
         )[0]
       );
 
-      const lastFour = (await queryObjects({ type: "news-posts" }, 4)).map(
+      const lastFour = (await cosmic.objects.find({ type: "news-posts", limit: 4 })).objects.map(
         (raw) => {
           return { ...raw.metadata, title: raw.title, slug: raw.slug };
         }
@@ -219,7 +219,7 @@ function EmbedPoll({ line }) {
   useEffect(() => {
     (async () => {
       setPollGroup(
-        (await queryObjects({ type: "poll-groups", slug: slug })).map((raw) => {
+        (await cosmic.objects.find({ type: "poll-groups", slug: slug })).objects.map((raw) => {
           return { ...raw.metadata, title: raw.title };
         })[0]
       );
