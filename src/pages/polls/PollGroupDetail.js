@@ -1,17 +1,16 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { queryObjects } from '../cosmic';
-import Poll from '../Poll';
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { cosmicFind } from "../../cosmic";
+import Poll from "../../components/Poll";
 
-export default function PollDetail() {
+export default function PollGroupDetail() {
     const { pollId } = useParams();
     const [pollGroup, setPollGroup] = useState(null);
     const [csvUrl, setCsvUrl] = useState(null);
 
     useEffect(() => {
         (async () => {
-            const pollGroupRecv = (await queryObjects({ type: "poll-groups", slug: pollId }))
-                .map(raw => { return { ...raw.metadata, title: raw.title } })[0];
+            const pollGroupRecv = (await cosmicFind({ type: "poll-groups", slug: pollId }))[0];
 
             setPollGroup(pollGroupRecv);
 
