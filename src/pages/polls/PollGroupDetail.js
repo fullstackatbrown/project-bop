@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { cosmic } from "../cosmic";
-import Poll from "../components/Poll";
+import { cosmic } from "../../cosmic";
+import Poll from "../../components/Poll";
 
 export default function PollGroupDetail() {
     const { pollId } = useParams();
