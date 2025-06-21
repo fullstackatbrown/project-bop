@@ -2,7 +2,7 @@
   "name": "bop-admin",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/bop-deploy/admin",
+  "homepage": "/admin",
   "dependencies": {
     "@cosmicjs/sdk": "^1.5.5",
     "@testing-library/dom": "^10.4.0",
