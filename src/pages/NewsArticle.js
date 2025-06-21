@@ -150,7 +150,7 @@ function RecentArticle({ image, title, slug }) {
     );
 }
 
-export default function Article() {
+export default function NewsArticle() {
     const { postSlug } = useParams();
     const [post, setPost] = useState(null);
     const [recentPosts, setRecentPosts] = useState(null);

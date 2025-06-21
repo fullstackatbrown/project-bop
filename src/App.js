@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Home from "./pages/Home";
-import Polls from "./pages/Polls";
-import PollDetail from "./pages/PollDetail"
+import PollGroups from "./pages/PollGroups";
+import PollGroupDetail from "./pages/PollGroupDetail"
 import News from "./pages/News";
-import Article from "./pages/Article";
+import NewsArticle from "./pages/NewsArticle";
 import QuestionSubmissions from "./pages/QuestionSubmissions";
 import Team from "./pages/Team";
 import Visualization from "./pages/Visualization";
@@ -21,9 +21,9 @@ export default function App() {
                 {/* Page Content (Pushed Down to Avoid Navbar Overlap) */}
                 <div className="mt-24 md:mt-28">
                     <Switch>
-                        <Route path="/polls/:pollId" component={PollDetail} />
-                        <Route path="/polls" component={Polls} />
-                        <Route path="/articles/:postSlug" component={Article} />
+                        <Route path="/polls/:pollId" component={PollGroupDetail} />
+                        <Route path="/polls" component={PollGroups} />
+                        <Route path="/articles/:postSlug" component={NewsArticle} />
                         <Route path="/news" component={News} />
                         <Route path="/question-submissions" component={QuestionSubmissions} />
                         <Route path="/team" component={Team} />
