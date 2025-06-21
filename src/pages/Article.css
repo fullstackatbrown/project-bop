@@ -2,12 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;700&display=swap');
 
 .curr-article {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    margin-top: 80px;
 }
 
 h1 {
@@ -22,7 +22,8 @@ h1 {
         font-size: 28px;
     }
 
-    .content, .icons {
+    .content,
+    .icons {
         width: 70vw;
     }
 
@@ -44,7 +45,8 @@ h1 {
         font-size: 40px;
     }
 
-    .content, .icons {
+    .content,
+    .icons {
         width: 50vw;
     }
 
@@ -81,10 +83,10 @@ p {
 }
 
 img {
-  height: auto;
-  display: block; 
-  margin-left: auto; 
-  margin-right: auto;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 figure {
@@ -176,49 +178,49 @@ h2 {
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     z-index: 1000;
-  }
-  
-  .popup-content {
+}
+
+.popup-content {
     display: flex;
     flex-direction: column;
     gap: 10px;
     width: 30vw;
-  }
+}
 
-  .popup-link {
+.popup-link {
     overflow: scroll;
     scrollbar-arrow-color: transparent;
     outline: 2px solid black;
     outline-offset: 5px;
-  }
-  
-  .close {
+}
+
+.close {
     position: absolute;
     top: 10px;
     right: 15px;
     cursor: pointer;
     font-size: 20px;
-  }
+}
 
-  .popup-buttons {
+.popup-buttons {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-top: 2vh;
-  }
+}
 
-  .popup-buttons button {
+.popup-buttons button {
     background-color: rgb(250, 131, 110);
     font-family: "Avenir";
     color: white;
     padding: 5px 5px;
     border-radius: 5px;
-  }
+}
 
-  .popup-buttons button:hover {
+.popup-buttons button:hover {
     background-color: rgb(251, 58, 24);
-  }
+}
 
-  .copied {
+.copied {
     font-size: 14px;
-  }
+}

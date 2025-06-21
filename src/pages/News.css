@@ -107,10 +107,12 @@
 .share-dropdown li {
     display: flex;
     align-items: center;
-    padding: 0.4rem 1rem; /* reduced padding for compact height */
+    padding: 0.4rem 1rem;
+    /* reduced padding for compact height */
     cursor: pointer;
     transition: background 0.2s ease-in-out;
-    height: 40px; /* fixed row height */
+    height: 40px;
+    /* fixed row height */
 }
 
 .share-dropdown li:hover {
@@ -207,7 +209,8 @@
 .share-link {
     display: flex;
     align-items: center;
-    padding: 0.35rem 0.75rem; /* reduced padding */
+    padding: 0.35rem 0.75rem;
+    /* reduced padding */
     text-decoration: none;
     color: inherit;
     transition: background 0.2s ease-in-out;
