@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { cosmic } from '../cosmic';
-import { publicUrl } from '../publicUrl';
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { cosmic } from "../cosmic";
+import { publicUrl } from "../publicUrl";
 
 const pdfTitles = [
     "April 2022",
@@ -123,7 +123,7 @@ export default function Polls() {
                             >
                                 <div className="space-y-3 ml-6">
                                     {groupedByYear[year].map((poll, index) => {
-                                        const key = poll.toLowerCase().replace(/\s+/g, '-');
+                                        const key = poll.toLowerCase().replace(/\s+/g, "-");
                                         if (!pdfTitles.includes(poll)) {
                                             return (
                                                 <Link
