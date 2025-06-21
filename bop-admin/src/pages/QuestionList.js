@@ -48,8 +48,8 @@ export default function QuestionList() {
             try {
                 await cosmic.objects.deleteOne(idToDelete);
             } catch (err) {
-                console.error("Article deletion failed:", err);
-                alert("Article deletion failed");
+                console.error("Question deletion failed:", err);
+                alert("Question deletion failed");
                 return;
             }
 
