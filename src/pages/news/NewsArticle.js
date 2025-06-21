@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import "./NewsArticle.css";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { cosmic, dateFormat } from "../../cosmic";
+import { cosmicFind, dateFormat } from "../../cosmic";
 import Markdown from "react-markdown";
 import Poll from "../../components/Poll";
 import { publicUrl } from "../../publicUrl";
@@ -156,23 +156,10 @@ export default function NewsArticle() {
     const [recentPosts, setRecentPosts] = useState(null);
     useEffect(() => {
         (async () => {
-            setPost(
-                (await cosmic.objects.find({ type: "news-posts", slug: postSlug })).objects.map(
-                    (raw) => {
-                        return { ...raw.metadata, title: raw.title, slug: raw.slug };
-                    }
-                )[0]
-            );
+            setPost((await cosmicFind({ type: "news-posts", slug: postSlug }))[0]);
 
-            const lastFour = (await cosmic.objects.find({ type: "news-posts", limit: 4 })).objects.map(
-                (raw) => {
-                    return { ...raw.metadata, title: raw.title, slug: raw.slug };
-                }
-            );
-
-            setRecentPosts(
-                lastFour.filter((recent) => recent.slug !== postSlug).slice(0, 3)
-            );
+            const lastFour = await cosmicFind({ type: "news-posts", limit: 4 });
+            setRecentPosts(lastFour.filter((recent) => recent.slug !== postSlug).slice(0, 3));
         })();
     }, [postSlug]);
 
@@ -218,11 +205,7 @@ function EmbedPoll({ line }) {
     const [pollGroup, setPollGroup] = useState(null);
     useEffect(() => {
         (async () => {
-            setPollGroup(
-                (await cosmic.objects.find({ type: "poll-groups", slug: slug })).objects.map((raw) => {
-                    return { ...raw.metadata, title: raw.title };
-                })[0]
-            );
+            setPollGroup((await cosmicFind({ type: "poll-groups", slug: slug }))[0]);
         })();
     }, [slug]);
 
