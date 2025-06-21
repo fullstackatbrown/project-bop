@@ -9,9 +9,9 @@ import {
     Col,
     Form
 } from "react-bootstrap";
-import { cosmic } from "../cosmic";
-import { useSearchSaveNavigate } from "../searchSaveNavigate";
-import LoadingButton from "../components/LoadingButton";
+import { cosmic } from "../../cosmic";
+import { useSearchSaveNavigate } from "../../searchSaveNavigate";
+import LoadingButton from "../../components/LoadingButton";
 
 export default function TeamList() {
     const navigate = useSearchSaveNavigate();
