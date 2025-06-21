@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Home from "./pages/Home";
-import PollGroups from "./pages/PollGroups";
-import PollGroupDetail from "./pages/PollGroupDetail"
-import News from "./pages/News";
-import NewsArticle from "./pages/NewsArticle";
+import PollGroups from "./pages/polls/PollGroups";
+import PollGroupDetail from "./pages/polls/PollGroupDetail"
+import News from "./pages/news/News";
+import NewsArticle from "./pages/news/NewsArticle";
 import QuestionSubmissions from "./pages/QuestionSubmissions";
 import Team from "./pages/Team";
 import Visualization from "./pages/Visualization";

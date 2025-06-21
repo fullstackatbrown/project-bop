@@ -2,8 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { HiShare } from "react-icons/hi";
 import "./News.css";
-import { cosmic, dateFormat } from "../cosmic";
-import { publicUrl } from "../publicUrl";
+import { cosmic, dateFormat } from "../../cosmic";
+import { publicUrl } from "../../publicUrl";
 
 const Articles = () => {
     const [articles, setArticles] = useState([]);

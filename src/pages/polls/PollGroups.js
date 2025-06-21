@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { cosmic } from "../cosmic";
-import { publicUrl } from "../publicUrl";
+import { cosmic } from "../../cosmic";
+import { publicUrl } from "../../publicUrl";
 
 const pdfTitles = [
     "April 2022",
