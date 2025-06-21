@@ -16,7 +16,7 @@ export default function Footer() {
                             Full Stack at Brown
                         </a>
                     </div>
-                    <img src={publicUrl("/fsab-circle.png")} alt="fsab logo" className="w-5 h-auto" />
+                    <img src={publicUrl("/logos/footer_fsab.png")} alt="fsab logo" className="w-5 h-auto" />
                 </div>
 
                 {/* Copyright */}
@@ -32,7 +32,7 @@ export default function Footer() {
                         className="flex items-center justify-center text-center text-white bg-black rounded-full hover:text-blue-500 w-10 h-10"
                     >
                         <img
-                            src={publicUrl("/twitter-icon.png")}
+                            src={publicUrl("/logos/footer_x.png")}
                             alt="twitter icon"
                             className="w-1/3 h-auto"
                         />
@@ -43,7 +43,7 @@ export default function Footer() {
                         className="flex items-center justify-center text-center text-white bg-black rounded-full hover:text-blue-500 w-10 h-10"
                     >
                         <img
-                            src={publicUrl("/tiktok-icon.png")}
+                            src={publicUrl("/logos/footer_tiktok.png")}
                             alt="tiktok icon"
                             className="w-1/3 h-auto"
                         />
@@ -54,7 +54,7 @@ export default function Footer() {
                         className="flex items-center justify-center text-center bg-black rounded-full hover:text-blue-500 w-10 h-10"
                     >
                         <img
-                            src={publicUrl("/instagram-icon.png")}
+                            src={publicUrl("/logos/footer_instagram.png")}
                             alt="instagram icon"
                             className="w-1/3 h-auto"
                         />

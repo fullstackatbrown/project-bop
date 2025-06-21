@@ -49,7 +49,7 @@ export default function Home() {
                 {/* Background Image with Blue Overlay */}
                 <div
                     className="absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: `url(${publicUrl("/BrownUniversityImage.jpg")})` }}
+                    style={{ backgroundImage: `url(${publicUrl("/pics/home_brown.jpg")})` }}
                 >
                     <div className="absolute inset-0 bg-blue-900 bg-opacity-80 bottom-1/2 md:bottom-0 md:right-1/2 md:w-1/2"></div>
                 </div>

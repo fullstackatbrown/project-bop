@@ -103,7 +103,7 @@ const Articles = () => {
                                         <a href={shareLinks.facebook} target="_blank" rel="noopener noreferrer">
                                             <li>
                                                 <div className="share-icon">
-                                                    <img src={publicUrl("/facebook.png")} alt="Facebook" />
+                                                    <img src={publicUrl("/logos/article_facebook.png")} alt="Facebook" />
                                                 </div>
                                                 <span className="share-label">Facebook</span>
                                             </li>
@@ -111,7 +111,7 @@ const Articles = () => {
                                         <a href={shareLinks.x} target="_blank" rel="noopener noreferrer">
                                             <li>
                                                 <div className="share-icon">
-                                                    <img src={publicUrl("/xlogo.svg")} alt="X" />
+                                                    <img src={publicUrl("/logos/article_x.png")} alt="X" />
                                                 </div>
                                                 <span className="share-label">X</span>
                                             </li>
@@ -119,7 +119,7 @@ const Articles = () => {
                                         <a href={shareLinks.linkedin} target="_blank" rel="noopener noreferrer">
                                             <li>
                                                 <div className="share-icon">
-                                                    <img src={publicUrl("/linkedin-icon.png")} alt="LinkedIn" />
+                                                    <img src={publicUrl("/logos/article_linkedin.png")} alt="LinkedIn" />
                                                 </div>
                                                 <span className="share-label">LinkedIn</span>
                                             </li>
@@ -133,7 +133,7 @@ const Articles = () => {
                                             }}
                                         >
                                             <div className="share-icon">
-                                                <img src={publicUrl("/link-icon.png")} alt="Copy Link" />
+                                                <img src={publicUrl("/logos/article_share.png")} alt="Copy Link" />
                                             </div>
                                             <span className="share-label">Copy Link</span>
                                         </li>
