@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { cosmic, dateFormat } from "../cosmic";
 import Slider from "react-slick";
-import Poll from "../Poll";
+import Poll from "../components/Poll";
 import "./Home.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

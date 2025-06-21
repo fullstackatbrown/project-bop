@@ -1,5 +1,5 @@
 import "./MemberCard.css";
-import { publicUrl } from "./publicUrl";
+import { publicUrl } from "../publicUrl";
 
 export default function MemberCard({ name, position, image }) {
     return (

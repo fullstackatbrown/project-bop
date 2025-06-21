@@ -1,4 +1,4 @@
-import { publicUrl } from "./publicUrl";
+import { publicUrl } from "../publicUrl";
 
 export default function Footer() {
   return (
