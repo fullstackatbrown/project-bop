@@ -6,6 +6,17 @@ export const cosmic = createBucketClient({
     writeKey: "HC6pQfEKvvXoC9MPxDeXwBc911oEqgh19OzV0WY2jppinuEwkP"
 });
 
+export async function cosmicFind(arg) {
+    const response = await cosmic.objects.find(arg);
+
+    return response.objects
+        .map(raw => ({
+            ...raw,
+            ...raw.metadata,
+            metadata: undefined
+        }));
+}
+
 export function dateFormat(dateStr) {
     const date = new Date(dateStr);
 

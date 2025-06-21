@@ -1,7 +1,7 @@
 import "./Team.css";
 import { useState, useEffect } from "react";
 import { publicUrl } from "../publicUrl";
-import { cosmic } from "../cosmic";
+import { cosmicFind } from "../cosmic";
 
 export default function Team() {
     return (
@@ -116,9 +116,9 @@ function TeamSections() {
         const fetchMembers = async () => {
             const sortMembers = start => {
                 try {
-                    let end = [start.find(member => member.metadata.id_above == "0")];
+                    let end = [start.find(member => member.id_above == "0")];
                     while (end.length < start.length) {
-                        end.push(start.find(member => member.metadata.id_above == end[end.length - 1].id));
+                        end.push(start.find(member => member.id_above == end[end.length - 1].id));
                     }
                     return end;
                 } catch (err) {
@@ -128,18 +128,16 @@ function TeamSections() {
             };
 
             try {
-                const response = await cosmic.objects.find({ type: "team-members" });
-
-                const members = sortMembers(response.objects);
+                const members = sortMembers(await cosmicFind({ type: "team-members" }));
 
                 let execsList = [];
                 let staffList = [];
 
                 for (const member of members) {
-                    if (member.metadata.section === "executive") {
-                        execsList.push(member.metadata);
+                    if (member.section === "executive") {
+                        execsList.push(member);
                     } else {
-                        staffList.push(member.metadata);
+                        staffList.push(member);
                     }
                 }
 

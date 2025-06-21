@@ -12,7 +12,7 @@ import {
     Legend,
 } from "chart.js";
 import "./Visualization.css";
-import { cosmic } from "../cosmic";
+import { cosmicFind } from "../cosmic";
 
 // Register Chart.js components
 ChartJS.register(
@@ -31,7 +31,7 @@ const Visualization = () => {
 
     useEffect(() => {
         (async () => {
-            const recvPolls = (await cosmic.objects.find({ type: "poll-groups" })).objects.map(raw => raw.title);
+            const recvPolls = (await cosmicFind({ type: "poll-groups" })).map(raw => raw.title);
             setPolls(recvPolls);
             setSelectedPoll(recvPolls[0]);
         })();
@@ -71,7 +71,7 @@ const Visualization = () => {
     // Load CSV when poll changes
     useEffect(() => {
         (async () => {
-            const pollCSV = (await cosmic.objects.find({ type: "poll-groups", slug: selectedPoll.toLowerCase().split(" ").join("-") })).objects[0].metadata.csv_data;
+            const pollCSV = (await cosmicFind({ type: "poll-groups", slug: selectedPoll.toLowerCase().split(" ").join("-") }))[0].csv_data;
             const { data, meta } = Papa.parse(pollCSV, { header: true });
             setCsvData(data);
             if (meta && meta.fields) {

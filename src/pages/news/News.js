@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { HiShare } from "react-icons/hi";
 import "./News.css";
-import { cosmic, dateFormat } from "../../cosmic";
+import { cosmicFind, dateFormat } from "../../cosmic";
 import { publicUrl } from "../../publicUrl";
 
 const Articles = () => {
@@ -14,8 +14,7 @@ const Articles = () => {
     useEffect(() => {
         (async () => {
             setArticles(
-                (await cosmic.objects.find({ type: "news-posts" })).objects
-                    .map(raw => { return { ...raw.metadata, title: raw.title, slug: raw.slug } })
+                (await cosmicFind({ type: "news-posts" }))
                     .sort((a, b) => new Date(b.date_published).getTime() - new Date(a.date_published).getTime())
             );
         })();
