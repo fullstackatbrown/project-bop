@@ -44,7 +44,7 @@ export default function Home() {
     if (!news) return null;
     return (
         <div>
-            {/* 'Discover how Brown students feel about ...' Section */}
+            {/* "Discover how Brown students feel about ..." Section */}
             <section className="relative flex flex-col w-full h-auto md:h-[60vh] mx-auto">
                 {/* Background Image with Blue Overlay */}
                 <div
@@ -135,7 +135,7 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* 'News!' Section */}
+            {/* "News!" Section */}
             <section className="relative w-full flex flex-col items-center py-4 sm:py-8 mt-0 sm:mt-0 sm:h-auto px-4 mb-14">
                 {/* Main article */}
                 <div className="w-full px-0 sm:w-11/12 md:w-10/12 lg:w-4/5 max-w-6xl">
@@ -210,7 +210,7 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* 'Check out our previous polls!' Section */}
+            {/* "Check out our previous polls!" Section */}
             <LatestPolls />
         </div>
     );
@@ -245,7 +245,7 @@ function LatestPolls() {
                 className="home-poll-slider"
                 responsive={[
                     {
-                        breakpoint: 768, // Tailwind's 'md' breakpoint is 768px
+                        breakpoint: 768, // Tailwind"s "md" breakpoint is 768px
                         settings: {
                             slidesToShow: 1,
                             slidesToScroll: 1,
