@@ -30,7 +30,7 @@ export default function NewsEdit() {
     useEffect(() => {
         (async () => {
             setCurrentId(id);
-            if (id == "new") return;
+            if (id === "new") return;
 
             const raw = (await cosmic.objects.findOne({ type: "news-posts", id })).object;
             setForm({
@@ -58,10 +58,10 @@ export default function NewsEdit() {
     };
 
     const handleSubmit = async () => {
-        if (currentId != "new") {
+        if (currentId !== "new") {
             const latestModified = (await cosmic.objects.findOne({ type: "news-posts", id })).object.modified_at;
             // eslint-disable-next-line no-restricted-globals
-            if (form.modifiedAt != latestModified && !confirm("modified times vary")) {
+            if (form.modifiedAt !== latestModified && !confirm("modified times vary")) {
                 return;
             }
         }
@@ -93,7 +93,7 @@ export default function NewsEdit() {
                 payload.metadata.image = uploadMedia.name;
             }
 
-            if (currentId == "new") {
+            if (currentId === "new") {
                 payload.type = "news-posts";
                 payload.metadata.date_published = new Date().toISOString().split("T")[0];
 

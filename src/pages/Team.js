@@ -116,9 +116,9 @@ function TeamSections() {
         const fetchMembers = async () => {
             const sortMembers = start => {
                 try {
-                    let end = [start.find(member => member.id_above == "0")];
+                    let end = [start.find(member => member.id_above === "0")];
                     while (end.length < start.length) {
-                        end.push(start.find(member => member.id_above == end[end.length - 1].id));
+                        end.push(start.find(member => member.id_above === end[end.length - 1].id));
                     }
                     return end;
                 } catch (err) {

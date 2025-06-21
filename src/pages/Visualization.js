@@ -61,7 +61,6 @@ const Visualization = () => {
 
     // Styles
     const containerStyle = { padding: "20px", className: "visualizer-main" };
-    const headerStyle = { fontSize: "2.5rem", marginBottom: "20px" };
     const rowStyle = { display: "flex", flexDirection: "row", marginBottom: "20px" };
     const leftColumnStyle = { flex: "0 0 30%", padding: "10px" };
     const rightColumnStyle = { flex: "0 0 70%", padding: "10px" };
@@ -156,7 +155,6 @@ const Visualization = () => {
 
         if (analysisType === "topline") {
             const abs = chartData.datasets[0].data.map(Number);
-            const total = abs.reduce((s, v) => s + v, 0);
             return (
                 <table style={{ width: "100%", borderCollapse: "collapse", marginTop: 10 }}>
                     <thead>
@@ -323,7 +321,7 @@ const Visualization = () => {
                         <div style={{
                             ...boxStyle,
                             backgroundColor: "#e2e3e5",
-                            width: "100%", height: analysisType == "topline" ? 425 : 525,
+                            width: "100%", height: analysisType === "topline" ? 425 : 525,
                             display: "flex", alignItems: "center", justifyContent: "center"
                         }}>
                             {chartData ? (

@@ -23,7 +23,7 @@ export default function PollGroupDetail() {
                 URL.revokeObjectURL(csvUrl);
             }
         };
-    }, []);
+    }, [csvUrl, pollId]);
 
     if (!pollGroup) return;
     return (

@@ -27,7 +27,7 @@ export default function NewGroupView({ setId }) {
         }
         
         const parseRes = csvParse(text);
-        if (parseRes.errors.length != 0) {
+        if (parseRes.errors.length !== 0) {
             console.error(parseRes.errors);
         }
         return transpose(parseRes.data)
@@ -59,7 +59,7 @@ export default function NewGroupView({ setId }) {
 
     const handleFileChange = e => {
         const file = e.target.files[0];
-        if (file && file.type == "text/csv") {
+        if (file && file.type === "text/csv") {
             setCsvFile(file);
         } else {
             alert("Please upload a valid CSV file.");

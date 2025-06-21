@@ -14,8 +14,8 @@ export default function PollEdit() {
 
     return (
         <>
-            {currentId == "new" && <NewGroupView setId={setCurrentId} />}
-            {currentId && currentId != "new" && <ExistingGroupView id={currentId} />}
+            {currentId === "new" && <NewGroupView setId={setCurrentId} />}
+            {currentId && currentId !== "new" && <ExistingGroupView id={currentId} />}
         </>
     );
 }
