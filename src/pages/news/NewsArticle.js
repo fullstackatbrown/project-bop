@@ -139,7 +139,7 @@ function RecentArticle({ image, title, slug }) {
             <img src={image} alt="recent article img" />
             <p className="recent-title">
                 <Link
-                    to={`/articles/${slug}`}
+                    to={`/news/${slug}`}
                     className="article-link"
                     onClick={() => window.scrollTo(0, 0)}
                 >
