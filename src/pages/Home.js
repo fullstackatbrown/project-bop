@@ -143,7 +143,7 @@ export default function Home() {
                     {/* Main article container */}
                     <div className="w-full flex flex-col md:flex-row gap-4">
                         {/* Headline article container */}
-                        <Link to={`/articles/${news[0].slug}`} className="md:w-3/5">
+                        <Link to={`/news/${news[0].slug}`} className="md:w-3/5">
                             <div className="w-full flex flex-col bg-white shadow-md rounded-lg">
                                 {/* Article image */}
                                 <div className="w-full h-48 sm:h-64 md:h-72 bg-slate-800 overflow-hidden rounded-t-lg">
@@ -172,7 +172,7 @@ export default function Home() {
                         <div className="w-full md:w-2/5 flex flex-col gap-4">
                             {/* Individual articles */}
                             {[1, 2, 3].map((index) => (
-                                <Link to={`/articles/${news[index].slug}`}>
+                                <Link to={`/news/${news[index].slug}`}>
                                     <div
                                         key={index}
                                         className="w-full flex flex-row items-start justify-between bg-white shadow-md rounded-lg pr-4"

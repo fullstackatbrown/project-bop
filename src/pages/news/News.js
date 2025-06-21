@@ -153,7 +153,7 @@ const Articles = () => {
                                 <h2>
                                     <Link
                                         to={{
-                                            pathname: `/articles/${article.slug}`
+                                            pathname: `/news/${article.slug}`
                                         }}
                                         className="article-link"
                                     >

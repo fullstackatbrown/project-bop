@@ -23,7 +23,7 @@ export default function App() {
                     <Switch>
                         <Route path="/polls/:pollId" component={PollGroupDetail} />
                         <Route path="/polls" component={PollGroups} />
-                        <Route path="/articles/:postSlug" component={NewsArticle} />
+                        <Route path="/news/:postSlug" component={NewsArticle} />
                         <Route path="/news" component={News} />
                         <Route path="/question-submissions" component={QuestionSubmissions} />
                         <Route path="/team" component={Team} />
