@@ -42,7 +42,7 @@ function ShareBar() {
                     className="facebook-share-button"
                 >
                     <img
-                        src={publicUrl("/facebook.png")}
+                        src={publicUrl("/logos/article_facebook.png")}
                         alt="Share on Facebook"
                         className="facebook-icon"
                     />
@@ -54,7 +54,7 @@ function ShareBar() {
                     rel="noopener noreferrer"
                     className="x-share-button"
                 >
-                    <img src={publicUrl("/xlogo.svg")} alt="Share on X" class="x-icon" />
+                    <img src={publicUrl("/logos/article_x.png")} alt="Share on X" class="x-icon" />
                 </a>
                 <a
                     href={
@@ -65,13 +65,13 @@ function ShareBar() {
                     className="linkedin-share-button"
                 >
                     <img
-                        src={publicUrl("/linkedin.png")}
+                        src={publicUrl("/logos/article_linkedin.png")}
                         alt="Share on LinkedIn"
                         className="linkedin-icon"
                     />
                 </a>
                 <button className="share-button" onClick={togglePopup}>
-                    <img src={publicUrl("/shareicon.png")} alt="Share icon" />
+                    <img src={publicUrl("/logos/article_share.png")} alt="Share icon" />
                 </button>
             </div>
 

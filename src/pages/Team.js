@@ -21,7 +21,7 @@ function Banner() {
             {/* Background image container */}
             <div
                 className="absolute inset-0 bg-cover bg-center z-0"
-                style={{ backgroundImage: `url(${publicUrl("/bop_team_pic.avif")})` }}
+                style={{ backgroundImage: `url(${publicUrl("/pics/team_group.avif")})` }}
             />
 
             {/* Blue section */}
@@ -72,7 +72,7 @@ function Banner() {
                             rel="noopener noreferrer"
                         >
                             <img
-                                src={publicUrl("/bop_ig_logo.avif")}
+                                src={publicUrl("/logos/team_instagram.avif")}
                                 alt="Instagram"
                                 className="w-8 h-8"
                             />
@@ -83,7 +83,7 @@ function Banner() {
                             rel="noopener noreferrer"
                         >
                             <img
-                                src={publicUrl("/bop_twitter_logo.avif")}
+                                src={publicUrl("/logos/team_twitter.avif")}
                                 alt="Twitter"
                                 className="w-8 h-8"
                             />

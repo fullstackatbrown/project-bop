@@ -23,7 +23,7 @@ export default function App() {
                     <div className="flex justify-between items-center py-4 px-8 w-full">
                         {/* Logo */}
                         <Link to="/" onClick={() => setIsOpen(false)}>
-                            <img src={publicUrl("/bop-logo.png")} alt="Logo" className="w-60 md:w-72" />
+                            <img src={publicUrl("/logos/bop_text.png")} alt="Logo" className="w-60 md:w-72" />
                         </Link>
 
                         {/* Desktop Menu */}
