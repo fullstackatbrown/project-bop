@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { cosmic } from "../cosmic";
 import Poll from "../components/Poll";
 
-export default function PollDetail() {
+export default function PollGroupDetail() {
     const { pollId } = useParams();
     const [pollGroup, setPollGroup] = useState(null);
     const [csvUrl, setCsvUrl] = useState(null);

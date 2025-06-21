@@ -18,7 +18,7 @@ const pdfTitles = [
     "October 2023"
 ];
 
-export default function Polls() {
+export default function PollGroups() {
     const [openYears, setOpenYears] = useState({});
     const [groupedByYear, setGroupedByYear] = useState({});
 
