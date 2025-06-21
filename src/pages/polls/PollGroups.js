@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { cosmic, cosmicFind } from "../../cosmic";
+import { cosmicFind } from "../../cosmic";
 import { publicUrl } from "../../publicUrl";
 
 const pdfTitles = [

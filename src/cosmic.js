@@ -23,9 +23,9 @@ export function dateFormat(dateStr) {
     const options = { month: "short", day: "numeric", year: "numeric" };
     const parts = new Intl.DateTimeFormat("en-US", options).formatToParts(date);
 
-    let month = parts.find(p => p.type == "month").value;
-    const day = parts.find(p => p.type == "day").value;
-    const year = parts.find(p => p.type == "year").value;
+    let month = parts.find(p => p.type === "month").value;
+    const day = parts.find(p => p.type === "day").value;
+    const year = parts.find(p => p.type === "year").value;
 
     const abbreviatedMonths = ["Jan", "Feb", "Apr", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     if (abbreviatedMonths.includes(month)) month += ".";

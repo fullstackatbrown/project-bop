@@ -38,7 +38,7 @@ export default function PollList() {
     };
 
     const handleDeleteConfirmed = async () => {
-        if (idToDelete != null) {
+        if (idToDelete !== null) {
             try {
                 await cosmic.objects.deleteOne(idToDelete);
             } catch (err) {

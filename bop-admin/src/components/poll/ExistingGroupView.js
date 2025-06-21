@@ -25,7 +25,7 @@ export default function ExistingGroupView({ id }) {
     const handleSubmit = async () => {
         const latestModified = (await cosmic.objects.findOne({ id })).object.modified_at;
         // eslint-disable-next-line no-restricted-globals
-        if (loadModified != latestModified && !confirm("modified times vary")) {
+        if (loadModified !== latestModified && !confirm("modified times vary")) {
             return;
         }
         
@@ -86,7 +86,7 @@ function GroupEditor({ group, setGroup }) {
     };
 
     const removePoll = index => {
-        setGroup(group.filter((_, i) => i != index));
+        setGroup(group.filter((_, i) => i !== index));
     };
 
     return (
@@ -137,7 +137,7 @@ function PollEditor({ poll, setPoll }) {
     };
 
     const removeOption = index => {
-        const newResults = poll.results.filter((_, i) => i != index);
+        const newResults = poll.results.filter((_, i) => i !== index);
         setPoll({ ...poll, results: newResults });
     };
 
@@ -190,7 +190,7 @@ function PollEditor({ poll, setPoll }) {
                                     variant="outline-secondary"
                                     size="sm"
                                     onClick={() => moveOption(index, index - 1)}
-                                    disabled={index == 0}
+                                    disabled={index === 0}
                                 >
                                     &uarr;
                                 </Button>
@@ -198,7 +198,7 @@ function PollEditor({ poll, setPoll }) {
                                     variant="outline-secondary"
                                     size="sm"
                                     onClick={() => moveOption(index, index + 1)}
-                                    disabled={index == poll.results.length - 1}
+                                    disabled={index === poll.results.length - 1}
                                 >
                                     &darr;
                                 </Button>

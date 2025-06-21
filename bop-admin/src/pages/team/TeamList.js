@@ -24,14 +24,14 @@ export default function TeamList() {
     const [showMoveModal, setShowMoveModal] = useState(false);
     const [idToMove, setIdToMove] = useState(null);
     const [newIdAbove, setNewIdAbove] = useState("0");
-    const memberToMove = members.find(member => member.id == idToMove) || null;
+    const memberToMove = members.find(member => member.id === idToMove) || null;
 
     const reloadMembers = async () => {
         const sortMembers = start => {
             try {
-                let end = [start.find(member => member.idAbove == "0")];
+                let end = [start.find(member => member.idAbove === "0")];
                 while (end.length < start.length) {
-                    end.push(start.find(member => member.idAbove == end[end.length - 1].id));
+                    end.push(start.find(member => member.idAbove === end[end.length - 1].id));
                 }
                 return end;
             } catch (err) {
@@ -61,13 +61,13 @@ export default function TeamList() {
     };
 
     const handleDeleteConfirmed = async () => {
-        if (idToDelete != null) {
+        if (idToDelete !== null) {
             try {
                 await cosmic.objects.deleteOne(idToDelete);
 
-                const idBelow = members.find(member => member.idAbove == idToDelete)?.id;
+                const idBelow = members.find(member => member.idAbove === idToDelete)?.id;
                 if (idBelow) {
-                    const idAbove = members.find(member => member.id == idToDelete).idAbove;
+                    const idAbove = members.find(member => member.id === idToDelete).idAbove;
                     await cosmic.objects.updateOne(
                         idBelow,
                         { metadata: { id_above: idAbove } }
@@ -91,14 +91,14 @@ export default function TeamList() {
     };
 
     const handleMove = async () => {
-        if (idToMove != null) {
+        if (idToMove !== null) {
             try {
                 await cosmic.objects.updateOne(
                     idToMove,
                     { metadata: { id_above: newIdAbove } }
                 );
 
-                const newIdBelow = members.find(member => member.idAbove == newIdAbove)?.id;
+                const newIdBelow = members.find(member => member.idAbove === newIdAbove)?.id;
                 if (newIdBelow) {
                     await cosmic.objects.updateOne(
                         newIdBelow,
@@ -106,7 +106,7 @@ export default function TeamList() {
                     );
                 }
 
-                const oldIdBelow = members.find(member => member.idAbove == idToMove)?.id;
+                const oldIdBelow = members.find(member => member.idAbove === idToMove)?.id;
                 if (oldIdBelow) {
                     await cosmic.objects.updateOne(
                         oldIdBelow,
@@ -126,6 +126,7 @@ export default function TeamList() {
         }
     };
 
+    // eslint-disable-next-line no-unused-vars
     const magic = async () => {
         await cosmic.objects.updateOne(members[0].id, { metadata: { id_above: "0" } });
         console.log(0);
@@ -196,7 +197,7 @@ export default function TeamList() {
                         <option value="0">To the top</option>
                         {
                             members
-                                .filter(member => member.id != idToMove && member.id != memberToMove?.idAbove)
+                                .filter(member => member.id !== idToMove && member.id !== memberToMove?.idAbove)
                                 .map(member => <option value={member.id}>Below {member.name}</option>)
                         }
                     </Form.Select>

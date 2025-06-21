@@ -9,7 +9,6 @@ import {
     Col
 } from "react-bootstrap";
 import { cosmic } from "../cosmic";
-import { useSearchSaveNavigate } from "../searchSaveNavigate";
 import LoadingButton from "../components/LoadingButton";
 
 export default function QuestionList() {
@@ -30,7 +29,7 @@ export default function QuestionList() {
                     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
             );
         } catch (err) {
-            if (err.status != 404) {
+            if (err.status !== 404) {
                 throw err;
             }
         }
@@ -44,7 +43,7 @@ export default function QuestionList() {
     };
 
     const handleDeleteConfirmed = async () => {
-        if (idToDelete != null) {
+        if (idToDelete !== null) {
             try {
                 await cosmic.objects.deleteOne(idToDelete);
             } catch (err) {
@@ -63,7 +62,7 @@ export default function QuestionList() {
         <Container className="mt-4">
             <h3>Submitted Questions</h3>
 
-            {questions.length == 0 && <p>No questions found.</p>}
+            {questions.length === 0 && <p>No questions found.</p>}
             <ListGroup>
                 {questions.map((question, index) => (
                     <ListGroup.Item key={index}>
