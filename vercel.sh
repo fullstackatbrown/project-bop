@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+echo "[!] Running custom vercel build script"
 cd $(dirname $0) &&
 
 # Build main project
