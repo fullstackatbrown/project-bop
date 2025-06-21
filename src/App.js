@@ -14,7 +14,7 @@ import Footer from "./components/Footer";
 
 export default function App() {
     return (
-        <Router basename="/bop-deploy">
+        <Router basename="/">
             <div className="min-h-screen flex flex-col">
                 <Navbar />
 
