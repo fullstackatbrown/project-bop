@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { cosmic, dateFormat } from "../cosmic";
 import Markdown from "react-markdown";
-import Poll from "../Poll";
+import Poll from "../components/Poll";
 import { publicUrl } from "../publicUrl";
 
 function ShareBar() {

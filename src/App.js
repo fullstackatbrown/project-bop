@@ -9,7 +9,7 @@ import QuestionSubmissions from "./pages/QuestionSubmissions";
 import Team from "./pages/Team";
 import Visualization from "./pages/Visualization";
 import Article from "./pages/Article";
-import Footer from "./Footer";
+import Footer from "./components/Footer";
 import { publicUrl } from "./publicUrl";
 
 export default function App() {

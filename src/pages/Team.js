@@ -1,6 +1,6 @@
 import "./Team.css";
-import MemberCard from "../MemberCard";
-import AlumniRow from "../AlumniRow";
+import MemberCard from "../components/MemberCard";
+import AlumniRow from "../components/AlumniRow";
 import { createBucketClient } from "@cosmicjs/sdk";
 import { useState, useEffect } from "react";
 import { publicUrl } from "../publicUrl";
