@@ -1,5 +1,5 @@
 // Visualization.js
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Papa from 'papaparse';
 import { Bar } from 'react-chartjs-2';
 import {
