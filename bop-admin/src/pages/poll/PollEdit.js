@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import NewGroupView from "../components/NewGroupView";
-import ExistingGroupView from "../components/ExistingGroupView";
+import NewGroupView from "../../components/poll/NewGroupView";
+import ExistingGroupView from "../../components/poll/ExistingGroupView";
 
 export default function PollEdit() {
     const { id } = useParams();

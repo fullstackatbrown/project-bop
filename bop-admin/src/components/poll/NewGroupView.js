@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Container, Form } from "react-bootstrap";
 import { parse as csvParse } from "papaparse";
-import { cosmic } from "../cosmic";
-import LoadingButton from "./LoadingButton";
+import { cosmic } from "../../cosmic";
+import LoadingButton from "../LoadingButton";
 
 export default function NewGroupView({ setId }) {
     const [title, setTitle] = useState("");

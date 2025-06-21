@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Container, Form, Row, Col, Button, Card, Modal } from "react-bootstrap";
-import { cosmic } from "../cosmic";
-import { useSearchSaveNavigate } from "../searchSaveNavigate";
-import LoadingButton from "./LoadingButton";
+import { cosmic } from "../../cosmic";
+import { useSearchSaveNavigate } from "../../searchSaveNavigate";
+import LoadingButton from "../LoadingButton";
 import PollView from "./PollView";
 
 export default function ExistingGroupView({ id }) {
