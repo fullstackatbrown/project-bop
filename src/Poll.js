@@ -95,7 +95,7 @@ export default function Poll({ data, tag }) {
     }, [data]);
 
     return (
-        <div style={{ width: "100%" }}>
+        <div style={{ width: "100%" }} className="poll">
             <p>
                 <b>{data.question}</b>
             </p>
