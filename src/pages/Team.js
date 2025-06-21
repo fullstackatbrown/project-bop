@@ -1,7 +1,7 @@
 import "./Team.css";
-import { createBucketClient } from "@cosmicjs/sdk";
 import { useState, useEffect } from "react";
 import { publicUrl } from "../publicUrl";
+import { cosmic } from "../cosmic";
 
 export default function Team() {
     return (
@@ -128,15 +128,7 @@ function TeamSections() {
             };
 
             try {
-                const cosmic = createBucketClient({
-                    bucketSlug: "project-bop-production",
-                    readKey: "vfxvljbNYWkluUCXn5Q0Obgr868PJBWXq2XHLpMn5SUHU5gz5c",
-                });
-
-                const response = await cosmic.objects
-                    .find({ type: "team-members" })
-                    .limit(100)
-                    .depth(1);
+                const response = await cosmic.objects.find({ type: "team-members" });
 
                 const members = sortMembers(response.objects);
 
