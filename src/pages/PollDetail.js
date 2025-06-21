@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { queryObjects } from '../cosmic';
+import { cosmic } from '../cosmic';
 import Poll from '../Poll';
 
 export default function PollDetail() {
@@ -10,7 +10,7 @@ export default function PollDetail() {
 
     useEffect(() => {
         (async () => {
-            const pollGroupRecv = (await queryObjects({ type: "poll-groups", slug: pollId }))
+            const pollGroupRecv = (await cosmic.objects.find({ type: "poll-groups", slug: pollId })).objects
                 .map(raw => { return { ...raw.metadata, title: raw.title } })[0];
 
             setPollGroup(pollGroupRecv);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { queryObjects } from '../cosmic';
+import { cosmic } from '../cosmic';
 import { publicUrl } from '../publicUrl';
 
 const pdfTitles = [
@@ -24,7 +24,7 @@ export default function Polls() {
 
     useEffect(() => {
         (async () => {
-            const pollData = (await queryObjects({ type: "poll-groups" }))
+            const pollData = (await cosmic.objects.find({ type: "poll-groups" })).objects
                 .map(raw => raw.title)
                 .concat(pdfTitles);
             setGroupedByYear(
