@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { queryObjects } from '../cosmic';
-import { publicUrl } from '../publicUrl';
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { cosmic, cosmicFind } from "../../cosmic";
+import { publicUrl } from "../../publicUrl";
 
 const pdfTitles = [
     "April 2022",
@@ -18,13 +18,13 @@ const pdfTitles = [
     "October 2023"
 ];
 
-export default function Polls() {
+export default function PollGroups() {
     const [openYears, setOpenYears] = useState({});
     const [groupedByYear, setGroupedByYear] = useState({});
 
     useEffect(() => {
         (async () => {
-            const pollData = (await queryObjects({ type: "poll-groups" }))
+            const pollData = (await cosmicFind({ type: "poll-groups" }))
                 .map(raw => raw.title)
                 .concat(pdfTitles);
             setGroupedByYear(
@@ -123,7 +123,7 @@ export default function Polls() {
                             >
                                 <div className="space-y-3 ml-6">
                                     {groupedByYear[year].map((poll, index) => {
-                                        const key = poll.toLowerCase().replace(/\s+/g, '-');
+                                        const key = poll.toLowerCase().replace(/\s+/g, "-");
                                         if (!pdfTitles.includes(poll)) {
                                             return (
                                                 <Link

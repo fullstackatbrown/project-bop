@@ -7,9 +7,9 @@ import {
     Modal,
     Image
 } from "react-bootstrap";
-import { cosmic } from "../cosmic";
-import { useSearchSaveNavigate } from "../searchSaveNavigate";
-import LoadingButton from "../components/LoadingButton";
+import { cosmic } from "../../cosmic";
+import { useSearchSaveNavigate } from "../../searchSaveNavigate";
+import LoadingButton from "../../components/LoadingButton";
 
 export default function NewsEdit() {
     const navigate = useSearchSaveNavigate();

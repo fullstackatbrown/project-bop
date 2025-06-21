@@ -1,13 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import NewsList from "./pages/NewsList";
-import NewsEdit from "./pages/NewsEdit";
-import PollList from "./pages/PollList";
-import PollEdit from "./pages/PollEdit";
-import Main from "./pages/Main";
-import TeamEdit from "./pages/TeamEdit";
-import TeamList from "./pages/TeamList";
+import NewsEdit from "./pages/news/NewsEdit";
+import NewsList from "./pages/news/NewsList";
+import PollEdit from "./pages/poll/PollEdit";
+import PollList from "./pages/poll/PollList";
+import TeamEdit from "./pages/team/TeamEdit";
+import TeamList from "./pages/team/TeamList";
 import QuestionList from "./pages/QuestionList";
+import Main from "./pages/Main";
 
 function App() {
     return (

@@ -8,9 +8,9 @@ import {
     Row,
     Col
 } from "react-bootstrap";
-import { cosmic } from "../cosmic";
-import { useSearchSaveNavigate } from "../searchSaveNavigate";
-import LoadingButton from "../components/LoadingButton";
+import { cosmic } from "../../cosmic";
+import { useSearchSaveNavigate } from "../../searchSaveNavigate";
+import LoadingButton from "../../components/LoadingButton";
 
 export default function NewsList() {
     const navigate = useSearchSaveNavigate();
