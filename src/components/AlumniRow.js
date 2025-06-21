@@ -8,7 +8,7 @@ export default function AlumniRow({ name, position, term, index, selectedIndex, 
     };
 
     return (
-        <div 
+        <div
             className={`alumni-row ${isSelected ? "highlighted" : index % 2 === 0 ? "light-blue" : "light-gray"}`}
             onClick={handleClick}
         >
