@@ -11,7 +11,8 @@
 }
 
 .highlighted {
-    background-color: #32488fe0 !important; /* Highlighted color w opacity*/
+    background-color: #32488fe0 !important;
+    /* Highlighted color w opacity*/
     color: white;
 }
 
@@ -20,19 +21,24 @@
 }
 
 .light-blue {
-    background-color: #98ade9; /* Dark Blue */
+    background-color: #98ade9;
+    /* Dark Blue */
 }
 
 .light-gray {
-    background-color: #d4deec; /* Light Blue */
+    background-color: #d4deec;
+    /* Light Blue */
     color: black;
 }
 
 .alumni-column {
-    flex: 1; /* Each section takes equal space */
+    flex: 1;
+    /* Each section takes equal space */
     display: flex;
-    justify-content: center; /* Centers text horizontally */
-    align-items: center; /* Centers text vertically */
+    justify-content: center;
+    /* Centers text horizontally */
+    align-items: center;
+    /* Centers text vertically */
 }
 
 .alumni-name {
