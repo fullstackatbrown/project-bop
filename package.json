@@ -2,7 +2,7 @@
   "name": "brown-opinion-project",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/bop-deploy",
+  "homepage": "/",
   "dependencies": {
     "@cosmicjs/sdk": "^1.3.1",
     "@shadcn/ui": "^0.0.4",
@@ -30,7 +30,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "vercel --prod"
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.5.2",
     "tailwindcss": "^3.4.17"

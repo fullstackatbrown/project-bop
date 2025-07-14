@@ -29,7 +29,7 @@ export default function TeamEdit() {
     useEffect(() => {
         (async () => {
             setCurrentId(id);
-            if (id == "new") return;
+            if (id === "new") return;
 
             const raw = (await cosmic.objects.findOne({ type: "team-members", id })).object;
             setForm({
@@ -57,9 +57,10 @@ export default function TeamEdit() {
 
     const getLastListId = async () => {
         const members = (await cosmic.objects.find({ type: "team-members" })).objects;
+        const getMemberBelow = id => members.find(member => member.metadata.id_above === id);
 
         let lastId = "0", nextMember;
-        while ((nextMember = members.find(member => member.metadata.id_above == lastId))) {
+        while ((nextMember = getMemberBelow(id))) {
             lastId = nextMember.id;
         }
         return lastId;
@@ -74,10 +75,10 @@ export default function TeamEdit() {
     };
 
     const handleSubmit = async () => {
-        if (currentId != "new") {
+        if (currentId !== "new") {
             const latestModified = (await cosmic.objects.findOne({ type: "team-members", id: currentId })).object.modified_at;
             // eslint-disable-next-line no-restricted-globals
-            if (form.modifiedAt != latestModified && !confirm("modified times vary")) {
+            if (form.modifiedAt !== latestModified && !confirm("modified times vary")) {
                 return;
             }
         }
@@ -106,7 +107,7 @@ export default function TeamEdit() {
                 payload.metadata.photo = uploadMedia.name;
             }
 
-            if (currentId == "new") {
+            if (currentId === "new") {
                 payload.type = "team-members";
                 payload.metadata.id_above = await getLastListId();
 

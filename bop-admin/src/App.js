@@ -11,7 +11,7 @@ import Main from "./pages/Main";
 
 function App() {
     return (
-        <Router basename="/bop-deploy/admin">
+        <Router basename="/admin">
             <LockoutView>
                 <Routes>
                     <Route path="/news/:id" element={(<NewsEdit />)} />
@@ -29,7 +29,7 @@ function App() {
 }
 
 function LockoutView({ children }) {
-    if (useLocation().search != "?IkAjOm7qM0PA52QojudUsaAK6y6NeyLo") return null;
+    if (useLocation().search !== "?IkAjOm7qM0PA52QojudUsaAK6y6NeyLo") return null;
 
     return children;
 }
